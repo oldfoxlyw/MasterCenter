@@ -4,14 +4,13 @@ require_once('ICrud.php');
 
 class Madmin extends CI_Model implements ICrud
 {
-	private $table = 'scc_user';
-	private $accountTable = 'scc_user_permission';
-	private $webdb = null;
+	private $table = 'system_user';
+	private $admindb = null;
 	
 	public function __construct()
 	{
 		parent::__construct();
-		$this->webdb = $this->load->database('webdb', TRUE);
+		$this->admindb = $this->load->database('admindb', TRUE);
 	}
 	
 	public function count($parameter = null, $extension = null)
@@ -20,7 +19,7 @@ class Madmin extends CI_Model implements ICrud
 		{
 			foreach($parameter as $key=>$value)
 			{
-				$this->webdb->where($key, $value);
+				$this->admindb->where($key, $value);
 			}
 		}
 		if(!empty($extension))
@@ -29,22 +28,20 @@ class Madmin extends CI_Model implements ICrud
 			{
 				foreach($extension['like'] as $like)
 				{
-					$this->webdb->or_like($like[0], $like[1]);
+					$this->admindb->or_like($like[0], $like[1]);
 				}
 			}
 		}
-		return $this->webdb->count_all_results($this->table);
+		return $this->admindb->count_all_results($this->table);
 	}
 	
 	public function create($row)
 	{
 		if(!empty($row))
 		{
-			$this->load->library('Guid');
-			$row['GUID'] = $this->guid->toString();
-			if($this->webdb->insert($this->table, $row))
+			if($this->admindb->insert($this->table, $row))
 			{
-				return $this->webdb->insert_id();
+				return $this->admindb->insert_id();
 			}
 			else
 			{
@@ -63,7 +60,7 @@ class Madmin extends CI_Model implements ICrud
 		{
 			foreach($parameter as $key=>$value)
 			{
-				$this->webdb->where($key, $value);
+				$this->admindb->where($key, $value);
 			}
 		}
 		if(!empty($extension))
@@ -72,18 +69,18 @@ class Madmin extends CI_Model implements ICrud
 			{
 				foreach($extension['like'] as $like)
 				{
-					$this->webdb->or_like($like[0], $like[1]);
+					$this->admindb->or_like($like[0], $like[1]);
 				}
 			}
 			if(!empty($extension['order_by']))
 			{
-				$this->webdb->order_by($extension['order_by'][0], $extension['order_by'][1]);
+				$this->admindb->order_by($extension['order_by'][0], $extension['order_by'][1]);
 			}
 		}
 		if($limit==0 && $offset==0) {
-			$query = $this->webdb->get($this->accountTable);
+			$query = $this->admindb->get($this->accountTable);
 		} else {
-			$query = $this->webdb->get($this->accountTable, $limit, $offset);
+			$query = $this->admindb->get($this->accountTable, $limit, $offset);
 		}
 		if($query->num_rows() > 0) {
 			return $query->result();
@@ -96,8 +93,8 @@ class Madmin extends CI_Model implements ICrud
 	{
 		if(!empty($id) && !empty($row))
 		{
-			$this->webdb->where('GUID', $id);
-			return $this->webdb->update($this->table, $row);
+			$this->admindb->where('guid', $id);
+			return $this->admindb->update($this->table, $row);
 		}
 		else
 		{
@@ -109,8 +106,8 @@ class Madmin extends CI_Model implements ICrud
 	{
 		if(!empty($id))
 		{
-			$this->webdb->where('GUID', $id);
-			return $this->webdb->delete($this->table);
+			$this->admindb->where('guid', $id);
+			return $this->admindb->delete($this->table);
 		}
 		else
 		{

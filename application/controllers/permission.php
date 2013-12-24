@@ -71,19 +71,19 @@ class Permission extends CI_Controller
 			$this->pageName = 'permission_add';
 			$this->load->model('mpermission');
 			$result = $this->mpermission->read(array(
-				'permission_id'		=>	$permissionId
+				'permission_level'		=>	$permissionId
 			));
 			if($result !== FALSE)
 			{
 				$result = $result[0];
 				$permissionList = explode(',', $result->permission_list);
 				$data = array(
-					'admin'							=>	$this->user,
+					'admin'						=>	$this->user,
 					'page_name'					=>	$this->pageName,
-					'edit'							=>	'1',
-					'old_permission_id'		=>	$permissionId,
-					'value'							=>	$result,
-					'permission_check'		=>	$permissionList
+					'edit'						=>	'1',
+					'old_permission_id'			=>	$permissionId,
+					'value'						=>	$result,
+					'permission_check'			=>	$permissionList
 				);
 				$this->render->render($this->pageName, $data);
 			}
@@ -154,7 +154,7 @@ class Permission extends CI_Controller
 			else
 			{
 				$result = $this->mpermission->read(array(
-					'permission_id'		=>	$permissionId
+					'permission_level'		=>	$permissionId
 				));
 				if(!empty($result))
 				{
@@ -163,9 +163,9 @@ class Permission extends CI_Controller
 				else
 				{
 					$parameter = array(
-						'permission_id'			=>	$permissionId,
+						'permission_level'	=>	$permissionId,
 						'permission_name'	=>	$permissionName,
-						'permission_list'		=>	$permission
+						'permission_list'	=>	$permission
 					);
 				}
 			}
@@ -174,7 +174,7 @@ class Permission extends CI_Controller
 		else
 		{
 			$result = $this->mpermission->read(array(
-				'permission_id'		=>	$permissionId
+				'permission_level'		=>	$permissionId
 			));
 			if(!empty($result))
 			{
@@ -183,7 +183,7 @@ class Permission extends CI_Controller
 			else
 			{
 				$parameter = array(
-					'permission_id'			=>	$permissionId,
+					'permission_level'			=>	$permissionId,
 					'permission_name'	=>	$permissionName,
 					'permission_list'		=>	$permission
 				);

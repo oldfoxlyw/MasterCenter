@@ -57,7 +57,7 @@ class Login extends CI_Controller
 			{
 				$row = $result[0];
 				$cookie = array(
-						'admin_id'			=>		$row->GUID,
+						'admin_id'			=>		$row->guid,
 						'admin_name'		=>		$accountName,
 						'user_founder'		=>		$row->user_founder
 				);
@@ -68,10 +68,10 @@ class Login extends CI_Controller
 				$cookie = array(
 						'name'		=> 'admin',
 						'value'		=> $cookieStr,
-						'expire'		=> $this->config->item('cookie_expire'),
+						'expire'	=> $this->config->item('cookie_expire'),
 						'domain'	=> $this->config->item('cookie_domain'),
 						'path'		=> $this->config->item('cookie_path'),
-						'prefix'		=> $this->config->item('cookie_prefix')
+						'prefix'	=> $this->config->item('cookie_prefix')
 				);
 				if($cookieRemain=='1') {
 					$cookie['expire'] = strval(intval($this->config->item('cookie_expire')) * 30);
@@ -79,7 +79,7 @@ class Login extends CI_Controller
 				$this->input->set_cookie($cookie);
 				 
 				$this->madmin->update($row->admin_id, array(
-						'admin_lastlogin'	=>	time()
+						'user_lastlogin'	=>	time()
 				));
 				 
 				$redirectUrl = empty($redirectUrl) ? 'index' : $redirectUrl;

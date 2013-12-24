@@ -144,6 +144,22 @@ $db['adminlog']['swap_pre'] = '';
 $db['adminlog']['autoinit'] = TRUE;
 $db['adminlog']['stricton'] = FALSE;
 
+$db['admindb']['hostname'] = '127.0.0.1';
+$db['admindb']['username'] = 'root';
+$db['admindb']['password'] = '84@41%%wi96^4';
+$db['admindb']['database'] = 'gm_system_db';
+$db['admindb']['dbdriver'] = 'mysql';
+$db['admindb']['dbprefix'] = '';
+$db['admindb']['pconnect'] = FALSE;
+$db['admindb']['db_debug'] = TRUE;
+$db['admindb']['cache_on'] = FALSE;
+$db['admindb']['cachedir'] = '';
+$db['admindb']['char_set'] = 'utf8';
+$db['admindb']['dbcollat'] = 'utf8_general_ci';
+$db['admindb']['swap_pre'] = '';
+$db['admindb']['autoinit'] = TRUE;
+$db['admindb']['stricton'] = FALSE;
+
 $db['logcachedb']['hostname'] = '127.0.0.1';
 $db['logcachedb']['username'] = 'root';
 $db['logcachedb']['password'] = '84@41%%wi96^4';

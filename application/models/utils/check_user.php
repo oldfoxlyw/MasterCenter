@@ -25,7 +25,7 @@ class Check_user extends CI_Model {
 			$json = json_decode($cookie);
 			$id = $json->admin_id;
 			$parameter = array(
-				'GUID'	=>	$id
+				'guid'	=>	$id
 			);
 			$result = $this->madmin->read($parameter);
 			if($result != FALSE) {
@@ -46,7 +46,7 @@ class Check_user extends CI_Model {
 		if(!empty($this->user))
 		{
 			$permissionArray = explode(',', $this->user->permission_list);
-			if(!in_array($permissionName, $permissionArray) && !in_array('All', $permissionArray))
+			if(!in_array($permissionName, $permissionArray) && !in_array('all', $permissionArray))
 			{
 				showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', '', false);
 			}
@@ -64,7 +64,7 @@ class Check_user extends CI_Model {
 			'name'		=> 'admin',
 			'domain'	=> $this->config->item('cookie_domain'),
 			'path'		=> $this->config->item('cookie_path'),
-			'prefix'		=> $this->config->item('cookie_prefix')
+			'prefix'	=> $this->config->item('cookie_prefix')
 		);
 		delete_cookie($cookie);
 	}

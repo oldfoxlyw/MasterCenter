@@ -36,7 +36,7 @@ class Administrators extends CI_Controller
 		if($this->user->user_founder != '1')
 		{
 			$parameter = array(
-				'GUID'		=>	$this->user->GUID
+				'guid'		=>	$this->user->guid
 			);
 		}
 		
@@ -44,7 +44,7 @@ class Administrators extends CI_Controller
 		if(!empty($keyword))
 		{
 			$like = array(
-				array('GUID', $keyword),
+				array('guid', $keyword),
 				array('user_name', $keyword),
 				array('permission_name', $keyword)
 			);
@@ -53,10 +53,10 @@ class Administrators extends CI_Controller
 		$count = $this->madmin->count($parameter);
 		$result = $this->madmin->read($parameter, $extension, $limit, $offset);
 		$data = array(
-			'sEcho'							=>	$sEcho,
-			'iTotalRecords'				=>	$count,
+			'sEcho'					=>	$sEcho,
+			'iTotalRecords'			=>	$count,
 			'iTotalDisplayRecords'	=>	$count,
-			'aaData'						=>	$result
+			'aaData'				=>	$result
 		);
 		
 		echo $this->return_format->format($data);
@@ -71,7 +71,7 @@ class Administrators extends CI_Controller
 		$permissions = $this->mpermission->read();
 		
 		$data = array(
-			'admin'					=>	$this->user,
+			'admin'				=>	$this->user,
 			'page_name'			=>	$this->pageName,
 			'permissions'		=>	$permissions
 		);
@@ -83,7 +83,7 @@ class Administrators extends CI_Controller
 		if(!empty($adminId))
 		{
 			$this->pageName = 'administrators_add';
-			if($this->user->user_founder != '1' && $this->user->GUID != $adminId)
+			if($this->user->user_founder != '1' && $this->user->guid != $adminId)
 			{
 				showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'administrators', true, 5);
 			}
@@ -91,7 +91,7 @@ class Administrators extends CI_Controller
 			$this->load->model('mpermission');
 			$permissions = $this->mpermission->read();
 			$result = $this->madmin->read(array(
-				'GUID'		=>	$adminId
+				'guid'		=>	$adminId
 			));
 			if($result !== FALSE)
 			{
@@ -99,11 +99,11 @@ class Administrators extends CI_Controller
 			}
 			
 			$data = array(
-				'admin'					=>	$this->user,
+				'admin'				=>	$this->user,
 				'page_name'			=>	$this->pageName,
-				'edit'					=>	'1',
+				'edit'				=>	'1',
 				'admin_id'			=>	$adminId,
-				'value'					=>	$result,
+				'value'				=>	$result,
 				'permissions'		=>	$permissions
 			);
 			$this->render->render($this->pageName, $data);
@@ -125,7 +125,7 @@ class Administrators extends CI_Controller
 			$this->load->model('madmin');
 			
 			$result = $this->madmin->read(array(
-				'GUID'		=>	$adminId
+				'guid'		=>	$adminId
 			));
 			if(!empty($result))
 			{
@@ -169,7 +169,7 @@ class Administrators extends CI_Controller
 			));
 		}
 
-		if($this->user->user_founder != '1' && $this->user->GUID != $adminId)
+		if($this->user->user_founder != '1' && $this->user->guid != $adminId)
 		{
 			showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'administrators', true, 5);
 		}
@@ -181,7 +181,7 @@ class Administrators extends CI_Controller
 		
 		$row = array(
 			'user_name'			=>	$adminAccount,
-			'user_permission'	=>	$userPermission,
+			'permission_level'	=>	$userPermission,
 			'user_fromwhere'	=>	$partnerKey
 		);
 		
