@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Send_message extends CI_Controller
+class Grant_special_gold extends CI_Controller
 {
-	private $pageName = 'master/send_message';
+	private $pageName = 'master/grant_special_gold';
 	private $user = null;
 
 	public function __construct()
@@ -17,6 +17,12 @@ class Send_message extends CI_Controller
 	{
 		$this->load->model('mserver');
 		$serverResult = $this->mserver->read();
+		for($i=0; $i<count($serverResult); $i++)
+		{
+			$server = json_decode($serverResult[$i]->server_ip);
+			$serverResult[$i]->server_port = $server[0]->port;
+			$serverResult[$i]->server_ip = $server[0]->ip;
+		}
 		
 		$data = array(
 			'admin'				=>	$this->user,
@@ -31,14 +37,16 @@ class Send_message extends CI_Controller
 		$this->load->model('utils/connector');
 		
 		$ip = $this->input->post('serverIp', FALSE);
-		$content = $this->input->post('messageContent');
+		$nickname = $this->input->post('nickname');
+		$goldCount = $this->input->post('goldCount');
 		
-		if(!empty($ip) && !empty($content))
+		if(!empty($ip) && !empty($nickname) && !empty($goldCount))
 		{
 			$parameter = array(
-				'content'			=>	$content
+				'nkm'				=>	$nickname,
+				'special_gold'		=>	$goldCount
 			);
-			echo $this->connector->post($ip . '/announcement', $parameter, FALSE);
+			echo $this->connector->post($ip . '/ser_add_special_gold', $parameter, FALSE);
 		}
 	}
 }

@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Send_message extends CI_Controller
+class Grant_pack extends CI_Controller
 {
-	private $pageName = 'master/send_message';
+	private $pageName = 'master/grant_pack';
 	private $user = null;
 
 	public function __construct()
@@ -17,6 +17,12 @@ class Send_message extends CI_Controller
 	{
 		$this->load->model('mserver');
 		$serverResult = $this->mserver->read();
+		for($i=0; $i<count($serverResult); $i++)
+		{
+			$server = json_decode($serverResult[$i]->server_ip);
+			$serverResult[$i]->server_port = $server[0]->port;
+			$serverResult[$i]->server_ip = $server[0]->ip;
+		}
 		
 		$data = array(
 			'admin'				=>	$this->user,
@@ -31,14 +37,20 @@ class Send_message extends CI_Controller
 		$this->load->model('utils/connector');
 		
 		$ip = $this->input->post('serverIp', FALSE);
-		$content = $this->input->post('messageContent');
+		$nickname = $this->input->post('nickname');
+		$packId = $this->input->post('packId');
+		$count = $this->input->post('count');
 		
-		if(!empty($ip) && !empty($content))
+		$count = empty($count) ? 1 : intval($count);
+		
+		if(!empty($ip) && !empty($nickname) && !empty($packId))
 		{
 			$parameter = array(
-				'content'			=>	$content
+				'nkm'			=>	$nickname,
+				'item_const_id'	=>	$packId,
+				'count'			=>	$count
 			);
-			echo $this->connector->post($ip . '/announcement', $parameter, FALSE);
+			echo $this->connector->post($ip . '/ser_send_items', $parameter, FALSE);
 		}
 	}
 }

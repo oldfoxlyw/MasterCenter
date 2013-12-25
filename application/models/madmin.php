@@ -78,9 +78,9 @@ class Madmin extends CI_Model implements ICrud
 			}
 		}
 		if($limit==0 && $offset==0) {
-			$query = $this->admindb->get($this->accountTable);
+			$query = $this->admindb->get($this->table);
 		} else {
-			$query = $this->admindb->get($this->accountTable, $limit, $offset);
+			$query = $this->admindb->get($this->table, $limit, $offset);
 		}
 		if($query->num_rows() > 0) {
 			return $query->result();
