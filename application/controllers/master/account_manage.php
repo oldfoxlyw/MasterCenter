@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Grant_pack extends CI_Controller
+class Account_manage extends CI_Controller
 {
-	private $pageName = 'master/grant_pack';
+	private $pageName = 'master/account_manage';
 	private $user = null;
 
 	public function __construct()
@@ -51,19 +51,6 @@ class Grant_pack extends CI_Controller
 				'count'			=>	$count
 			);
 			echo $this->connector->post($ip . '/ser_send_items', $parameter, FALSE);
-		}
-	}
-	
-	public function get()
-	{
-		$this->load->model('utils/connector');
-		
-		$ip = $this->input->post('serverIp', FALSE);
-		
-		if(!empty($ip))
-		{
-			header('Content-type: text/json');
-			echo $this->connector->get($ip . '/ser_get_items', null, FALSE);
 		}
 	}
 }

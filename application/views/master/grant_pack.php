@@ -36,16 +36,29 @@
                 <div class="control-group">
                     <label class="control-label">礼包ID</label>
                     <div class="controls">
-                    	<input type="text" class="span8" id="packId" name="packId" placeholder="礼包ID" /><span class="help-block"><strong><a id="btnGetEquipment" href="#">礼包列表</a></strong></span>
-                        <div class="modal hide" id="modalGetEquipment">
+                    	<input type="text" class="span8" id="packId" name="packId" placeholder="礼包ID" /><span class="help-block"><strong><a id="btnGetPack" href="#">礼包列表</a></strong></span>
+                        <div class="modal hide" id="modalGetPack">
                         <div class="modal-header">
-                          <button type="button" id="modalGetEquipmentClose" class="close" data-dismiss="modal">×</button>
+                          <button type="button" id="modalGetPackClose" class="close" data-dismiss="modal">×</button>
                           <h3>装备列表</h3>
                         </div>
                         <div class="modal-body">
-                        
+                        <table class="table table-bordered data-table" id="listTable">
+                          <thead>
+                            <tr>
+                              <th>礼包ID</th>
+                              <th>名称</th>
+                              <th>说明</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr class="gradeA">
+                              <td colspan="3">载入中...</td>
+                            </tr>
+                          </tbody>
+                        </table>
                         </div>
-                        <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal" id="modalGetEquipmentCancel">取消</a> <a href="#" id="modalGetEquipmentSubmit" class="btn btn-primary">确定并关闭</a> </div>
+                        <div class="modal-footer"><a href="#" id="modalBtnGetPackClose" class="btn btn-primary">关闭</a></div>
                       </div>
                   	</div>
                 </div>
@@ -73,17 +86,69 @@
 <script src="<?php echo base_url('resources/js/matrix.popup_message.js'); ?>"></script> 
 
 <script type="text/javascript">
+var dataTableHandler;
+
 $(function() {
 	$("#serverIp").select2();
 	$("#count").mask("?99");
+	$("#btnGetPack").click(function() {
+		$.post("<?php echo site_url('master/grant_pack/get'); ?>", {
+			"serverIp": $("#serverIp").val()
+		}, onPackData);
+	});
     $("#btnSubmit").click(function() {
-		$.post("<?php echo site_url('master/grant_special_gold/send'); ?>", {
+		$.post("<?php echo site_url('master/grant_pack/send'); ?>", {
 			"serverIp": $("#serverIp").val(),
 			"nickname": $("#nickname").val(),
 			"goldCount": $("#goldCount").val()
 		}, onData);
 	});
+	$("#btnGetPack").click(function() {
+		$("#modalGetPack").removeClass("hide");
+		return false;
+	});
+	$("#modalGetPackClose, #modalBtnGetPackClose").click(function() {
+		$("#modalGetPack").addClass("hide");
+	});
 });
+
+function onPackData(data) {
+	if(data) {
+		var aaData = [];
+		var rowData;
+		for(var i in data) {
+			rowData = [data[i].item_id, data[i].name, data[i].description];
+			aaData.push(rowData);
+		}
+		
+		dataTableHandler.fnDestroy();
+		dataTableHandler = $('#listTable').dataTable({
+			"bAutoWidth": false,
+			"bJQueryUI": true,
+			"bStateSave": true,
+			"sPaginationType": "full_numbers",
+			"sDom": '<"H"lr>t<"F"fp>',
+			"aaData": aaData,
+			"oLanguage": {  
+				"sProcessing":   "处理中...",
+				"sLengthMenu":   "显示 _MENU_ 项结果",
+				"sZeroRecords":  "没有匹配结果",
+				"sInfo":         "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+				"sInfoEmpty":    "显示第 0 至 0 项结果，共 0 项",
+				"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+				"sInfoPostFix":  "",
+				"sSearch":       "搜索:",
+				"sUrl":          "",
+				"oPaginate": {
+					"sFirst":    "首页",
+					"sPrevious": "上页",
+					"sNext":     "下页",
+					"sLast":     "末页"
+				}
+			}
+		});
+	}
+}
 
 function onData(data) {
 	if(data == '1') {
