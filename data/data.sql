@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `gm_system_db`.`system_user` (
   `permission_level` INT NOT NULL,
   `permission_name` CHAR(16) NOT NULL,
   `user_fromwhere` CHAR(16) NOT NULL,
+  `user_status` INT NOT NULL DEFAULT 1 COMMENT '1=正常 0=冻结',
   PRIMARY KEY (`guid`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 30016078101;
@@ -64,7 +65,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `gm_system_db`;
-INSERT INTO `gm_system_db`.`system_permission` (`permission_level`, `permission_name`, `permission_list`) VALUES (999, '超级管理员', 'all');
+INSERT INTO `gm_system_db`.`system_permission` (`permission_level`, `permission_name`, `permission_list`) VALUES (999, '超级管理员', 'All');
 
 COMMIT;
 
@@ -74,7 +75,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `gm_system_db`;
-INSERT INTO `gm_system_db`.`system_user` (`guid`, `user_name`, `user_pass`, `user_founder`, `user_lastlogin`, `permission_level`, `permission_name`, `user_fromwhere`) VALUES (30016078101, 'johnnyeven', 'b40714d351a35e8f0d2f15ee977da4a9f5a7e2cd', 1, 0, 999, '超级管理员', 'default');
+INSERT INTO `gm_system_db`.`system_user` (`guid`, `user_name`, `user_pass`, `user_founder`, `user_lastlogin`, `permission_level`, `permission_name`, `user_fromwhere`, `user_status`) VALUES (30016078101, 'johnnyeven', 'b40714d351a35e8f0d2f15ee977da4a9f5a7e2cd', 1, 0, 999, '超级管理员', 'default', 1);
 
 COMMIT;
 

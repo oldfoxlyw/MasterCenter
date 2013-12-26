@@ -32,7 +32,7 @@
                         <div class="controls">
                             <select id="userPermission" name="userPermission" class="span5">
                             <?php foreach($permissions as $permission): ?>
-                                <option value="<?php echo $permission->permission_id; ?>"<?php if($value->user_permission==$permission->permission_id): ?> selected="selected"<?php endif; ?>><?php echo $permission->permission_name; ?></option>
+                                <option value="<?php echo $permission->permission_level; ?>"<?php if($value->user_permission==$permission->permission_level): ?> selected="selected"<?php endif; ?>><?php echo $permission->permission_name; ?></option>
                             <?php endforeach; ?>
                             </select>
                         </div>

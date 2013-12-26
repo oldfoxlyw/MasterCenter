@@ -66,7 +66,7 @@
               </thead>
               <tbody>
                 <tr class="gradeA">
-                  <td colspan="6">载入中...</td>
+                  <td colspan="6"></td>
                 </tr>
               </tbody>
             </table>
@@ -80,6 +80,7 @@
 <script src="<?php echo base_url('resources/js/bootstrap.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/matrix.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/select2.min.js'); ?>"></script>
+<script src="<?php echo base_url('resources/js/jquery.dataTables.min.js'); ?>"></script>
 
 <script type="text/javascript">
 var dataTableHandler;
@@ -87,32 +88,46 @@ var dataTableHandler;
 $(function() {
 	$("#serverId").select2();
     $("#btnSubmit").click(function() {
-		dataTableHandler.fnDestroy();
-		$.post("<?php echo site_url('master/account_manage/send'); ?>", {
-			"serverIp": $("#serverIp").val(),
-			"nickname": $("#nickname").val(),
-			"goldCount": $("#goldCount").val()
+		if(dataTableHandler) {
+			dataTableHandler.fnDestroy();
+		}
+		$.post("<?php echo site_url('master/account_manage/lists'); ?>", {
+			"serverId": $("#serverId").val(),
+			"guid": $("#guid").val(),
+			"accountName": $("#accountName").val()
 		}, onData);
 	});
 });
 
 function onData(data) {
+	if(!data) {
+		return;
+	}
 	
+	var json = eval("(" + data + ")");
 	dataTableHandler = $('#listTable').dataTable({
 		"bAutoWidth": false,
 		"bJQueryUI": true,
 		"bStateSave": true,
 		"sPaginationType": "full_numbers",
 		"sDom": '<"H"lr>t<"F"fp>',
+		"aaData": json,
 		"aoColumns": [
-			{"mData": null},
-			{"mData": null},
-			{"mData": null},
-			{"mData": null},
+			{"mData": "GUID"},
+			{"mData": "account_name"},
+			{"mData": "account_status"},
+			{"mData": "server_id"},
+			{"mData": "partner_key"},
 			{
 				"mData": null,
 				"fnRender": function(obj) {
-					return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('administrators/edit') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\"><!--<li><a href=\"<?php echo site_url('administrators/freeze') ?>/" + obj.aData.GUID + "\">冻结</a></li><li class=\"divider\"></li>--><li><a href=\"<?php echo site_url('administrators/delete') ?>/" + obj.aData.GUID + "\">删除</a></li></ul></div>";
+					var freezed = "";
+					if(obj.aData.account_status == '1') {
+						freezed = "<li><a href=\"<?php echo site_url('master/account_manage/freeze') ?>/" + obj.aData.GUID + "\">封停</a></li>";
+					} else {
+						freezed = "<li><a href=\"<?php echo site_url('master/account_manage/unfreeze') ?>/" + obj.aData.GUID + "\">解封</a></li>";
+					}
+					return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('master/account_manage/reset_password') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">重置密码</button><button onclick=\"location.href='<?php echo site_url('master/account_manage/edit') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\">" + freezed + "<li class=\"divider\"></li><li><a href=\"<?php echo site_url('master/account_manage/delete') ?>/" + obj.aData.GUID + "\">删除</a></li></ul></div>";
 				}
 			}
 		],
@@ -134,5 +149,6 @@ function onData(data) {
 			}
 		}
 	});
+	$('select').select2();
 }
 </script>

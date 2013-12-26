@@ -17,7 +17,7 @@
                         <div class="control-group">
                           <label class="control-label" for="permissionId">权限等级</label>
                           <div class="controls">
-                            <input type="text" class="span8" id="permissionId" name="permissionId" placeholder="权限等级，纯数字，不可重复" value="<?php echo $value->permission_id; ?>" />
+                            <input type="text" class="span8" id="permissionId" name="permissionId" placeholder="权限等级，纯数字，不可重复" value="<?php echo $value->permission_level; ?>" />
                           </div>
                         </div>
                         <div class="control-group">

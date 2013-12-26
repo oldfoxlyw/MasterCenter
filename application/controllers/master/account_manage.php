@@ -32,25 +32,92 @@ class Account_manage extends CI_Controller
 		$this->render->render($this->pageName, $data);
 	}
 	
-	public function send()
+	public function lists()
 	{
-		$this->load->model('utils/connector');
+		$this->load->model('maccount');
+		$this->load->model('utils/return_format');
 		
-		$ip = $this->input->post('serverIp', FALSE);
-		$nickname = $this->input->post('nickname');
-		$packId = $this->input->post('packId');
-		$count = $this->input->post('count');
+		$serverId = $this->input->post('serverId');
+		$guid = $this->input->post('guid');
+		$accountName = $this->input->post('accountName');
 		
-		$count = empty($count) ? 1 : intval($count);
-		
-		if(!empty($ip) && !empty($nickname) && !empty($packId))
+		$parameter = array();
+		if(!empty($serverId))
 		{
+			$parameter['server_id'] = $serverId;
+		}
+		if(!empty($guid))
+		{
+			$parameter['GUID'] = $guid;
+		}
+		if(!empty($accountName))
+		{
+			$parameter['account_name'] = $accountName;
+		}
+		
+		$result = $this->maccount->read($parameter);
+		
+		if(empty($result))
+		{
+			$result = array();
+		}
+
+		echo $this->return_format->format($result);
+	}
+	
+	public function reset_password($guid = 0)
+	{
+		if(!empty($guid))
+		{
+			$this->load->model('maccount');
+			$this->load->helper('security');
+			
+			$pass = '123456';
 			$parameter = array(
-				'nkm'			=>	$nickname,
-				'item_const_id'	=>	$packId,
-				'count'			=>	$count
+					'account_pass'	=>	strtoupper(do_hash(do_hash($pass, 'md5') . do_hash($pass), 'md5'))
 			);
-			echo $this->connector->post($ip . '/ser_send_items', $parameter, FALSE);
+			$this->maccount->update($guid, $parameter);
+			redirect('master/account_manage');
+		}
+		else
+		{
+			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'master/account_manage', true, 5);
+		}
+	}
+	
+	public function freeze($guid = 0)
+	{
+		if(!empty($guid))
+		{
+			$this->load->model('maccount');
+			
+			$parameter = array(
+					'account_status'	=>	-1
+			);
+			$this->maccount->update($guid, $parameter);
+			redirect('master/account_manage');
+		}
+		else
+		{
+			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'master/account_manage', true, 5);
+		}
+	}
+	
+	public function unfreeze($guid = 0)
+	{
+		if(!empty($guid))
+		{
+			$this->load->model('maccount');
+			
+			$parameter = array(
+					'account_status'	=>	1
+			);
+			$this->maccount->update($guid, $parameter);
+			redirect('master/account_manage');
+		}
+		else
+		{
+			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'master/account_manage', true, 5);
 		}
 	}
 }

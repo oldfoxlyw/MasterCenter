@@ -84,6 +84,7 @@
 <script src="<?php echo base_url('resources/js/masked.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/select2.min.js'); ?>"></script> 
 <script src="<?php echo base_url('resources/js/matrix.popup_message.js'); ?>"></script> 
+<script src="<?php echo base_url('resources/js/jquery.dataTables.min.js'); ?>"></script>
 
 <script type="text/javascript">
 var dataTableHandler;

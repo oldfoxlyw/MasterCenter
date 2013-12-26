@@ -147,7 +147,6 @@ class Administrators extends CI_Controller
 	public function submit()
 	{
 		$this->load->model('madmin');
-		$this->load->model('mpartner');
 		$this->load->helper('security');
 		
 		$edit = $this->input->post('edit');
@@ -158,16 +157,6 @@ class Administrators extends CI_Controller
 		$partnerKey = $this->input->post('partnerKey');
 		
 		$partnerKey = empty($partnerKey) ? 'default' : $partnerKey;
-		
-		$partnerResult = $this->mpartner->read(array(
-			'partner_key'		=>	$partnerKey
-		));
-		if(empty($partnerResult))
-		{
-			$this->mpartner->create(array(
-				'partner_key'		=>	$partnerKey
-			));
-		}
 
 		if($this->user->user_founder != '1' && $this->user->guid != $adminId)
 		{

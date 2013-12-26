@@ -58,16 +58,16 @@ $(function() {
 		"sAjaxSource": "<?php echo site_url('administrators/lists'); ?>",
 		"sServerMethod": "POST",
 		"aoColumns": [
-			{"mData": "GUID", "width": 300, "bSortable": false},
+			{"mData": "guid", "width": 300, "bSortable": false},
 			{"mData": "user_name"},
 			{"mData": "permission_name"},
 			{
-				"mData": "user_freezed",
+				"mData": "user_status",
 				"fnRender": function(obj) {
-					if(obj.aData.user_freezed == "1") {
-						return "<span class=\"label label-important\">冻结</span>"
+					if(obj.aData.user_status == "1") {
+						return "<span class=\"label label-success\">正常</span>";
 					} else {
-						return "<span class=\"label label-success\">正常</span>"
+						return "<span class=\"label label-important\">冻结</span>";
 					}
 				}
 			},
@@ -75,7 +75,7 @@ $(function() {
 			{
 				"mData": null,
 				"fnRender": function(obj) {
-					return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('administrators/edit') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\"><!--<li><a href=\"<?php echo site_url('administrators/freeze') ?>/" + obj.aData.GUID + "\">冻结</a></li><li class=\"divider\"></li>--><li><a href=\"<?php echo site_url('administrators/delete') ?>/" + obj.aData.GUID + "\">删除</a></li></ul></div>";
+					return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('administrators/edit') ?>/" + obj.aData.guid + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\"><!--<li><a href=\"<?php echo site_url('administrators/freeze') ?>/" + obj.aData.guid + "\">冻结</a></li><li class=\"divider\"></li>--><li><a href=\"<?php echo site_url('administrators/delete') ?>/" + obj.aData.guid + "\">删除</a></li></ul></div>";
 				}
 			}
 		],

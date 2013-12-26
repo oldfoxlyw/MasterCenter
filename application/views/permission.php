@@ -55,12 +55,12 @@ $(function() {
 		"sAjaxSource": "<?php echo site_url('permission/lists'); ?>",
 		"sServerMethod": "POST",
 		"aoColumns": [
-			{"mData": "permission_id", "width": 100},
+			{"mData": "permission_level", "width": 100},
 			{"mData": "permission_name"},
 			{
 				"mData": null,
 				"fnRender": function(obj) {
-					return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('permission/edit') ?>/" + obj.aData.permission_id + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\"><li><a href=\"<?php echo site_url('permission/delete') ?>/" + obj.aData.permission_id + "\">删除</a></li></ul></div>";
+					return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('permission/edit') ?>/" + obj.aData.permission_level + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\"><li><a href=\"<?php echo site_url('permission/delete') ?>/" + obj.aData.permission_level + "\">删除</a></li></ul></div>";
 				}
 			}
 		],
