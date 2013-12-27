@@ -93,7 +93,7 @@ $(function() {
 	$("#serverIp").select2();
 	$("#count").mask("?99");
 	$("#btnGetPack").click(function() {
-		if(dataTableHandler) {
+		if(dataTableHandler != null) {
 			return false;
 		}
 		$.post("<?php echo site_url('master/grant_pack/get'); ?>", {
