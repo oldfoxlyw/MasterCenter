@@ -36,71 +36,12 @@
                         <table class="table table-bordered table-striped with-check">
                           <tbody>
                             <tr>
-                              <td><input id="global_config" name="global_config" class="header_checkbox" type="checkbox" /></td>
-                              <td><strong>系统权限</strong></td>
-                              <td width="20%"><input id="permission" name="permission" value="permission" type="checkbox"<?php if(in_array('permission', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />查看权限</td>
-                              <td width="20%"><input id="permission_add" name="permission_add" value="permission_add" type="checkbox"<?php if(in_array('permission_add', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />添加/修改权限</td>
-                              <td width="20%"><input id="administrators" name="administrators" value="administrators" type="checkbox"<?php if(in_array('administrators', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />查看管理员</td>
-                              <td width="20%"><input id="administrators_add" name="administrators_add" value="administrators_add" type="checkbox"<?php if(in_array('administrators_add', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />添加/编辑管理员</td>
-                            </tr>
-                            <tr>
-                              <td><input id="online_config" name="online_config" class="header_checkbox" type="checkbox" /></td>
-                              <td><strong>用户在线数据</strong></td>
-                              <td><input id="account_current_online" name="account_current_online" value="account/current_online" type="checkbox"<?php if(in_array('account/current_online', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />即时在线数据</td>
-                              <td><input id="account_max_online" name="account_max_online" value="account/max_online" type="checkbox"<?php if(in_array('account/max_online', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />最高在线数据</td>
-                              <td><input id="account_avg_online" name="account_avg_online" value="account/avg_online" type="checkbox"<?php if(in_array('account/avg_online', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />平均在线数据</td>
-                              <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                              <td rowspan="3"><input id="user_config" name="user_config" class="header_checkbox" type="checkbox" /></td>
-                              <td rowspan="3"><strong>用户数据</strong></td>
-                              <td><input id="account_register_account" name="account_register_account" value="account/register_account" type="checkbox"<?php if(in_array('account/register_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器注册用户数</td>
-                              <td><input id="account_modify_account" name="account_modify_account" value="account/modify_account" type="checkbox"<?php if(in_array('account/modify_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />改名用户数</td>
-                              <td><input id="account_register_new_account" name="account_register_new_account" value="account/register_new_account" type="checkbox"<?php if(in_array('account/register_new_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />新增注册用户</td>
-                              <td><input id="account_modify_new_account" name="account_modify_new_account" value="account/modify_new_account" type="checkbox"<?php if(in_array('account/modify_new_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />新改名用户数</td>
-                            </tr>
-                            <tr>
-                              <td><input id="account_active_account" name="account_active_account" class="header_checkbox" value="account/active_account" type="checkbox"<?php if(in_array('account/active_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器活跃用户数</td>
-                              <td><input id="account_pay_account" name="account_pay_account" value="account/pay_account" type="checkbox"<?php if(in_array('account/pay_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器付费用户数</td>
-                              <td><input id="account_flowover_account" name="account_flowover_account" value="account/flowover_account" type="checkbox"<?php if(in_array('account/flowover_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器流失用户数</td>
-                              <td><input id="account_reflow_account" name="account_reflow_account" value="account/reflow_account" type="checkbox"<?php if(in_array('account/reflow_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器回流用户数</td>
-                            </tr>
-                            <tr>
-                              <td><input id="account_flowover_account_detail" name="account_flowover_account_detail" value="account/flowover_account_detail" type="checkbox"<?php if(in_array('account/flowover_account_detail', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器流失用户详情</td>
-                              <td>&nbsp;</td>
-                              <td>&nbsp;</td>
-                              <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                              <td rowspan="2"><input id="order_config" name="order_config" class="header_checkbox" type="checkbox" /></td>
-                              <td rowspan="2"><strong>消费数据</strong></td>
-                              <td width="20%"><input id="order_recharge" name="order_recharge" value="order/recharge" type="checkbox"<?php if(in_array('order/recharge', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />充值记录</td>
-                              <td width="20%"><input id="order_consume" name="order_consume" value="order/consume" type="checkbox"<?php if(in_array('order/consume', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />
-                              消费总体统计</td>
-                              <td width="20%"><input id="order_recharge_daily" name="order_recharge_daily" value="order/recharge_daily" type="checkbox"<?php if(in_array('order/recharge_daily', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />每日充值概况</td>
-                              <td width="20%"><input id="order_buy_equipment" name="order_buy_equipment" value="order/buy_equipment" type="checkbox"<?php if(in_array('order/buy_equipment', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />购买装备消费统计</td>
-                            </tr>
-                            <tr>
-                              <td><input id="order_equipment_sales" name="order_equipment_sales" value="order/equipment_sales" type="checkbox"<?php if(in_array('order/equipment_sales', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />装备销量统计</td>
-                              <td>&nbsp;</td>
-                              <td>&nbsp;</td>
-                              <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                              <td><input id="behavior_config" name="behavior_config" class="header_checkbox" type="checkbox" /></td>
-                              <td><strong>游戏行为监控</strong></td>
-                              <td width="20%"><input id="behavior_job" name="behavior_job" value="behavior/job" type="checkbox"<?php if(in_array('behavior/job', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />职业数量分布</td>
-                              <td width="20%"><input id="behavior_level" name="behavior_level" value="behavior/level" type="checkbox"<?php if(in_array('behavior/level', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />等级分布</td>
-                              <td width="20%"><input id="behavior_progress" name="behavior_progress" value="behavior/progress" type="checkbox"<?php if(in_array('behavior/progress', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />角色游戏进度</td>
-                              <td width="20%">&nbsp;</td>
-                            </tr>
-                            <tr>
                               <td><input id="master_config" name="master_config" class="header_checkbox" type="checkbox" /></td>
                               <td><strong>游戏管理员</strong></td>
-                              <td width="20%"><input id="master_send_message" name="master_send_message" value="master/send_message" type="checkbox"<?php if(in_array('master/send_message', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />发布游戏公告</td>
-                              <td width="20%"><input id="master_send_article" name="master_send_article" value="master/send_article" type="checkbox"<?php if(in_array('master/send_article', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />发布新闻公告</td>
-                              <td width="20%">&nbsp;</td>
-                              <td width="20%">&nbsp;</td>
+                              <td width="20%"><input id="master_grant_gold" name="master_grant_gold" value="master/grant_gold" type="checkbox"<?php if(in_array('master/grant_gold', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />发放金币</td>
+                              <td width="20%"><input id="master_grant_special_gold" name="master_grant_special_gold" value="master/grant_special_gold" type="checkbox"<?php if(in_array('master/grant_special_gold', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />发放绿钻</td>
+                              <td width="20%"><input id="master_grant_pack" name="master_grant_pack" value="master/grant_pack" type="checkbox"<?php if(in_array('master/grant_pack', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />发放礼包</td>
+                              <td width="20%"><input id="master_account_manage" name="master_account_manage" value="master/account_manage" type="checkbox"<?php if(in_array('master/account_manage', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />帐号管理</td>
                             </tr>
                           </tbody>
                         </table>
