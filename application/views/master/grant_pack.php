@@ -93,11 +93,12 @@ $(function() {
 	$("#serverIp").select2();
 	$("#count").mask("?99");
 	$("#btnGetPack").click(function() {
-		if(!dataTableHandler) {
-			$.post("<?php echo site_url('master/grant_pack/get'); ?>", {
-				"serverIp": $("#serverIp").val()
-			}, onPackData);
+		if(dataTableHandler) {
+			return false;
 		}
+		$.post("<?php echo site_url('master/grant_pack/get'); ?>", {
+			"serverIp": $("#serverIp").val()
+		}, onPackData);
 	});
     $("#btnSubmit").click(function() {
 		$.post("<?php echo site_url('master/grant_pack/send'); ?>", {
