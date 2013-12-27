@@ -25,7 +25,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `gm_system_db`.`system_user` ;
 
 CREATE TABLE IF NOT EXISTS `gm_system_db`.`system_user` (
-  `guid` BIGINT NOT NULL,
+  `guid` BIGINT NOT NULL AUTO_INCREMENT,
   `user_name` CHAR(32) NOT NULL,
   `user_pass` CHAR(64) NOT NULL,
   `user_founder` TINYINT NOT NULL DEFAULT 0,
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `gm_system_db`.`system_user` (
   `permission_level` INT NOT NULL,
   `permission_name` CHAR(16) NOT NULL,
   `user_fromwhere` CHAR(16) NOT NULL,
-  `user_status` INT NOT NULL DEFAULT 1 COMMENT '1=正常 0=冻结',
+  `user_status` INT NOT NULL DEFAULT 1,
   PRIMARY KEY (`guid`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 30016078101;

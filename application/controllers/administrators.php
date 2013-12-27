@@ -157,6 +157,7 @@ class Administrators extends CI_Controller
 		$partnerKey = $this->input->post('partnerKey');
 		
 		$partnerKey = empty($partnerKey) ? 'default' : $partnerKey;
+		$userPermission = empty($userPermission) ? 0 : intval($userPermission);
 
 		if($this->user->user_founder != '1' && $this->user->guid != $adminId)
 		{
@@ -168,26 +169,36 @@ class Administrators extends CI_Controller
 			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'administrators', true, 5);
 		}
 		
-		$row = array(
-			'user_name'			=>	$adminAccount,
-			'permission_level'	=>	$userPermission,
-			'user_fromwhere'	=>	$partnerKey
-		);
-		
-		if(!empty($edit))
+		$this->load->model('mpermission');
+		$permission = $this->mpermission->read(array(
+				'permission_level'	=>	$userPermission
+		));
+		if(!empty($permission))
 		{
-			if(!empty($adminPass))
+			$permission = $permission[0];
+			
+			$row = array(
+				'user_name'			=>	$adminAccount,
+				'permission_level'	=>	$userPermission,
+				'permission_name'	=>	$permission->permission_name,
+				'user_fromwhere'	=>	$partnerKey
+			);
+			
+			if(!empty($edit))
+			{
+				if(!empty($adminPass))
+				{
+					$row['user_pass'] = encrypt_pass($adminPass);
+				}
+				$this->madmin->update($adminId, $row);
+			}
+			else
 			{
 				$row['user_pass'] = encrypt_pass($adminPass);
+				$this->madmin->create($row);
 			}
-			$this->madmin->update($adminId, $row);
+			redirect('administrators');
 		}
-		else
-		{
-			$row['user_pass'] = encrypt_pass($adminPass);
-			$this->madmin->create($row);
-		}
-		redirect('administrators');
 	}
 }
 
