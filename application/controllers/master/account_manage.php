@@ -85,26 +85,62 @@ class Account_manage extends CI_Controller
 		}
 	}
 	
-	public function freeze($guid = 0)
+	public function freeze()
 	{
+		$this->load->model('utils/return_format');
+		
+		$guid = $this->input->post('guid');
+		$endtime = $this->input->post('endtime');
+		
 		if(!empty($guid))
 		{
 			$this->load->model('maccount');
 			
+			if($endtime == '3')
+			{
+				$endtime = time() + 3 * 86400;
+			}
+			elseif ($endtime == '7')
+			{
+				$endtime = time() + 7 * 86400;
+			}
+			elseif ($endtime == '30')
+			{
+				$endtime = time() + 30 * 86400;
+			}
+			else
+			{
+				$endtime = PHP_INT_MAX;
+			}
+			
 			$parameter = array(
-					'account_status'	=>	-1
+					'account_status'	=>	-1,
+					'closure_endtime'	=>	$endtime
 			);
 			$this->maccount->update($guid, $parameter);
-			redirect('master/account_manage');
+			$result = array(
+					'result'	=>	1,
+					'guid'		=>	$guid
+			);
+// 			redirect('master/account_manage');
 		}
 		else
 		{
-			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'master/account_manage', true, 5);
+			$result = array(
+					'result'	=>	-1
+			);
+// 			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'master/account_manage', true, 5);
 		}
+		header('Content-type: text/json');
+		echo $this->return_format->format($result);
 	}
 	
 	public function unfreeze($guid = 0)
 	{
+		$this->load->model('utils/return_format');
+		
+		$guid = $this->input->post('guid');
+		
 		if(!empty($guid))
 		{
 			$this->load->model('maccount');
@@ -113,12 +149,21 @@ class Account_manage extends CI_Controller
 					'account_status'	=>	1
 			);
 			$this->maccount->update($guid, $parameter);
-			redirect('master/account_manage');
+			$result = array(
+					'result'	=>	1,
+					'guid'		=>	$guid
+			);
+// 			redirect('master/account_manage');
 		}
 		else
 		{
-			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'master/account_manage', true, 5);
+			$result = array(
+					'result'	=>	-1
+			);
+// 			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'master/account_manage', true, 5);
 		}
+		header('Content-type: text/json');
+		echo $this->return_format->format($result);
 	}
 }
 

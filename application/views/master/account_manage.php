@@ -70,6 +70,35 @@
                 </tr>
               </tbody>
             </table>
+            <div class="modal hide" id="modalFreeze">
+                <div class="modal-header">
+                  <button type="button" id="modalFreezeClose" class="close" data-dismiss="modal">×</button>
+                  <h3>封停帐号</h3>
+                </div>
+                <div class="modal-body">
+                	<form action="" method="post" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label">帐号名称</label>
+                            <div class="controls">
+                            	<input type="hidden" id="guidConfirm" name="guidConfirm" />
+                            	<span id="accountNameConfirm"></span>
+                            	<span class="help-block"><strong>请确认封停的帐号正确无误</strong></span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">封停时限</label>
+                            <div class="controls">
+                                <input name="closureEndTime" type="radio" value="3" checked="checked" />三天
+                                <input name="closureEndTime" type="radio" value="7" />七天
+                                <input name="closureEndTime" type="radio" value="30" />一个月
+                                <input name="closureEndTime" type="radio" value="9999" />永久封停
+                                <span class="help-block"><strong>到期自动解封，无需再手动操作</strong></span>
+                            </div>
+                        </div>
+                      </form>
+                </div>
+                <div class="modal-footer"><a href="#" class="btn btn-primary" data-dismiss="modal" id="modalBtnFreezeSubmit">确定并关闭</a><a href="#" id="modalBtnFreezeClose" class="btn">关闭</a></div>
+              </div>
           </div>
         </div>
     </div>
@@ -80,6 +109,7 @@
 <script src="<?php echo base_url('resources/js/bootstrap.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/matrix.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/select2.min.js'); ?>"></script>
+<script src="<?php echo base_url('resources/js/matrix.popup_message.js'); ?>"></script> 
 <script src="<?php echo base_url('resources/js/jquery.dataTables.min.js'); ?>"></script>
 
 <script type="text/javascript">
@@ -97,7 +127,45 @@ $(function() {
 			"accountName": $("#accountName").val()
 		}, onData);
 	});
+	
+	$("#modalFreezeClose, #modalBtnFreezeClose").click(function() {
+		$("#modalFreeze").addClass("hide");
+	});
+	
+	$("#modalBtnFreezeSubmit").click(function() {
+		var parameter = {
+			"guid": $("#guidConfirm").val(),
+			"endtime": $("input[name='closureEndTime']:checked").val()
+		};
+		$.post("<?php echo site_url('master/account_manage/freeze') ?>", parameter, onFreezeCallback);
+	});
 });
+
+function onFreezeCallback(data) {
+	$("#modalFreeze").addClass("hide");
+	
+	if(data) {
+		var td = $("#listTable > tbody > tr > td:contains('" + data.guid + "')");
+		var tr = td.parent();
+		tr.find("td").eq(2).text("封停");
+		
+		var a = tr.find("td").eq(5).find(".btnFreeze");
+		a.after("<a class=\"btnUnfreeze\" href=\"#\">解封</a>");
+		a.remove();
+	}
+}
+
+function onUnfreezeCallback(data) {
+	if(data) {
+		var td = $("#listTable > tbody > tr > td:contains('" + data.guid + "')");
+		var tr = td.parent();
+		tr.find("td").eq(2).text("正常");
+		
+		var a = tr.find("td").eq(5).find(".btnUnfreeze");
+		a.after("<a class=\"btnFreeze\" href=\"#\">封停</a>");
+		a.remove();
+	}
+}
 
 function onData(data) {
 	if(!data) {
@@ -123,15 +191,15 @@ function onData(data) {
 				"fnRender": function(obj) {
 					var freezed = "";
 					if(obj.aData.account_status == '1') {
-						freezed = "<li><a href=\"<?php echo site_url('master/account_manage/freeze') ?>/" + obj.aData.GUID + "\">封停</a></li>";
+						freezed = "<li><a class=\"btnFreeze\" href=\"#\">封停</a></li>";
 					} else {
-						freezed = "<li><a href=\"<?php echo site_url('master/account_manage/unfreeze') ?>/" + obj.aData.GUID + "\">解封</a></li>";
+						freezed = "<li><a class=\"btnUnfreeze\" href=\"#\">解封</a></li>";
 					}
 					return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('master/account_manage/reset_password') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">重置密码</button><button onclick=\"location.href='<?php echo site_url('master/account_manage/edit') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\">" + freezed + "<li class=\"divider\"></li><li><a href=\"<?php echo site_url('master/account_manage/delete') ?>/" + obj.aData.GUID + "\">删除</a></li></ul></div>";
 				}
 			}
 		],
-		"oLanguage": {  
+		"oLanguage": {
 			"sProcessing":   "处理中...",
 			"sLengthMenu":   "显示 _MENU_ 项结果",
 			"sZeroRecords":  "没有匹配结果",
@@ -150,5 +218,25 @@ function onData(data) {
 		}
 	});
 	$('select').select2();
+	
+	$(document).on("click", ".btnFreeze", function() {
+		$("#modalFreeze").removeClass("hide");
+		
+		var td = $(this).parent().parent().parent().parent().parent().find("td").eq(1);
+		var accountName = td.text();
+		var guid = td.prev().text();
+		$("#guidConfirm").val(guid);
+		$("#accountNameConfirm").text(accountName);
+		return false;
+	});
+	
+	$(document).on("click", ".btnUnfreeze", function() {
+		var guid = $(this).parent().parent().parent().parent().parent().find("td").eq(0).text();
+		var parameter = {
+			"guid": guid
+		};
+		$.post("<?php echo site_url('master/account_manage/unfreeze') ?>", parameter, onUnfreezeCallback);
+		return false;
+	});
 }
 </script>
