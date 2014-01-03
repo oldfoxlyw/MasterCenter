@@ -62,7 +62,6 @@ class Grant_pack extends CI_Controller
 		
 		if(!empty($ip))
 		{
-			exit($ip . '/ser_get_items');
 			header('Content-type: text/json');
 			echo $this->connector->post($ip . '/ser_get_items', null, FALSE);
 		}

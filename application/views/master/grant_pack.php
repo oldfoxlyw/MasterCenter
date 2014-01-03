@@ -125,7 +125,9 @@ function onPackData(data) {
 			aaData.push(rowData);
 		}
 		
-		dataTableHandler.fnDestroy();
+		if(dataTableHandler) {
+			dataTableHandler.fnDestroy();
+		}
 		dataTableHandler = $('#listTable').dataTable({
 			"bAutoWidth": false,
 			"bJQueryUI": true,
