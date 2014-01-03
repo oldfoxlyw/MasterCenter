@@ -42,7 +42,7 @@
                           <button type="button" id="modalGetPackClose" class="close" data-dismiss="modal">×</button>
                           <h3>装备列表</h3>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body nopadding">
                         <table class="table table-bordered data-table" id="listTable">
                           <thead>
                             <tr>
