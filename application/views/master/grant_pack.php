@@ -153,6 +153,7 @@ function onPackData(data) {
 				}
 			}
 		});
+		$('select').select2();
 	}
 }
 
