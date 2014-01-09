@@ -207,12 +207,19 @@ class Permission extends CI_Controller
 				}
 				else
 				{
-					$parameter = array(
-						'permission_level'			=>	$permissionId,
-						'permission_name'	=>	$permissionName,
-						'permission_list'		=>	$permission
-					);
-					$this->mpermission->create($parameter);
+					if($permissionId > $this->user->permission_level)
+					{
+						showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'permission', true, 5);
+					}
+					else
+					{
+						$parameter = array(
+							'permission_level'			=>	$permissionId,
+							'permission_name'	=>	$permissionName,
+							'permission_list'		=>	$permission
+						);
+						$this->mpermission->create($parameter);
+					}
 				}
 			}
 			

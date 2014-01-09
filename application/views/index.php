@@ -20,14 +20,40 @@
         </div>
         <div class="collapse in accordion-body" id="collapseGOne">
           <div class="widget-content">
-          	<h4>列表</h6>
+          	<h4>列表</h4>
             <img src="<?php echo base_url('resources/img/guide/20140109111143.jpg'); ?>" />
             <ol>
             	<li>权限列表，可点击功能按钮进行操作（编辑/删除）。<span class="label label-important">注意：只能查看当前登录管理员权限等级相同或更低的管理员帐号</span></li>
                 <li>添加权限按钮</li>
             </ol>
             <hr />
-            <h4>添加/修改</h6>
+            <h4>添加/修改</h4>
+            <img src="<?php echo base_url('resources/img/guide/20140109111222.jpg'); ?>" />
+            <ol>
+            	<li>定义权限等级<span class="label label-important">注意：只能定义比自己权限等级更低的等级(1000以内纯数字)</span></li>
+                <li>定义权限的名称</li>
+                <li>勾选要赋予的权限</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-group widget-box">
+        <div class="accordion-heading">
+          <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGOne" data-toggle="collapse"> <span class="icon"><i class="icon-magnet"></i></span>
+            <h5>权限设置</h5>
+            </a>
+          </div>
+        </div>
+        <div class="collapse in accordion-body" id="collapseGOne">
+          <div class="widget-content">
+          	<h4>列表</h4>
+            <img src="<?php echo base_url('resources/img/guide/20140109111143.jpg'); ?>" />
+            <ol>
+            	<li>权限列表，可点击功能按钮进行操作（编辑/删除）。<span class="label label-important">注意：只能查看当前登录管理员权限等级相同或更低的管理员帐号</span></li>
+                <li>添加权限按钮</li>
+            </ol>
+            <hr />
+            <h4>添加/修改</h4>
             <img src="<?php echo base_url('resources/img/guide/20140109111222.jpg'); ?>" />
             <ol>
             	<li>定义权限等级<span class="label label-important">注意：只能定义比自己权限等级更低的等级(1000以内纯数字)</span></li>
