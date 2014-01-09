@@ -190,7 +190,7 @@ function onData(data) {
 				"mData": null,
 				"fnRender": function(obj) {
 					var freezed = "";
-					if(obj.aData.account_status == '1') {
+					if(obj.aData.account_status != '-1') {
 						freezed = "<button class=\"btn btn-info btnFreeze\" href=\"#\">封停</button>";
 					} else {
 						freezed = "<button class=\"btn btn-info btnUnfreeze\" href=\"#\">解封</button>";
