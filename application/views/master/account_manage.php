@@ -195,7 +195,7 @@ function onData(data) {
 					} else {
 						freezed = "<button class=\"btn btn-info btnUnfreeze\" href=\"#\">解封</button>";
 					}
-					return "<div class=\"btn-group\"><button onclick=\"alert('暂未开放');\" class=\"btn btn-info\">编辑</button>" + freezed + "<button onclick=\"location.href='<?php echo site_url('master/account_manage/delete') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">删除</button></div>";
+					return "<div class=\"btn-group\"><button onclick=\"alert('暂未开放');\" class=\"btn btn-info\">编辑</button>" + freezed + "<button url=\"<?php echo site_url('master/account_manage/delete') ?>/" + obj.aData.GUID + "\" class=\"btn btn-info btnDelete\">删除</button></div>";
 					//return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('master/account_manage/reset_password') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">重置密码</button><button onclick=\"location.href='<?php echo site_url('master/account_manage/edit') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\">" + freezed + "<li class=\"divider\"></li><li><a href=\"<?php echo site_url('master/account_manage/delete') ?>/" + obj.aData.GUID + "\">删除</a></li></ul></div>";
 				}
 			}
@@ -223,7 +223,7 @@ function onData(data) {
 	$(document).on("click", ".btnFreeze", function() {
 		$("#modalFreeze").removeClass("hide");
 		
-		var td = $(this).parent().parent().parent().parent().parent().find("td").eq(1);
+		var td = $(this).parent().parent().parent().find("td").eq(1);
 		var accountName = td.text();
 		var guid = td.prev().text();
 		$("#guidConfirm").val(guid);
@@ -232,12 +232,19 @@ function onData(data) {
 	});
 	
 	$(document).on("click", ".btnUnfreeze", function() {
-		var guid = $(this).parent().parent().parent().parent().parent().find("td").eq(0).text();
+		var guid = $(this).parent().parent().parent().find("td").eq(0).text();
 		var parameter = {
 			"guid": guid
 		};
 		$.post("<?php echo site_url('master/account_manage/unfreeze') ?>", parameter, onUnfreezeCallback);
 		return false;
+	});
+	
+	$(document).on("click", ".btnDelete", function() {
+		var url = $(this).attr("url");
+		if(confirm("确定要删除这个帐号吗？注意，该操作不可逆！")) {
+			location.href=url;
+		}
 	});
 }
 </script>
