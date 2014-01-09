@@ -96,6 +96,7 @@ class Permission extends CI_Controller
 						'value'						=>	$result,
 						'permission_check'			=>	$permissionList
 					);
+					
 					$this->render->render($this->pageName, $data);
 				}
 			}
@@ -119,6 +120,9 @@ class Permission extends CI_Controller
 				$this->load->model('mpermission');
 				
 				$this->mpermission->delete($permissionId);
+					
+				$this->load->model('mlog');
+				$this->mlog->writeLog($this->user, 'permission/delete');
 				redirect('permission');
 			}
 		}
@@ -194,6 +198,9 @@ class Permission extends CI_Controller
 						);
 					}
 				}
+				
+				$this->load->model('mlog');
+				$this->mlog->writeLog($this->user, 'permission/submit/edit');
 				$this->mpermission->update($oldPermissionId, $parameter);
 			}
 			else
@@ -218,6 +225,9 @@ class Permission extends CI_Controller
 							'permission_name'	=>	$permissionName,
 							'permission_list'		=>	$permission
 						);
+						
+						$this->load->model('mlog');
+						$this->mlog->writeLog($this->user, 'permission/submit/add');
 						$this->mpermission->create($parameter);
 					}
 				}

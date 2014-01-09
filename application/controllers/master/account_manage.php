@@ -77,6 +77,10 @@ class Account_manage extends CI_Controller
 					'account_pass'	=>	strtoupper(do_hash(do_hash($pass, 'md5') . do_hash($pass), 'md5'))
 			);
 			$this->maccount->update($guid, $parameter);
+
+			$this->load->model('mlog');
+			$this->mlog->writeLog($this->user, 'account_manage/reset_password');
+			
 			redirect('master/account_manage');
 		}
 		else
@@ -122,6 +126,9 @@ class Account_manage extends CI_Controller
 					'result'	=>	1,
 					'guid'		=>	$guid
 			);
+
+			$this->load->model('mlog');
+			$this->mlog->writeLog($this->user, 'account_manage/freeze');
 // 			redirect('master/account_manage');
 		}
 		else
@@ -153,6 +160,9 @@ class Account_manage extends CI_Controller
 					'result'	=>	1,
 					'guid'		=>	$guid
 			);
+			
+			$this->load->model('mlog');
+			$this->mlog->writeLog($this->user, 'account_manage/unfreeze');
 // 			redirect('master/account_manage');
 		}
 		else
@@ -174,6 +184,9 @@ class Account_manage extends CI_Controller
 		{
 			$this->load->model('maccount');
 			$this->maccount->delete($guid);
+			
+			$this->load->model('mlog');
+			$this->mlog->writeLog($this->user, 'account_manage/delete');
 			redirect('master/account_manage');
 		}
 		else

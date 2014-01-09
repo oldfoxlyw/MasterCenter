@@ -148,6 +148,9 @@ class Administrators extends CI_Controller
 					}
 				}
 				$this->madmin->delete($adminId);
+				
+				$this->load->model('mlog');
+				$this->mlog->writeLog($this->user, 'administrators/delete');
 				redirect('administrators');
 			}
 			else
@@ -223,11 +226,17 @@ class Administrators extends CI_Controller
 					$row['user_pass'] = encrypt_pass($adminPass);
 				}
 				$this->madmin->update($adminId, $row);
+				
+				$this->load->model('mlog');
+				$this->mlog->writeLog($this->user, 'administrators/submit/edit');
 			}
 			else
 			{
 				$row['user_pass'] = encrypt_pass($adminPass);
 				$this->madmin->create($row);
+				
+				$this->load->model('mlog');
+				$this->mlog->writeLog($this->user, 'administrators/submit/add');
 			}
 			redirect('administrators');
 		}
