@@ -6,13 +6,11 @@ require_once('ICrud.php');
 class Mlog extends CI_Model implements ICrud
 {
 	
-	private $accountTable = 'log_scc';
-	private $productdb = null;
+	private $accountTable = 'system_log';
 	
 	public function __construct()
 	{
 		parent::__construct();
-		$this->productdb = $this->load->database('adminlog', TRUE);
 	}
 	
 	public function count($parameter = null, $extension = null)
@@ -21,22 +19,22 @@ class Mlog extends CI_Model implements ICrud
 		{
 			foreach($parameter as $key=>$value)
 			{
-				$this->productdb->where($key, $value);
+				$this->db->where($key, $value);
 			}
 		}
 		if(!empty($extension))
 		{
 		}
-		return $this->productdb->count_all_results($this->accountTable);
+		return $this->db->count_all_results($this->accountTable);
 	}
 	
 	public function create($row)
 	{
 		if(!empty($row))
 		{
-			if($this->productdb->insert($this->accountTable, $row))
+			if($this->db->insert($this->accountTable, $row))
 			{
-				return $this->productdb->insert_id();
+				return $this->db->insert_id();
 			}
 			else
 			{
@@ -55,20 +53,20 @@ class Mlog extends CI_Model implements ICrud
 		{
 			foreach($parameter as $key=>$value)
 			{
-				$this->productdb->where($key, $value);
+				$this->db->where($key, $value);
 			}
 		}
 		if(!empty($extension))
 		{
 			if(!empty($extension['order_by']))
 			{
-				$this->productdb->order_by($extension['order_by'][0], $extension['order_by'][1]);
+				$this->db->order_by($extension['order_by'][0], $extension['order_by'][1]);
 			}
 		}
 		if($limit==0 && $offset==0) {
-			$query = $this->productdb->get($this->accountTable);
+			$query = $this->db->get($this->accountTable);
 		} else {
-			$query = $this->productdb->get($this->accountTable, $limit, $offset);
+			$query = $this->db->get($this->accountTable, $limit, $offset);
 		}
 		if($query->num_rows() > 0) {
 			return $query->result();
@@ -81,8 +79,8 @@ class Mlog extends CI_Model implements ICrud
 	{
 		if(!empty($id))
 		{
-			$this->productdb->where('log_id', $id);
-			return $this->productdb->update($this->accountTable, $row);
+			$this->db->where('log_id', $id);
+			return $this->db->update($this->accountTable, $row);
 		}
 		else
 		{
@@ -94,8 +92,8 @@ class Mlog extends CI_Model implements ICrud
 	{
 		if(!empty($id))
 		{
-			$this->productdb->where('log_id', $id);
-			return $this->productdb->delete($this->accountTable);
+			$this->db->where('log_id', $id);
+			return $this->db->delete($this->accountTable);
 		}
 		else
 		{
@@ -103,9 +101,20 @@ class Mlog extends CI_Model implements ICrud
 		}
 	}
 	
-	public function writeLog()
+	public function writeLog($user, $type)
 	{
-		
+		if(!empty($user) && !empty($type))
+		{
+			$parameter = array(
+					'log_action'		=>	$type,
+					'log_uri'			=>	$this->input->server('REQUEST_URI'),
+					'log_parameter'		=>	json_encode($this->input->post()),
+					'log_time'			=>	time(),
+					'log_guid'			=>	$user->guid,
+					'log_name'			=>	$user->user_name
+			);
+			$this->create($parameter);
+		}
 	}
 }
 

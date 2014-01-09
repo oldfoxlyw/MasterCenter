@@ -50,7 +50,12 @@ class Grant_pack extends CI_Controller
 				'item_const_id'	=>	$packId,
 				'count'			=>	$count
 			);
-			echo $this->connector->post($ip . '/ser_send_items', $parameter, FALSE);
+			$result = $this->connector->post($ip . '/ser_send_items', $parameter, FALSE);
+			
+			$this->load->model('mlog');
+			$this->mlog->writeLog($this->user, 'grant_pack/send');
+			
+			echo $result;
 		}
 	}
 	

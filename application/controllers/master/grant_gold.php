@@ -46,7 +46,12 @@ class Grant_gold extends CI_Controller
 				'nkm'		=>	$nickname,
 				'gold'		=>	$goldCount
 			);
-			echo $this->connector->post($ip . '/ser_add_gold', $parameter, FALSE);
+			$result = $this->connector->post($ip . '/ser_add_gold', $parameter, FALSE);
+			
+			$this->load->model('mlog');
+			$this->mlog->writeLog($this->user, 'grant_gold/send');
+			
+			echo $result;
 		}
 	}
 }
