@@ -28,7 +28,7 @@
                       </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="userPermission">管理员角色</label>
+                        <label class="control-label" for="userPermission">管理员权限</label>
                         <div class="controls">
                             <select id="userPermission" name="userPermission" class="span5">
                             <?php foreach($permissions as $permission): ?>
