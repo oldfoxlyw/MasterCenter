@@ -149,9 +149,9 @@ function onFreezeCallback(data) {
 		var tr = td.parent();
 		tr.find("td").eq(2).text("封停");
 		
-		var a = tr.find("td").eq(5).find(".btnFreeze");
-		a.after("<a class=\"btnUnfreeze\" href=\"#\">解封</a>");
-		a.remove();
+		var button = tr.find("td").eq(5).find(".btnFreeze");
+		button.after("<button class=\"btn btn-info btnUnfreeze\" href=\"#\">解封</button>");
+		button.remove();
 	}
 }
 
@@ -161,9 +161,9 @@ function onUnfreezeCallback(data) {
 		var tr = td.parent();
 		tr.find("td").eq(2).text("正常");
 		
-		var a = tr.find("td").eq(5).find(".btnUnfreeze");
-		a.after("<a class=\"btnFreeze\" href=\"#\">封停</a>");
-		a.remove();
+		var button = tr.find("td").eq(5).find(".btnUnfreeze");
+		button.after("<button class=\"btn btn-info btnFreeze\" href=\"#\">封停</button>");
+		button.remove();
 	}
 }
 
