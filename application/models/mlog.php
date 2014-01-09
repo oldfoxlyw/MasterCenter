@@ -112,7 +112,7 @@ class Mlog extends CI_Model implements ICrud
 					'log_user'					=>	$user->user_name,
 					'log_relative_page_url'		=>	$this->input->server('REQUEST_URI'),
 					'log_relative_parameter'	=>	json_encode($this->input->post()),
-					'log_time'					=>	time()
+					'log_time'					=>	date('Y-m-d H:i:s')
 			);
 			$this->create($parameter);
 		}
