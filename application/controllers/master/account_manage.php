@@ -176,11 +176,11 @@ class Account_manage extends CI_Controller
 		{
 			$this->load->model('maccount');
 			$this->maccount->delete($guid);
-			redirect('master/account_manage');
+// 			redirect('master/account_manage');
 		}
 		else
 		{
-			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'master/account_manage', true, 5);
+// 			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'master/account_manage', true, 5);
 		}
 	}
 }
