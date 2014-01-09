@@ -191,9 +191,9 @@ function onData(data) {
 				"fnRender": function(obj) {
 					var freezed = "";
 					if(obj.aData.account_status == '1') {
-						freezed = "<button class=\"btnFreeze\" href=\"#\" class=\"btn btn-info\">封停</button>";
+						freezed = "<button class=\"btn btn-info btnFreeze\" href=\"#\">封停</button>";
 					} else {
-						freezed = "<button class=\"btnUnfreeze\" href=\"#\" class=\"btn btn-info\">解封</button>";
+						freezed = "<button class=\"btn btn-info btnUnfreeze\" href=\"#\">解封</button>";
 					}
 					return "<div class=\"btn-group\"><button onclick=\"alert('暂未开放');\" class=\"btn btn-info\">编辑</button>" + freezed + "<button onclick=\"location.href='<?php echo site_url('master/account_manage/delete') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">删除</button></div>";
 					//return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('master/account_manage/reset_password') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">重置密码</button><button onclick=\"location.href='<?php echo site_url('master/account_manage/edit') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\">" + freezed + "<li class=\"divider\"></li><li><a href=\"<?php echo site_url('master/account_manage/delete') ?>/" + obj.aData.GUID + "\">删除</a></li></ul></div>";
