@@ -165,6 +165,24 @@ class Account_manage extends CI_Controller
 		header('Content-type: text/json');
 		echo $this->return_format->format($result);
 	}
+	
+	public function delete($guid = 0)
+	{
+		$this->load->model('utils/return_format');
+		
+		$guid = $this->input->post('guid');
+		
+		if(!empty($guid))
+		{
+			$this->load->model('maccount');
+			$this->maccount->delete($guid);
+			redirect('master/account_manage');
+		}
+		else
+		{
+			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'master/account_manage', true, 5);
+		}
+	}
 }
 
 ?>
