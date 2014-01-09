@@ -40,8 +40,11 @@ class Permission extends CI_Controller
 			);
 			$extension['like'] = $like;
 		}
-		$count = $this->mpermission->count();
-		$result = $this->mpermission->read(null, $extension, $limit, $offset);
+		$parameter = array(
+				'permission_level <='	=>	$this->user->permission_level
+		);
+		$count = $this->mpermission->count($parameter);
+		$result = $this->mpermission->read($parameter, $extension, $limit, $offset);
 		$data = array(
 			'sEcho'							=>	$sEcho,
 			'iTotalRecords'				=>	$count,
@@ -69,23 +72,32 @@ class Permission extends CI_Controller
 		if(!empty($permissionId))
 		{
 			$this->pageName = 'permission_add';
-			$this->load->model('mpermission');
-			$result = $this->mpermission->read(array(
-				'permission_level'		=>	$permissionId
-			));
-			if($result !== FALSE)
+			$this->check->permission($this->pageName);
+			
+			if($permissionId > $this->user->permission_level)
 			{
-				$result = $result[0];
-				$permissionList = explode(',', $result->permission_list);
-				$data = array(
-					'admin'						=>	$this->user,
-					'page_name'					=>	$this->pageName,
-					'edit'						=>	'1',
-					'old_permission_id'			=>	$permissionId,
-					'value'						=>	$result,
-					'permission_check'			=>	$permissionList
-				);
-				$this->render->render($this->pageName, $data);
+				showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'permission', true, 5);
+			}
+			else
+			{
+				$this->load->model('mpermission');
+				$result = $this->mpermission->read(array(
+					'permission_level'		=>	$permissionId
+				));
+				if($result !== FALSE)
+				{
+					$result = $result[0];
+					$permissionList = explode(',', $result->permission_list);
+					$data = array(
+						'admin'						=>	$this->user,
+						'page_name'					=>	$this->pageName,
+						'edit'						=>	'1',
+						'old_permission_id'			=>	$permissionId,
+						'value'						=>	$result,
+						'permission_check'			=>	$permissionList
+					);
+					$this->render->render($this->pageName, $data);
+				}
 			}
 		}
 		else
@@ -98,10 +110,17 @@ class Permission extends CI_Controller
 	{
 		if(!empty($permissionId))
 		{
-			$this->load->model('mpermission');
-			
-			$this->mpermission->delete($permissionId);
-			redirect('permission');
+			if($permissionId > $this->user->permission_level)
+			{
+				showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'permission', true, 5);
+			}
+			else
+			{
+				$this->load->model('mpermission');
+				
+				$this->mpermission->delete($permissionId);
+				redirect('permission');
+			}
 		}
 		else
 		{
@@ -119,37 +138,63 @@ class Permission extends CI_Controller
 		$permissionId = $post['permissionId'];
 		$permissionName = $post['permissionName'];
 		
-		$splice = array(
-			'edit',
-			'oldPermissionId',
-			'permissionId',
-			'permissionName',
-			'title-checkbox',
-			'global_config',
-			'online_config',
-			'user_config',
-			'order_config',
-			'behavior_config',
-			'master_config'
-		);
-		
-		foreach($post as $key => $value)
+		if($oldPermissionId > $this->user->permission_level)
 		{
-			if(in_array($key, $splice))
-			{
-				unset($post[$key]);
-			}
+			showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'permission', true, 5);
 		}
-		$permission = implode(',', $post);
-		
-		if(!empty($edit))
+		else
 		{
-			if($oldPermissionId == $permissionId)
+			$splice = array(
+				'edit',
+				'oldPermissionId',
+				'permissionId',
+				'permissionName',
+				'title-checkbox',
+				'global_config',
+				'online_config',
+				'user_config',
+				'order_config',
+				'behavior_config',
+				'master_config'
+			);
+			
+			foreach($post as $key => $value)
 			{
-				$parameter = array(
-					'permission_name'	=>	$permissionName,
-					'permission_list'		=>	$permission
-				);
+				if(in_array($key, $splice))
+				{
+					unset($post[$key]);
+				}
+			}
+			$permission = implode(',', $post);
+			
+			if(!empty($edit))
+			{
+				if($oldPermissionId == $permissionId)
+				{
+					$parameter = array(
+						'permission_name'	=>	$permissionName,
+						'permission_list'		=>	$permission
+					);
+				}
+				else
+				{
+					$result = $this->mpermission->read(array(
+						'permission_level'		=>	$permissionId
+					));
+					if(!empty($result))
+					{
+						showMessage(MESSAGE_TYPE_ERROR, 'PERMISSION_ID_EXIST', '', 'permission', true, 5);
+					}
+					else
+					{
+						$parameter = array(
+							'permission_level'	=>	$permissionId,
+							'permission_name'	=>	$permissionName,
+							'permission_list'	=>	$permission
+						);
+					}
+				}
+				$this->mpermission->update($oldPermissionId, $parameter);
 			}
 			else
 			{
@@ -163,35 +208,16 @@ class Permission extends CI_Controller
 				else
 				{
 					$parameter = array(
-						'permission_level'	=>	$permissionId,
+						'permission_level'			=>	$permissionId,
 						'permission_name'	=>	$permissionName,
-						'permission_list'	=>	$permission
+						'permission_list'		=>	$permission
 					);
+					$this->mpermission->create($parameter);
 				}
 			}
-			$this->mpermission->update($oldPermissionId, $parameter);
+			
+			redirect('permission');
 		}
-		else
-		{
-			$result = $this->mpermission->read(array(
-				'permission_level'		=>	$permissionId
-			));
-			if(!empty($result))
-			{
-				showMessage(MESSAGE_TYPE_ERROR, 'PERMISSION_ID_EXIST', '', 'permission', true, 5);
-			}
-			else
-			{
-				$parameter = array(
-					'permission_level'			=>	$permissionId,
-					'permission_name'	=>	$permissionName,
-					'permission_list'		=>	$permission
-				);
-				$this->mpermission->create($parameter);
-			}
-		}
-		
-		redirect('permission');
 	}
 }
 
