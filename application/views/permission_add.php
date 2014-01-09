@@ -36,6 +36,14 @@
                         <table class="table table-bordered table-striped with-check">
                           <tbody>
                             <tr>
+                              <td><input id="global_config" name="global_config" class="header_checkbox" type="checkbox" /></td>
+                              <td><strong>系统权限</strong></td>
+                              <td width="20%"><input id="permission" name="permission" value="permission" type="checkbox"<?php if(in_array('permission', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />查看权限</td>
+                              <td width="20%"><input id="permission_add" name="permission_add" value="permission_add" type="checkbox"<?php if(in_array('permission_add', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />添加/修改权限</td>
+                              <td width="20%"><input id="administrators" name="administrators" value="administrators" type="checkbox"<?php if(in_array('administrators', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />查看管理员</td>
+                              <td width="20%"><input id="administrators_add" name="administrators_add" value="administrators_add" type="checkbox"<?php if(in_array('administrators_add', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />添加/编辑管理员</td>
+                            </tr>
+                            <tr>
                               <td><input id="master_config" name="master_config" class="header_checkbox" type="checkbox" /></td>
                               <td><strong>游戏管理员</strong></td>
                               <td width="20%"><input id="master_grant_gold" name="master_grant_gold" value="master/grant_gold" type="checkbox"<?php if(in_array('master/grant_gold', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />发放金币</td>
