@@ -36,7 +36,8 @@ class Administrators extends CI_Controller
 		if($this->user->user_founder != '1')
 		{
 			$parameter = array(
-				'permission_level <='	=>	$this->user->permission_level
+				'permission_level <='	=>	$this->user->permission_level,
+				'user_founder !='		=>	1
 			);
 		}
 		
