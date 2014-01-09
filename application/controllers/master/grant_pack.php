@@ -55,7 +55,7 @@ class Grant_pack extends CI_Controller
 			$this->load->model('mlog');
 			$this->mlog->writeLog($this->user, 'grant_pack/send');
 			
-			echo $result;
+			echo trim($result);
 		}
 	}
 	
