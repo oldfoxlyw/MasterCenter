@@ -37,12 +37,6 @@
                             </select>
                         </div>
                     </div>
-                    <div class="control-group">
-                      <label class="control-label" for="partnerKey">渠道商编码</label>
-                      <div class="controls">
-						<input type="text" class="span8" id="partnerKey" name="partnerKey" placeholder="渠道商编码" value="<?php echo $value->user_fromwhere; ?>" />
-                      </div>
-                    </div>
                     <div class="form-actions">
                       <button type="submit" class="btn btn-success">保存</button>
                     </div>
