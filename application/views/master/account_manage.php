@@ -245,6 +245,7 @@ function onData(data) {
 		if(confirm("确定要删除这个帐号吗？注意，该操作不可逆！")) {
 			location.href=url;
 		}
+		return false;
 	});
 }
 </script>
