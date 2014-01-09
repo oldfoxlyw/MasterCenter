@@ -43,8 +43,6 @@ class Grant_pack extends CI_Controller
 		
 		$count = empty($count) ? 1 : intval($count);
 		
-			exit("ServerIp: " . $ip . ", NickName: " . $nickname . ", PackId: " . $packId . ", count: " . $count);
-		
 		if(!empty($ip) && !empty($nickname) && !empty($packId))
 		{
 			$parameter = array(
