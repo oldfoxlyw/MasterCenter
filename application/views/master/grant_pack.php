@@ -105,7 +105,7 @@ $(function() {
 			"serverIp": $("#serverIp").val(),
 			"nickname": $("#nickname").val(),
 			"packId": $("#packId").val(),
-			"goldCount": $("#goldCount").val()
+			"count": $("#count").val()
 		}, onData);
 	});
 	$("#btnGetPack").click(function() {
