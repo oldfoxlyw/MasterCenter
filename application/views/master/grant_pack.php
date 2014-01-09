@@ -104,6 +104,7 @@ $(function() {
 		$.post("<?php echo site_url('master/grant_pack/send'); ?>", {
 			"serverIp": $("#serverIp").val(),
 			"nickname": $("#nickname").val(),
+			"packId": $("#packId").val(),
 			"goldCount": $("#goldCount").val()
 		}, onData);
 	});
