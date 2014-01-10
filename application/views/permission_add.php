@@ -45,11 +45,19 @@
                             </tr>
                             <tr>
                               <td><input id="master_config" name="master_config" class="header_checkbox" type="checkbox" /></td>
-                              <td><strong>游戏管理员</strong></td>
+                              <td><strong>GM工具</strong></td>
                               <td width="20%"><input id="master_grant_gold" name="master_grant_gold" value="master/grant_gold" type="checkbox"<?php if(in_array('master/grant_gold', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />发放金币</td>
                               <td width="20%"><input id="master_grant_special_gold" name="master_grant_special_gold" value="master/grant_special_gold" type="checkbox"<?php if(in_array('master/grant_special_gold', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />发放绿钻</td>
                               <td width="20%"><input id="master_grant_pack" name="master_grant_pack" value="master/grant_pack" type="checkbox"<?php if(in_array('master/grant_pack', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />发放礼包</td>
                               <td width="20%"><input id="master_account_manage" name="master_account_manage" value="master/account_manage" type="checkbox"<?php if(in_array('master/account_manage', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />帐号管理</td>
+                            </tr>
+                            <tr>
+                              <td><input id="master_config" name="master_config" class="header_checkbox" type="checkbox" /></td>
+                              <td><strong>公告管理</strong></td>
+                              <td width="20%"><input id="master_message" name="master_message" value="master/message" type="checkbox"<?php if(in_array('master/message', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />定时公告管理</td>
+                              <td width="20%"><input id="master_message_add" name="master_message_add" value="master/message_add" type="checkbox"<?php if(in_array('master/message_add', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />发布定时公告</td>
+                              <td width="20%">&nbsp;</td>
+                              <td width="20%">&nbsp;</td>
                             </tr>
                           </tbody>
                         </table>

@@ -167,6 +167,33 @@ $permissionArray = explode(',', $admin->permission_list);
         </div>
       </div>
       <?php endif; ?>
+      <?php if(in_array('master/message', $permissionArray) || in_array('All', $permissionArray)): ?>
+      <div class="accordion-group widget-box">
+        <div class="accordion-heading">
+          <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGSix" data-toggle="collapse"> <span class="icon"><i class="icon-magnet"></i></span>
+            <h5>公告管理/定时公告管理、发布定时公告</h5>
+            </a>
+          </div>
+        </div>
+        <div class="collapse accordion-body" id="collapseGSix">
+          <div class="widget-content">
+          	<h4>列表</h4>
+            <img src="<?php echo base_url('resources/img/guide/20140110172636.jpg'); ?>" />
+            <ol>
+            	<li>筛选条件</li>
+                <li>帐号列表，可进行编辑（暂未开放）、封停、删除操作</li>
+            </ol>
+            <hr />
+          	<h4>发布</h4>
+            <img src="<?php echo base_url('resources/img/guide/20140110172650.jpg'); ?>" />
+            <ol>
+            	<li>请认真核实帐户名是否正确</li>
+            	<li>封停时限，到期之后会自动解封</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <?php endif; ?>
     </div>
   	<h3>更新记录</h3>
     <hr />

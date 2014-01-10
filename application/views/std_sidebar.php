@@ -15,10 +15,19 @@ $permissionArray = explode(',', $admin->permission_list);
         <?php if(in_array('master/grant_pack', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/grant_pack'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/grant_pack'); ?>">发放礼包</a></li><?php endif; ?>
         <?php if(in_array('master/account_manage', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/account_manage'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/account_manage'); ?>">帐号管理</a></li><?php endif; ?>
     	<!--
-        <?php if(in_array('master/send_message', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/send_message'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/send_message'); ?>">发布游戏内公告</a></li><?php endif; ?>
-        <?php if(in_array('master/send_article', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/send_article'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/send_article'); ?>">发布新闻公告</a></li><?php endif; ?>
         <?php if(in_array('master/grant', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/grant'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/grant'); ?>">发放游戏道具</a></li><?php endif; ?>
         -->
+      </ul>
+    </li>
+    <li class="submenu"> <a href="#"><i class="icon icon-envelope"></i><span>公告管理</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
+      <ul>
+<!--
+        <?php if(in_array('master/articles', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/articles'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/articles'); ?>">新闻公告管理</a></li><?php endif; ?>
+        <?php if(in_array('master/articles_add', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/articles_add'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/articles/add'); ?>">发布新闻公告</a></li><?php endif; ?>
+-->
+        <?php if(in_array('master/message', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/message'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/message'); ?>">定时公告管理</a></li><?php endif; ?>
+        <?php if(in_array('master/message_add', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/message_add'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/message/add'); ?>">发布定时公告</a></li><?php endif; ?>
+
       </ul>
     </li>
     <!--
