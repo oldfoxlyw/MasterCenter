@@ -170,12 +170,12 @@ $permissionArray = explode(',', $admin->permission_list);
       <?php if(in_array('master/message', $permissionArray) || in_array('All', $permissionArray)): ?>
       <div class="accordion-group widget-box">
         <div class="accordion-heading">
-          <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGSix" data-toggle="collapse"> <span class="icon"><i class="icon-magnet"></i></span>
+          <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGSeven" data-toggle="collapse"> <span class="icon"><i class="icon-magnet"></i></span>
             <h5>公告管理/定时公告管理、发布定时公告</h5>
             </a>
           </div>
         </div>
-        <div class="collapse accordion-body" id="collapseGSix">
+        <div class="collapse accordion-body" id="collapseGSeven">
           <div class="widget-content">
           	<h4>列表</h4>
             <img src="<?php echo base_url('resources/img/guide/20140110172636.jpg'); ?>" />
