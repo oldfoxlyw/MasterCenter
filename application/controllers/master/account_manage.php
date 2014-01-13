@@ -40,6 +40,7 @@ class Account_manage extends CI_Controller
 		$serverId = $this->input->post('serverId');
 		$guid = $this->input->post('guid');
 		$accountName = $this->input->post('accountName');
+		$nickname = $this->input->post('nickname');
 		
 		$parameter = array();
 		if(!empty($serverId))

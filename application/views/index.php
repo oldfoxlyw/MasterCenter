@@ -180,15 +180,16 @@ $permissionArray = explode(',', $admin->permission_list);
           	<h4>列表</h4>
             <img src="<?php echo base_url('resources/img/guide/20140110172636.jpg'); ?>" />
             <ol>
-            	<li>筛选条件</li>
-                <li>帐号列表，可进行编辑（暂未开放）、封停、删除操作</li>
+            	<li>选择一个服务器</li>
+                <li>公告列表，可进行编辑、删除操作</li>
             </ol>
             <hr />
           	<h4>发布</h4>
             <img src="<?php echo base_url('resources/img/guide/20140110172650.jpg'); ?>" />
             <ol>
             	<li>请认真核实帐户名是否正确</li>
-            	<li>封停时限，到期之后会自动解封</li>
+            	<li>公告内容</li>
+                <li>定时规则，分为分、时、日三个设置，留空分别表示每分钟、每小时、每天。比如要设置每15分钟发一次公告，填写“0,15,30,45”到“分”那一栏，其余两栏留空；又比如要设置每天18点发布一次公告，则应该填写“0”到“分”那一栏，填写“18”到“时”那一栏，“日”留空。</li>
             </ol>
           </div>
         </div>

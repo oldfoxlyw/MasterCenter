@@ -39,6 +39,12 @@
                     	<input type="text" class="span8" id="accountName" name="accountName" placeholder="用户名" />
                   	</div>
                 </div>
+                <div class="control-group">
+                    <label class="control-label">角色昵称</label>
+                    <div class="controls">
+                    	<input type="text" class="span8" id="nickname" name="nickname" placeholder="角色昵称" />
+                  	</div>
+                </div>
                 <div class="form-actions">
                   <button id="btnSubmit" type="button" class="btn btn-success">搜索</button>
                 </div>
@@ -58,6 +64,7 @@
                 <tr>
                   <th>GUID</th>
                   <th>用户名</th>
+                  <th>角色昵称</th>
                   <th>帐号状态</th>
                   <th>服务器编号</th>
                   <th>渠道编号</th>
@@ -124,7 +131,8 @@ $(function() {
 		$.post("<?php echo site_url('master/account_manage/lists'); ?>", {
 			"serverId": $("#serverId").val(),
 			"guid": $("#guid").val(),
-			"accountName": $("#accountName").val()
+			"accountName": $("#accountName").val(),
+			"nickname": $("#nickname").val()
 		}, onData);
 	});
 	
@@ -183,6 +191,7 @@ function onData(data) {
 		"aoColumns": [
 			{"mData": "GUID"},
 			{"mData": "account_name"},
+			{"mData": "account_nickname"},
 			{"mData": "account_status"},
 			{"mData": "server_id"},
 			{"mData": "partner_key"},
