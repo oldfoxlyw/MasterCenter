@@ -43,8 +43,8 @@
                         <div class="span6">
                             <label class="control-label">开始时间(yyyy-mm-dd)</label>
                             <div class="controls">
-                                <div data-date="<?php if(empty($value->starttime)) echo date('Y-m-d', $current_time); else echo date('Y-m-d', $value->starttime); ?>" class="input-append date datepicker">
-                                    <input type="text" id="startTime" name="startTime" value="<?php if(empty($value->starttime)) echo date('Y-m-d', $current_time); else echo date('Y-m-d', $value->starttime); ?>"  data-date-format="yyyy-mm-dd" >
+                                <div data-date="<?php if(!empty($value->starttime)) echo date('Y-m-d', $value->starttime); ?>" class="input-append date datepicker">
+                                    <input type="text" id="startTime" name="startTime" value="<?php if(!empty($value->starttime)) echo date('Y-m-d', $value->starttime); ?>"  data-date-format="yyyy-mm-dd" >
                                     <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
@@ -52,8 +52,8 @@
                         <div class="span6">
                             <label class="control-label">结束时间(yyyy-mm-dd)</label>
                             <div class="controls">
-                                <div data-date="<?php if(empty($value->endtime)) echo date('Y-m-d', $current_time + 7 * 86400); else echo date('Y-m-d', $value->endtime); ?>" class="input-append date datepicker">
-                                    <input type="text" id="endTime" name="endTime" value="<?php if(empty($value->endtime)) echo date('Y-m-d', $current_time + 7 * 86400); else echo date('Y-m-d', $value->endtime); ?>"  data-date-format="yyyy-mm-dd" >
+                                <div data-date="<?php if(!empty($value->endtime)) echo date('Y-m-d', $value->endtime); ?>" class="input-append date datepicker">
+                                    <input type="text" id="endTime" name="endTime" value="<?php if(!empty($value->endtime)) echo date('Y-m-d', $value->endtime); ?>"  data-date-format="yyyy-mm-dd" >
                                     <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
