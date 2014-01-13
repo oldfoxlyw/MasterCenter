@@ -204,6 +204,10 @@ $permissionArray = explode(',', $admin->permission_list);
       </div>
       <div class="widget-content nopadding updates collapse in" id="collapseG3">
         <div class="new-update clearfix"><i class="icon-ok-sign"></i>
+          <div class="update-done"><a title="" href="#"><strong>更新帐号管理</strong></a> <span>增加“角色昵称”搜索条件</span> </div>
+          <div class="update-date"><span class="update-day">13</span>一月</div>
+        </div>
+        <div class="new-update clearfix"><i class="icon-ok-sign"></i>
           <div class="update-done"><a title="" href="#"><strong>更新首页指南</strong></a> <span>更新首页用户指南，添加更新记录</span> </div>
           <div class="update-date"><span class="update-day">9</span>一月</div>
         </div>
