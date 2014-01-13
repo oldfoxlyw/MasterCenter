@@ -55,6 +55,10 @@ class Account_manage extends CI_Controller
 		{
 			$parameter['account_name'] = $accountName;
 		}
+		if(!empty($nickname))
+		{
+			$parameter['account_nickname'] = $nickname;
+		}
 		
 		$result = $this->maccount->read($parameter);
 		
