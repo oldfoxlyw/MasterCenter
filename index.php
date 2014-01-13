@@ -42,6 +42,9 @@ if (defined('ENVIRONMENT'))
 		case 'production':
 			error_reporting(0);
 		break;
+		case 'maintain':
+			exit('系统维护中，请稍候...');
+			break;
 
 		default:
 			exit('The application environment is not set correctly.');
