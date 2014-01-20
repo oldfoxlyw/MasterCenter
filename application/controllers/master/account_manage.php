@@ -17,12 +17,6 @@ class Account_manage extends CI_Controller
 	{
 		$this->load->model('mserver');
 		$serverResult = $this->mserver->read();
-		for($i=0; $i<count($serverResult); $i++)
-		{
-			$server = json_decode($serverResult[$i]->server_ip);
-			$serverResult[$i]->server_port = $server[0]->port;
-			$serverResult[$i]->server_ip = $server[0]->ip;
-		}
 		
 		$data = array(
 			'admin'				=>	$this->user,
