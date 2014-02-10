@@ -37,19 +37,29 @@ class Grant_pack extends CI_Controller
 		$this->load->model('utils/connector');
 		
 		$ip = $this->input->post('serverIp', FALSE);
+		$allServer = $this->input->post('allServer');
 		$nickname = $this->input->post('nickname');
 		$packId = $this->input->post('packId');
 		$count = $this->input->post('count');
-		
+
+		$nickname = empty($nickname) ? '' : $nickname;
 		$count = empty($count) ? 1 : intval($count);
 		
-		if(!empty($ip) && !empty($nickname) && !empty($packId))
+		if(!empty($ip) && !empty($packId))
 		{
 			$parameter = array(
 				'nkm'			=>	$nickname,
 				'item_const_id'	=>	$packId,
 				'count'			=>	$count
 			);
+			if($allServer == '1')
+			{
+				$parameter['all'] = true;
+			}
+			else
+			{
+				$parameter['all'] = false;
+			}
 			$result = $this->connector->post($ip . '/ser_send_items', $parameter, FALSE);
 			
 			$this->load->model('mlog');

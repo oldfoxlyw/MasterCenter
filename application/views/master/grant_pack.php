@@ -28,6 +28,12 @@
                     </div>
                 </div>
                 <div class="control-group">
+                    <label class="control-label">全服发放</label>
+                    <div class="controls">
+                    	<input id="allServer" name="allServer" type="checkbox" value="1" /> 是
+                  	</div>
+                </div>
+                <div class="control-group" id="slideContent">
                     <label class="control-label">角色昵称</label>
                     <div class="controls">
                     	<input type="text" class="span8" id="nickname" name="nickname" placeholder="角色昵称" />
@@ -92,6 +98,14 @@ var dataTableHandler;
 $(function() {
 	$("#serverIp").select2();
 	$("#count").mask("?99");
+	$("#allServer").click(function() {
+		if($(this).attr("checked")) {
+			$("#nickname").val("");
+			$("#slideContent").slideUp();
+		} else {
+			$("#slideContent").slideDown();
+		}
+	});
 	$("#btnGetPack").click(function() {
 		if(dataTableHandler != null) {
 			return false;
@@ -103,6 +117,7 @@ $(function() {
     $("#btnSubmit").click(function() {
 		$.post("<?php echo site_url('master/grant_pack/send'); ?>", {
 			"serverIp": $("#serverIp").val(),
+			"allServer": $("#allServer").val(),
 			"nickname": $("#nickname").val(),
 			"packId": $("#packId").val(),
 			"count": $("#count").val()
