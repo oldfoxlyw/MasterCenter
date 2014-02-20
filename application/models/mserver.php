@@ -86,11 +86,9 @@ class Mserver extends CI_Model implements ICrud
 	
 	public function update($id, $row)
 	{
-		if(!empty($id) && !empty($row) && is_array($id))
+		if(!empty($id) && !empty($row))
 		{
-			$this->productdb->where('game_id', $id['game_id']);
-			$this->productdb->where('account_server_section', $id['section_id']);
-			$this->productdb->where('account_server_id', $id['server_id']);
+			$this->productdb->where('id', $id);
 			return $this->productdb->update($this->accountTable, $row);
 		}
 		else
@@ -101,11 +99,9 @@ class Mserver extends CI_Model implements ICrud
 	
 	public function delete($id)
 	{
-		if(!empty($id) && is_array($id))
+		if(!empty($id))
 		{
-			$this->productdb->where('game_id', $id['game_id']);
-			$this->productdb->where('account_server_section', $id['section_id']);
-			$this->productdb->where('account_server_id', $id['server_id']);
+			$this->productdb->where('id', $id);
 			return $this->productdb->delete($this->accountTable);
 		}
 		else
