@@ -69,6 +69,8 @@ class Account_manage extends CI_Controller
 		$guid = $this->input->post('guid');
 		$password = $this->input->post('newPassword');
 		
+		$this->load->model('utils/return_format');
+		
 		if(!empty($guid) && !empty($password))
 		{
 			$this->load->model('maccount');
