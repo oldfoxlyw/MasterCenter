@@ -64,28 +64,37 @@ class Account_manage extends CI_Controller
 		echo $this->return_format->format($result);
 	}
 	
-	public function reset_password($guid = 0)
+	public function reset_password()
 	{
-		if(!empty($guid))
+		$guid = $this->input->post('guid');
+		$password = $this->input->post('newPassword');
+		
+		if(!empty($guid) && !empty($password))
 		{
 			$this->load->model('maccount');
 			$this->load->helper('security');
 			
-			$pass = '123456';
 			$parameter = array(
-					'account_pass'	=>	strtoupper(do_hash(do_hash($pass, 'md5') . do_hash($pass), 'md5'))
+					'account_pass'	=>	strtoupper(do_hash(do_hash($password, 'md5') . do_hash($password), 'md5'))
 			);
 			$this->maccount->update($guid, $parameter);
 
 			$this->load->model('mlog');
 			$this->mlog->writeLog($this->user, 'account_manage/reset_password');
-			
-			redirect('master/account_manage');
+
+			$result = array(
+					'result'	=>	1,
+					'guid'		=>	$guid
+			);
 		}
 		else
 		{
-			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'master/account_manage', true, 5);
+			$result = array(
+					'result'	=>	-1
+			);
 		}
+		header('Content-type: text/json');
+		echo $this->return_format->format($result);
 	}
 	
 	public function freeze()

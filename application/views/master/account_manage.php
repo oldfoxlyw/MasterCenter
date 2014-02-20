@@ -106,6 +106,32 @@
                 </div>
                 <div class="modal-footer"><a href="#" class="btn btn-primary" data-dismiss="modal" id="modalBtnFreezeSubmit">确定并关闭</a><a href="#" id="modalBtnFreezeClose" class="btn">关闭</a></div>
               </div>
+            <div class="modal hide" id="modalResetPassword">
+                <div class="modal-header">
+                  <button type="button" id="modalResetPasswordClose" class="close" data-dismiss="modal">×</button>
+                  <h3>重置密码</h3>
+                </div>
+                <div class="modal-body">
+                	<form action="" method="post" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label">帐号名称</label>
+                            <div class="controls">
+                            	<input type="hidden" id="resetGuidConfirm" name="resetGuidConfirm" />
+                            	<span id="resetAccountNameConfirm"></span>
+                            	<span class="help-block"><strong>请确认帐号正确无误</strong></span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">输入新密码</label>
+                            <div class="controls">
+                                <input type="text" class="span8" id="newPassword" name="newPassword" placeholder="新密码" />
+                                <span class="help-block"><strong>请注意，修改密码只能针对渠道编号为"default"或者"default_full"的帐号</strong></span>
+                            </div>
+                        </div>
+                      </form>
+                </div>
+                <div class="modal-footer"><a href="#" class="btn btn-primary" data-dismiss="modal" id="modalBtnResetPasswordSubmit">确定并关闭</a><a href="#" id="modalBtnResetPasswordClose" class="btn">关闭</a></div>
+              </div>
           </div>
         </div>
     </div>
@@ -147,7 +173,29 @@ $(function() {
 		};
 		$.post("<?php echo site_url('master/account_manage/freeze') ?>", parameter, onFreezeCallback);
 	});
+	
+	
+	$("#modalResetPasswordClose, #modalBtnResetPasswordClose").click(function() {
+		$("#modalResetPassword").addClass("hide");
+	});
+	
+	$("#modalBtnResetPasswordSubmit").click(function() {
+		var parameter = {
+			"guid": $("#resetGuidConfirm").val(),
+			"newPassword": $("#newPassword").val()
+		};
+		$.post("<?php echo site_url('master/account_manage/reset_password') ?>", parameter, onResetPasswordCallback);
+	});
 });
+
+function onResetPasswordCallback(data) {
+	if(data) {
+		$("#modalResetPassword").addClass("hide");
+		alert("重置密码成功");
+	} else {
+		alert("操作失败");
+	}
+}
 
 function onFreezeCallback(data) {
 	$("#modalFreeze").addClass("hide");
@@ -204,7 +252,7 @@ function onData(data) {
 					} else {
 						freezed = "<button class=\"btn btn-info btnUnfreeze\" href=\"#\">解封</button>";
 					}
-					return "<div class=\"btn-group\"><button onclick=\"alert('暂未开放');\" class=\"btn btn-info\">编辑</button>" + freezed + "<button url=\"<?php echo site_url('master/account_manage/delete') ?>/" + obj.aData.GUID + "\" class=\"btn btn-info btnDelete\">删除</button></div>";
+					return "<div class=\"btn-group\"><button onclick=\"alert('暂未开放');\" class=\"btn btn-info btnResetPassword\">重置密码</button>" + freezed + "<button url=\"<?php echo site_url('master/account_manage/delete') ?>/" + obj.aData.GUID + "\" class=\"btn btn-info btnDelete\">删除</button></div>";
 					//return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('master/account_manage/reset_password') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">重置密码</button><button onclick=\"location.href='<?php echo site_url('master/account_manage/edit') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\">" + freezed + "<li class=\"divider\"></li><li><a href=\"<?php echo site_url('master/account_manage/delete') ?>/" + obj.aData.GUID + "\">删除</a></li></ul></div>";
 				}
 			}
