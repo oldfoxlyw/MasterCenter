@@ -164,9 +164,18 @@ class Message extends CI_Controller
 		$starttime = $this->input->post('startTime');
 		$endtime = $this->input->post('endTime');
 		
-		$minutes = empty($minutes) ? '*' : $minutes;
-		$hour = empty($hour) ? '*' : $hour;
-		$date = empty($date) ? '*' : $date;
+		if(empty($minutes) && $minutes != '0')
+		{
+			$minutes = '*';
+		}
+		if(empty($hour) && $hour != '0')
+		{
+			$hour = '*';
+		}
+		if(empty($date) && $date != '0')
+		{
+			$date = '*';
+		}
 		$starttime = empty($starttime) ? 0 : strtotime($starttime);
 		$endtime = empty($endtime) ? PHP_INT_MAX : strtotime("{$endtime} 23:59:59");
 		
