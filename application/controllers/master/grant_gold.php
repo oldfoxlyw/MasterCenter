@@ -37,7 +37,7 @@ class Grant_gold extends CI_Controller
 		$this->load->model('utils/connector');
 		
 		$ip = $this->input->post('serverIp', FALSE);
-		$allServer = $this->input->post('allServer');
+// 		$allServer = $this->input->post('allServer');
 		$nickname = $this->input->post('nickname');
 		$goldCount = $this->input->post('goldCount');
 		
@@ -49,10 +49,10 @@ class Grant_gold extends CI_Controller
 				'nkm'		=>	$nickname,
 				'gold'		=>	$goldCount
 			);
-			if($allServer == '1')
-			{
-				$parameter['all'] = true;
-			}
+// 			if($allServer == '1')
+// 			{
+// 				$parameter['all'] = true;
+// 			}
 			$result = $this->connector->post($ip . '/ser_add_gold', $parameter, FALSE);
 			
 			$this->load->model('mlog');
