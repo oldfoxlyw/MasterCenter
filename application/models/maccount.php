@@ -56,6 +56,10 @@ class Maccount extends CI_Model implements ICrud
 		}
 		if(!empty($extension))
 		{
+			if(!empty($extension['like']))
+			{
+				$this->accountdb->like($extension['like'][0], $extension['like'][1]);
+			}
 			if(!empty($extension['order_by']))
 			{
 				$this->accountdb->order_by($extension['order_by'][0], $extension['order_by'][1]);

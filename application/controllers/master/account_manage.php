@@ -37,6 +37,7 @@ class Account_manage extends CI_Controller
 		$nickname = $this->input->post('nickname');
 		
 		$parameter = array();
+		$extension = array();
 		if(!empty($serverId))
 		{
 			$parameter['server_id'] = $serverId;
@@ -51,7 +52,7 @@ class Account_manage extends CI_Controller
 		}
 		if(!empty($nickname))
 		{
-			$parameter['account_nickname'] = $nickname;
+			$extension['like'] = array('account_nickname', $nickname);
 		}
 		
 		$result = $this->maccount->read($parameter);
