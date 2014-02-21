@@ -70,9 +70,10 @@ $(function() {
 	$("#allServer").click(function() {
 		if($(this).attr("checked")) {
 			$("#nickname").val("");
-			$("#allServer").val("1")
+			$("#allServer").val("1");
 			$("#slideContent").slideUp();
 		} else {
+			$("#allServer").val("");
 			$("#slideContent").slideDown();
 		}
 	});
