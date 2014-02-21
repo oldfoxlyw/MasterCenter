@@ -55,7 +55,7 @@ class Account_manage extends CI_Controller
 			$extension['like'] = array('account_nickname', $nickname);
 		}
 		
-		$result = $this->maccount->read($parameter);
+		$result = $this->maccount->read($parameter, $extension);
 		
 		if(empty($result))
 		{
