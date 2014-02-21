@@ -53,10 +53,6 @@ class Grant_gold extends CI_Controller
 			{
 				$parameter['all'] = true;
 			}
-			else
-			{
-				$parameter['all'] = false;
-			}
 			$result = $this->connector->post($ip . '/ser_add_gold', $parameter, FALSE);
 			
 			$this->load->model('mlog');

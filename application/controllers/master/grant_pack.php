@@ -56,10 +56,6 @@ class Grant_pack extends CI_Controller
 			{
 				$parameter['all'] = true;
 			}
-			else
-			{
-				$parameter['all'] = false;
-			}
 			$result = $this->connector->post($ip . '/ser_send_items', $parameter, FALSE);
 			
 			$this->load->model('mlog');

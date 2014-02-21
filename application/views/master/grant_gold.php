@@ -30,7 +30,7 @@
                 <div class="control-group">
                     <label class="control-label">全服发放</label>
                     <div class="controls">
-                    	<input id="allServer" name="allServer" type="checkbox" value="1" /> 是
+                    	<input id="allServer" name="allServer" type="checkbox" value="" /> 是
                   	</div>
                 </div>
                 <div class="control-group" id="slideContent">
@@ -69,8 +69,10 @@ $(function() {
 	$("#allServer").click(function() {
 		if($(this).attr("checked")) {
 			$("#nickname").val("");
+			$("#allServer").val("1");
 			$("#slideContent").slideUp();
 		} else {
+			$("#allServer").val("");
 			$("#slideContent").slideDown();
 		}
 	});
