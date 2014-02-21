@@ -51,7 +51,7 @@ class Grant_gold extends CI_Controller
 			);
 // 			if($allServer == '1')
 // 			{
-// 				$parameter['all'] = true;
+// 				$parameter['all'] = "true";
 // 			}
 			$result = $this->connector->post($ip . '/ser_add_gold', $parameter, FALSE);
 			

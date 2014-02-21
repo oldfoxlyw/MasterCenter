@@ -54,7 +54,7 @@ class Grant_pack extends CI_Controller
 			);
 // 			if($allServer == '1')
 // 			{
-// 				$parameter['all'] = true;
+// 				$parameter['all'] = "true";
 // 			}
 			$result = $this->connector->post($ip . '/ser_send_items', $parameter, FALSE);
 			
