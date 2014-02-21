@@ -27,12 +27,14 @@
                         </select>
                     </div>
                 </div>
+                <!--
                 <div class="control-group">
                     <label class="control-label">全服发放</label>
                     <div class="controls">
                     	<input id="allServer" name="allServer" type="checkbox" value="1" /> 是
                   	</div>
                 </div>
+                -->
                 <div class="control-group" id="slideContent">
                     <label class="control-label">角色昵称</label>
                     <div class="controls">
@@ -66,6 +68,7 @@
 $(function() {
 	$("#serverIp").select2();
 	$("#goldCount").mask("?9999999999");
+	/*
 	$("#allServer").click(function() {
 		if($(this).attr("checked")) {
 			$("#nickname").val("");
@@ -74,10 +77,11 @@ $(function() {
 			$("#slideContent").slideDown();
 		}
 	});
+	*/
     $("#btnSubmit").click(function() {
 		$.post("<?php echo site_url('master/grant_special_gold/send'); ?>", {
 			"serverIp": $("#serverIp").val(),
-			"allServer": $("#allServer").val(),
+			//"allServer": $("#allServer").val(),
 			"nickname": $("#nickname").val(),
 			"goldCount": $("#goldCount").val()
 		}, onData);
