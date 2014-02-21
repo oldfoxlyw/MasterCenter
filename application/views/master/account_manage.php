@@ -252,7 +252,8 @@ function onData(data) {
 					} else {
 						freezed = "<button class=\"btn btn-info btnUnfreeze\" href=\"#\">解封</button>";
 					}
-					return "<div class=\"btn-group\"><button class=\"btn btn-info btnResetPassword\">重置密码</button>" + freezed + "<button url=\"<?php echo site_url('master/account_manage/delete') ?>/" + obj.aData.GUID + "\" class=\"btn btn-info btnDelete\">删除</button></div>";
+					return "<div class=\"btn-group\"><button class=\"btn btn-info btnResetPassword\">重置密码</button>" + freezed + "</div>";
+					//return "<div class=\"btn-group\"><button class=\"btn btn-info btnResetPassword\">重置密码</button>" + freezed + "<button url=\"<?php echo site_url('master/account_manage/delete') ?>/" + obj.aData.GUID + "\" class=\"btn btn-info btnDelete\">删除</button></div>";
 					//return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('master/account_manage/reset_password') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">重置密码</button><button onclick=\"location.href='<?php echo site_url('master/account_manage/edit') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\">" + freezed + "<li class=\"divider\"></li><li><a href=\"<?php echo site_url('master/account_manage/delete') ?>/" + obj.aData.GUID + "\">删除</a></li></ul></div>";
 				}
 			}
