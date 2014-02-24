@@ -118,6 +118,9 @@ $(function() {
 			"serverIp": $("#serverIp").val()
 		}, onPackData);
 	});
+	$("#modalGetPackClose, #modalBtnGetPackClose").click(function() {
+		$("#modalGetPack").addClass("hide");
+	});
     $("#btnSubmit").click(function() {
 		$.post("<?php echo site_url('master/send_mail/send'); ?>", {
 			"serverIp": $("#serverIp").val(),
