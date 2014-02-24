@@ -49,9 +49,10 @@ class Send_mail extends CI_Controller
 		if(!empty($ip) && !empty($title) && !empty($content))
 		{
 			$parameter = array(
-					'nkm'		=>	$nickname,
-					'title'		=>	$title,
-					'content'	=>	$content
+					'nkm'				=>	$nickname,
+					'item_const_id'		=>	$itemId,
+					'title'				=>	$title,
+					'content'			=>	$content
 			);
 			if($allServer == '1')
 			{

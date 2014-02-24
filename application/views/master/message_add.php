@@ -40,6 +40,7 @@
                       </div>
                     </div>
                     <div class="control-group">
+                    	<div>
                         <div class="span6">
                             <label class="control-label">开始时间(yyyy-mm-dd)</label>
                             <div class="controls">
@@ -57,6 +58,113 @@
                                     <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
+                        </div>
+                        </div>
+                        <div>
+                        <div class="span6">
+                            <div class="controls">
+                            	<select id="startHours" name="startHours" style="width:60px;">
+                                <?php
+								for($i = 0; $i<24; $i++)
+								{
+									if($value->startHours == $i)
+									{
+										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
+									}
+									else
+									{
+										echo "<option value=\"{$i}\">{$i}</option>";
+									}
+								}
+								?>
+                                </select>
+                            	时
+                            	<select id="startMinutes" name="startMinutes" style="width:60px;">
+                                <?php
+								for($i = 0; $i<60; $i++)
+								{
+									if($value->startMinutes == $i)
+									{
+										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
+									}
+									else
+									{
+										echo "<option value=\"{$i}\">{$i}</option>";
+									}
+								}
+								?>
+                                </select>
+                                分
+                            	<select id="startSeconds" name="startSeconds" style="width:60px;">
+                                <?php
+								for($i = 0; $i<60; $i++)
+								{
+									if($value->startSeconds == $i)
+									{
+										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
+									}
+									else
+									{
+										echo "<option value=\"{$i}\">{$i}</option>";
+									}
+								}
+								?>
+                                </select>
+                                秒
+                            </div>
+                        </div>
+                        <div class="span6">
+                            <div class="controls">
+                            	<select id="endHours" name="endHours" style="width:60px;">
+                                <?php
+								for($i = 0; $i<24; $i++)
+								{
+									if($value->endHours == $i)
+									{
+										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
+									}
+									else
+									{
+										echo "<option value=\"{$i}\">{$i}</option>";
+									}
+								}
+								?>
+                                </select>
+                            	时
+                            	<select id="endMinutes" name="endMinutes" style="width:60px;">
+                                <?php
+								for($i = 0; $i<60; $i++)
+								{
+									if($value->endMinutes == $i)
+									{
+										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
+									}
+									else
+									{
+										echo "<option value=\"{$i}\">{$i}</option>";
+									}
+								}
+								?>
+                                </select>
+                                分
+                            	<select id="endSeconds" name="endSeconds" style="width:60px;">
+                                <?php
+								for($i = 0; $i<60; $i++)
+								{
+									if($value->endSeconds == $i)
+									{
+										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
+									}
+									else
+									{
+										echo "<option value=\"{$i}\">{$i}</option>";
+									}
+								}
+								?>
+                                </select>
+                                秒
+                            </div>
+                        </div>
                         </div>
                     </div>
                     <div class="form-actions">
@@ -79,7 +187,7 @@
 <script src="<?php echo base_url('resources/js/bootstrap-datepicker.js'); ?>"></script>
 <script type="text/javascript">
 $(function() {
-	$("select").select2();
+	$("#serverId").select2();
     $('.datepicker').datepicker();
 });
 </script>
