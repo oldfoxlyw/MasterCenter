@@ -98,6 +98,8 @@
 <script src="<?php echo base_url('resources/js/matrix.popup_message.js'); ?>"></script> 
 
 <script type="text/javascript">
+var dataTableHandler;
+
 $(function() {
 	$("#serverIp").select2();
 	$("#allServer").click(function() {
