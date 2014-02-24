@@ -112,9 +112,11 @@ $(function() {
 		if(dataTableHandler != null) {
 			return false;
 		}
+		$("#modalGetPack").removeClass("hide");
 		$.post("<?php echo site_url('master/grant_pack/get'); ?>", {
 			"serverIp": $("#serverIp").val()
 		}, onPackData);
+		return false;
 	});
     $("#btnSubmit").click(function() {
 		$.post("<?php echo site_url('master/grant_pack/send'); ?>", {
@@ -124,10 +126,6 @@ $(function() {
 			"packId": $("#packId").val(),
 			"count": $("#count").val()
 		}, onData);
-	});
-	$("#btnGetPack").click(function() {
-		$("#modalGetPack").removeClass("hide");
-		return false;
 	});
 	$("#modalGetPackClose, #modalBtnGetPackClose").click(function() {
 		$("#modalGetPack").addClass("hide");
