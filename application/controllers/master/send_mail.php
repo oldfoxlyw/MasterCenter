@@ -49,11 +49,20 @@ class Send_mail extends CI_Controller
 		if(!empty($ip) && !empty($title) && !empty($content))
 		{
 			$parameter = array(
-					'nkm'				=>	$nickname,
 					'item_const_id'		=>	$itemId,
 					'title'				=>	$title,
 					'content'			=>	$content
 			);
+			
+			$nickNameArray = explode(',', $nickname);
+			if(count($nickNameArray) > 1)
+			{
+				$parameter['nkms'] = implode(',', $nickNameArray);
+			}
+			else
+			{
+				$parameter['nkm'] = $nickname;
+			}
 			if($allServer == '1')
 			{
 				$parameter['all'] = "true";
