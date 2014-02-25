@@ -156,7 +156,12 @@ function onData(data) {
 			{"mData": "account_guid"},
 			{"mData": "account_name"},
 			{"mData": "account_nickname"},
-			{"mData": "funds_amount"},
+			{
+				"mData": null,
+				"fnRender": function(obj) {
+					return obj.aData.funds_amount / 100;
+				}
+			},
 			{"mData": "funds_item_amount"},
 			{
 				"mData": null,
