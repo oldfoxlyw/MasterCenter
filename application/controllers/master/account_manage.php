@@ -128,19 +128,56 @@ class Account_manage extends CI_Controller
 				$endtime = PHP_INT_MAX;
 			}
 			
-			$parameter = array(
-					'account_status'	=>	-1,
-					'closure_endtime'	=>	$endtime
-			);
-			$this->maccount->update($guid, $parameter);
-			$result = array(
-					'result'	=>	1,
-					'guid'		=>	$guid
-			);
-
-			$this->load->model('mlog');
-			$this->mlog->writeLog($this->user, 'account_manage/freeze');
-// 			redirect('master/account_manage');
+			$accountResult = $this->maccount->read(array(
+					'GUID'		=>	$guid
+			));
+			$accountResult = $accountResult[0];
+			
+			if(!empty($accountResult))
+			{
+				$this->load->model('mserver');
+				$serverResult = $this->mserver->read(array(
+						'account_server_id'		=>	$accountResult->server_id
+				));
+				$serverResult = $serverResult[0];
+				if(!empty($serverResult))
+				{
+					$server = json_decode($serverResult->server_ip);
+					$serverUrl = 'http://' . $server[0]->lan . ':' . LAN_PORT;
+					
+					$parameter = array(
+							'account_status'	=>	-1,
+							'closure_endtime'	=>	$endtime
+					);
+					$this->maccount->update($guid, $parameter);
+					$result = array(
+							'result'	=>	1,
+							'guid'		=>	$guid
+					);
+		
+					$this->load->model('mlog');
+					$this->mlog->writeLog($this->user, 'account_manage/freeze');
+		// 			redirect('master/account_manage');
+					
+					$this->load->model('utils/connector');
+					$parameter = array(
+							'nkm'		=>	$accountResult->account_nickname
+					);
+					$this->connector->post($ip . '/ser_kick_player_now', $parameter, FALSE);
+				}
+				else
+				{
+					$result = array(
+							'result'	=>	-1
+					);
+				}
+			}
+			else
+			{
+				$result = array(
+						'result'	=>	-1
+				);
+			}
 		}
 		else
 		{
