@@ -167,9 +167,9 @@ function onData(data) {
 				"mData": null,
 				"fnRender": function(obj) {
 					if(obj.aData.appstore_status == '0') {
-						return "<span class=\"label label-success\">有效</span><span class=\"receipt\" style=\"display:none;\">" + obj.aData.receipt_data + "</span>";
+						return "<span class=\"label label-success\">有效</span><span class=\"receipt hide\ >" + obj.aData.receipt_data + "</span>";
 					} else {
-						return "<span class=\"label label-important\">无效</span><span class=\"receipt\" style=\"display:none;\">" + obj.aData.receipt_data + "</span>";
+						return "<span class=\"label label-important\">无效</span><span class=\"receipt hide\">" + obj.aData.receipt_data + "</span>";
 					}
 				}
 			},
@@ -202,13 +202,11 @@ function onData(data) {
 	$('select').select2();
 	
 	$(document).on("click", ".btnFreeze", function() {
-		$("#modalFreeze").removeClass("hide");
+		//$("#modalFreeze").removeClass("hide");
+		var td = $(this).parent().parent().parent().find("td").eq(5);
+		var receipt = td.find(".receipt").text();
 		
-		var td = $(this).parent().parent().parent().find("td").eq(1);
-		var accountName = td.text();
-		var guid = td.prev().text();
-		$("#guidConfirm").val(guid);
-		$("#accountNameConfirm").text(accountName);
+		console.log(receipt);
 		return false;
 	});
 }
