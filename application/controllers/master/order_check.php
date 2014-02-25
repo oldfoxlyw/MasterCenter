@@ -89,8 +89,6 @@ class Order_check extends CI_Controller
 		$result = curl_exec($ch);
 		
 		header('Content-type: text/json');
-		
-		$this->load->model('utils/return_format');
 		echo $result;
 	}
 }
