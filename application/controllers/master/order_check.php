@@ -5,8 +5,8 @@ class Order_check extends CI_Controller
 	private $pageName = 'master/order_check';
 	private $user = null;
 	
-// 	private $url = 'https://buy.itunes.apple.com/verifyReceipt';
-	private $url = 'https://sandbox.itunes.apple.com/verifyReceipt';
+	private $url = 'https://buy.itunes.apple.com/verifyReceipt';
+// 	private $url = 'https://sandbox.itunes.apple.com/verifyReceipt';
 
 	public function __construct()
 	{

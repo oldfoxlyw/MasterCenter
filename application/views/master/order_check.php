@@ -214,6 +214,7 @@ function onData(data) {
 
 function onReceiptCheck(data) {
 	if(data) {
+		$(".btnFreeze").attr("disabled", "");
 		console.log(data);
 	}
 }
