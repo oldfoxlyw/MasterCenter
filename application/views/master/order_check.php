@@ -103,6 +103,16 @@
 
 <script type="text/javascript">
 var dataTableHandler;
+var productList = ["binghuo_gems_pack6", "binghuo_gems_pack30", "binghuo_gems_pack45", "binghuo_gems_pack98", "binghuo_gems_pack138", "binghuo_gems_pack198", "binghuo_gems_pack318", "binghuo_gems_pack618", "hd_binghuo_gems_pack6", "hd_binghuo_gems_pack30", "hd_binghuo_gems_pack45", "hd_binghuo_gems_pack98", "hd_binghuo_gems_pack138", "hd_binghuo_gems_pack198", "hd_binghuo_gems_pack318", "hd_binghuo_gems_pack618"];
+
+Array.prototype.contains = function (element) {
+	for (var i = 0; i < this.length; i++) {
+		if (this[i] == element) {
+			return true;
+		}
+	}
+	return false;
+}
 
 $(function() {
 	$("#serverId").select2();
@@ -216,7 +226,16 @@ function onReceiptCheck(data) {
 	$(".btnFreeze").removeAttr("disabled");
 	
 	if(data) {
-		console.log(data);
+		if(data.status == "0") {
+			var product = data.receipt.product_id;
+			if(productList.contains(product)) {
+				alert("凭证有效");
+			} else {
+				alert("凭证无效");
+			}
+			return;
+		}
+		alert("凭证无效");
 	}
 }
 </script>
