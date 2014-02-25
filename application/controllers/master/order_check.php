@@ -58,6 +58,7 @@ class Order_check extends CI_Controller
 			$extension['like'] = array('account_nickname', $nickname);
 		}
 		$parameter['funds_flow_dir'] = 'CHECK_IN';
+		$extension['order_by'] = array('funds_time', 'desc');
 		$result = $this->mfunds->read($parameter, $extension);
 		
 		if(empty($result))
