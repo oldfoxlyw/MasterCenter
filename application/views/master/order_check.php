@@ -213,7 +213,7 @@ function onData(data) {
 }
 
 function onReceiptCheck(data) {
-	$(".btnFreeze").attr("disabled", "");
+	$(".btnFreeze").removeAttr("disabled");
 	
 	if(data) {
 		console.log(data);
