@@ -133,7 +133,7 @@ class Account_manage extends CI_Controller
 			));
 			$accountResult = $accountResult[0];
 			
-			if(!empty($accountResult))
+			if(!empty($accountResult) && !empty($accountResult->account_nickname))
 			{
 				$this->load->model('mserver');
 				$serverResult = $this->mserver->read(array(
