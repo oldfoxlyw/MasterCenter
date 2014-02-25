@@ -145,6 +145,9 @@ class Account_manage extends CI_Controller
 					$server = json_decode($serverResult->server_ip);
 					$serverUrl = 'http://' . $server[0]->lan . ':' . LAN_PORT;
 					
+					echo $serverUrl;
+					exit();
+					
 					$parameter = array(
 							'account_status'	=>	-1,
 							'closure_endtime'	=>	$endtime
