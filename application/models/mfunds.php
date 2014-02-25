@@ -2,7 +2,7 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 require_once('ICrud.php');
 
-class Maccount extends CI_Model implements ICrud
+class Mfunds extends CI_Model implements ICrud
 {
 	
 	private $accountTable = 'funds_checkinout';

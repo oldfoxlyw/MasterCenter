@@ -77,7 +77,7 @@ class Order_check extends CI_Controller
 		);
 		
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, '');
+		curl_setopt($ch, CURLOPT_URL, $this->url);
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $parameter);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
