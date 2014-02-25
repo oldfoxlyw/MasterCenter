@@ -17,9 +17,7 @@ $permissionArray = explode(',', $admin->permission_list);
         <?php if(in_array('master/grant_pack', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/grant_pack'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/grant_pack'); ?>">发放礼包</a></li><?php endif; ?>
         <?php if(in_array('master/send_mail', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/send_mail'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/send_mail'); ?>">发送邮件</a></li><?php endif; ?>
         <?php if(in_array('master/account_manage', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/account_manage'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/account_manage'); ?>">帐号管理</a></li><?php endif; ?>
-    	<!--
-        <?php if(in_array('master/grant', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/grant'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/grant'); ?>">发放游戏道具</a></li><?php endif; ?>
-        -->
+        <?php if(in_array('master/order_check', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/order_check'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/order_check'); ?>">订单查询</a></li><?php endif; ?>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-envelope"></i><span>公告管理</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>

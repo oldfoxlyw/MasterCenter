@@ -167,7 +167,7 @@ function onData(data) {
 						return "<span class=\"label label-important\">无效</span>";
 					}
 				}
-			}
+			},
 			{"mData": "funds_time_local"},
 			{
 				"mData": null,
