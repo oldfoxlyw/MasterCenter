@@ -107,7 +107,7 @@ var dataTableHandler;
 $(function() {
 	$("#serverId").select2();
     $("#btnSubmit").click(function() {
-		if($("#guid").val() == "" && $("#accountName").val() == "" && $("#nickname").val()) {
+		if($("#guid").val() == "" && $("#accountName").val() == "" && $("#nickname").val() == "") {
 			alert("请至少填写一个条件");
 			return false;
 		}
