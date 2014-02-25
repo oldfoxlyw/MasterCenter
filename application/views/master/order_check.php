@@ -166,10 +166,10 @@ function onData(data) {
 			{
 				"mData": null,
 				"fnRender": function(obj) {
-					if(obj.aData.is_verified == '1') {
-						return "<span class=\"label label-success\">有效</span>";
+					if(obj.aData.appstore_status == '0') {
+						return "<span class=\"label label-success\">有效</span><span class=\"receipt\">" + obj.aData.receipt_data + "</span>";
 					} else {
-						return "<span class=\"label label-important\">无效</span>";
+						return "<span class=\"label label-important\">无效</span><span class=\"receipt\">" + obj.aData.receipt_data + "</span>";
 					}
 				}
 			},
