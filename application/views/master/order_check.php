@@ -167,9 +167,9 @@ function onData(data) {
 				"mData": null,
 				"fnRender": function(obj) {
 					if(obj.aData.appstore_status == '0') {
-						return "<span class=\"label label-success\">有效</span><span class=\"receipt hide\ >" + obj.aData.receipt_data + "</span>";
+						return "<span class=\"label label-success\">有效</span><span class=\"receipt\" style=\"display:none;\">" + obj.aData.receipt_data + "</span>";
 					} else {
-						return "<span class=\"label label-important\">无效</span><span class=\"receipt hide\">" + obj.aData.receipt_data + "</span>";
+						return "<span class=\"label label-important\">无效</span><span class=\"receipt\" style=\"display:none;\">" + obj.aData.receipt_data + "</span>";
 					}
 				}
 			},
@@ -205,7 +205,6 @@ function onData(data) {
 		//$("#modalFreeze").removeClass("hide");
 		var td = $(this).parent().parent().parent().find("td").eq(5);
 		var receipt = td.find(".receipt").text();
-		
 		console.log(receipt);
 		return false;
 	});
