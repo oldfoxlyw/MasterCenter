@@ -10,6 +10,12 @@
 <div class="container-fluid">
 <!--End-Action boxes-->    
     <div class="row-fluid">
+        <div class="alert alert-block"> <a class="close" data-dismiss="alert" href="#">×</a>
+          <h4 class="alert-heading">注意</h4>
+          <ol>
+          <li>所有标注为“有效”的订单均为已成功到账的并且玩家已成功收到绿钻的订单。</li>
+          </ol>
+        </div>
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
             <h5>搜索</h5>
