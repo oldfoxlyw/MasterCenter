@@ -213,8 +213,9 @@ function onData(data) {
 }
 
 function onReceiptCheck(data) {
+	$(".btnFreeze").attr("disabled", "");
+	
 	if(data) {
-		$(".btnFreeze").attr("disabled", "");
 		console.log(data);
 	}
 }

@@ -76,6 +76,7 @@ class Order_check extends CI_Controller
 		$parameter = array(
 				'receipt-data'	=>	$receipt
 		);
+		$parameter = json_encode($parameter);
 		
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->url);
