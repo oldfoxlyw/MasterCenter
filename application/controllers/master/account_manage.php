@@ -145,9 +145,6 @@ class Account_manage extends CI_Controller
 					$server = json_decode($serverResult->server_ip);
 					$serverUrl = 'http://' . $server[0]->lan . ':' . LAN_PORT;
 					
-					echo $serverUrl;
-					exit();
-					
 					$parameter = array(
 							'account_status'	=>	-1,
 							'closure_endtime'	=>	$endtime
@@ -166,7 +163,7 @@ class Account_manage extends CI_Controller
 					$parameter = array(
 							'nkm'		=>	$accountResult->account_nickname
 					);
-					$this->connector->post($ip . '/ser_kick_player_now', $parameter, FALSE);
+					$this->connector->post($serverUrl . '/ser_kick_player_now', $parameter, FALSE);
 				}
 				else
 				{
