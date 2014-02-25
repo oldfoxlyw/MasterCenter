@@ -139,6 +139,7 @@ $(function() {
 	$(document).on("click", ".btnFreeze", function() {
 		//$("#modalFreeze").removeClass("hide");
 		$(this).attr("disabled", "disabled");
+		$(this).text("验证中...");
 		var td = $(this).parent().parent().parent().find("td").eq(5);
 		var receipt = td.find(".receipt").text();
 		
@@ -224,6 +225,7 @@ function onData(data) {
 
 function onReceiptCheck(data) {
 	$(".btnFreeze").removeAttr("disabled");
+	$(".btnFreeze").text("验证凭证");
 	
 	if(data) {
 		if(data.status == "0") {
