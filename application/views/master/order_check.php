@@ -125,6 +125,20 @@ $(function() {
 	$("#modalFreezeClose, #modalBtnFreezeClose").click(function() {
 		$("#modalFreeze").addClass("hide");
 	});
+	
+	$(document).on("click", ".btnFreeze", function() {
+		//$("#modalFreeze").removeClass("hide");
+		$(this).attr("disabled", "disabled");
+		var td = $(this).parent().parent().parent().find("td").eq(5);
+		var receipt = td.find(".receipt").text();
+		
+		var parameter = {
+			"receipt": receipt
+		};
+		$.post("<?php echo site_url('master/order_check/check_receipt') ?>", parameter, onReceiptCheck);
+		
+		return false;
+	});
 });
 
 function onFreezeCallback(data) {
@@ -196,20 +210,6 @@ function onData(data) {
 		}
 	});
 	$('select').select2();
-	
-	$(document).on("click", ".btnFreeze", function() {
-		//$("#modalFreeze").removeClass("hide");
-		$(this).attr("disabled", "disabled");
-		var td = $(this).parent().parent().parent().find("td").eq(5);
-		var receipt = td.find(".receipt").text();
-		
-		var parameter = {
-			"receipt": receipt
-		};
-		$.post("<?php echo site_url('master/order_check/check_receipt') ?>", parameter, onReceiptCheck);
-		
-		return false;
-	});
 }
 
 function onReceiptCheck(data) {
