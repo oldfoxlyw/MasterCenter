@@ -197,7 +197,7 @@ function onData(data) {
 					if(obj.aData.appstore_status == '0') {
 						return "<span class=\"label label-success\">有效</span><span class=\"receipt\" style=\"display:none;\">" + obj.aData.receipt_data + "</span>";
 					} else {
-						return "<span class=\"label label-important\">无效</span><span class=\"receipt\" style=\"display:none;\">" + obj.aData.receipt_data + "</span>";
+						return "<span class=\"label label-important\">无效(" + obj.aData.appstore_status + ")</span><span class=\"receipt\" style=\"display:none;\">" + obj.aData.receipt_data + "</span>";
 					}
 				}
 			},
