@@ -77,12 +77,24 @@ $(function() {
 		}
 	});
     $("#btnSubmit").click(function() {
-		$.post("<?php echo site_url('master/grant_gold/send'); ?>", {
-			"serverIp": $("#serverIp").val(),
-			"allServer": $("#allServer").val(),
-			"nickname": $("#nickname").val(),
-			"goldCount": $("#goldCount").val()
-		}, onData);
+		if($("#allServer").attr("checked")) {
+			var result = confirm("【警告】您确实是否进行全服发放？");
+			if(result) {
+				$.post("<?php echo site_url('master/grant_gold/send'); ?>", {
+					"serverIp": $("#serverIp").val(),
+					"allServer": $("#allServer").val(),
+					"nickname": $("#nickname").val(),
+					"goldCount": $("#goldCount").val()
+				}, onData);
+			}
+		} else {
+			$.post("<?php echo site_url('master/grant_gold/send'); ?>", {
+				"serverIp": $("#serverIp").val(),
+				"allServer": $("#allServer").val(),
+				"nickname": $("#nickname").val(),
+				"goldCount": $("#goldCount").val()
+			}, onData);
+		}
 	});
 });
 

@@ -128,14 +128,28 @@ $(function() {
 		$("#modalGetPack").addClass("hide");
 	});
     $("#btnSubmit").click(function() {
-		$.post("<?php echo site_url('master/send_mail/send'); ?>", {
-			"serverIp": $("#serverIp").val(),
-			"allServer": $("#allServer").val(),
-			"nickname": $("#nickname").val(),
-			"itemId": $("#itemId").val(),
-			"title": $("#mailTitle").val(),
-			"content": $("#mailContent").val()
-		}, onData);
+		if($("#allServer").attr("checked")) {
+			var result = confirm("【警告】您确实是否进行全服发放？");
+			if(result) {
+				$.post("<?php echo site_url('master/send_mail/send'); ?>", {
+					"serverIp": $("#serverIp").val(),
+					"allServer": $("#allServer").val(),
+					"nickname": $("#nickname").val(),
+					"itemId": $("#itemId").val(),
+					"title": $("#mailTitle").val(),
+					"content": $("#mailContent").val()
+				}, onData);
+			}
+		} else {
+			$.post("<?php echo site_url('master/send_mail/send'); ?>", {
+				"serverIp": $("#serverIp").val(),
+				"allServer": $("#allServer").val(),
+				"nickname": $("#nickname").val(),
+				"itemId": $("#itemId").val(),
+				"title": $("#mailTitle").val(),
+				"content": $("#mailContent").val()
+			}, onData);
+		}
 	});
 });
 
