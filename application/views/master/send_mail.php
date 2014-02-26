@@ -129,7 +129,7 @@ $(function() {
 	});
     $("#btnSubmit").click(function() {
 		if($("#allServer").attr("checked")) {
-			var result = confirm("【警告】您确实是否进行全服发放？");
+			var result = confirm("【警告】确定进行全服发放？");
 			if(result) {
 				$.post("<?php echo site_url('master/send_mail/send'); ?>", {
 					"serverIp": $("#serverIp").val(),
