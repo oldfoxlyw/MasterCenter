@@ -82,7 +82,7 @@
               </thead>
               <tbody>
                 <tr class="gradeA">
-                  <td colspan="7"></td>
+                  <td colspan="9"></td>
                 </tr>
               </tbody>
             </table>
