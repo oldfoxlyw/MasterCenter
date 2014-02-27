@@ -162,7 +162,13 @@ class Message extends CI_Controller
 		$hour = $this->input->post('hour');
 		$date = $this->input->post('date');
 		$starttime = $this->input->post('startTime');
+		$startHours = $this->input->post('startHours');
+		$startMinutes = $this->input->post('startMinutes');
+		$startSeconds = $this->input->post('startSeconds');
 		$endtime = $this->input->post('endTime');
+		$endHours = $this->input->post('endHours');
+		$endMinutes = $this->input->post('endMinutes');
+		$endSeconds = $this->input->post('endSeconds');
 		
 		if(empty($minutes) && $minutes != '0')
 		{
@@ -176,8 +182,8 @@ class Message extends CI_Controller
 		{
 			$date = '*';
 		}
-		$starttime = empty($starttime) ? 0 : strtotime($starttime);
-		$endtime = empty($endtime) ? PHP_INT_MAX : strtotime("{$endtime} 23:59:59");
+		$starttime = empty($starttime) ? 0 : strtotime("{$starttime} {$startHours}:{$startMinutes}:{$startSeconds}");
+		$endtime = empty($endtime) ? PHP_INT_MAX : strtotime("{$endtime} {$endHours}:{$endMinutes}:{$endSeconds}");
 		
 		if($starttime >= $endtime)
 		{

@@ -67,7 +67,7 @@
                                 <?php
 								for($i = 0; $i<24; $i++)
 								{
-									if($value->startHours == $i)
+									if(intval(date('H', $value->starttime)) == $i)
 									{
 										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
 									}
@@ -83,7 +83,7 @@
                                 <?php
 								for($i = 0; $i<60; $i++)
 								{
-									if($value->startMinutes == $i)
+									if(intval(date('i', $value->starttime)) == $i)
 									{
 										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
 									}
@@ -99,7 +99,7 @@
                                 <?php
 								for($i = 0; $i<60; $i++)
 								{
-									if($value->startSeconds == $i)
+									if(intval(date('s', $value->starttime)) == $i)
 									{
 										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
 									}
@@ -119,7 +119,7 @@
                                 <?php
 								for($i = 0; $i<24; $i++)
 								{
-									if($value->endHours == $i)
+									if(intval(date('H', $value->endtime)) == $i)
 									{
 										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
 									}
@@ -135,7 +135,7 @@
                                 <?php
 								for($i = 0; $i<60; $i++)
 								{
-									if($value->endMinutes == $i)
+									if(intval(date('i', $value->endtime)) == $i)
 									{
 										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
 									}
@@ -151,7 +151,7 @@
                                 <?php
 								for($i = 0; $i<60; $i++)
 								{
-									if($value->endSeconds == $i)
+									if(intval(date('s', $value->endtime)) == $i)
 									{
 										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
 									}
