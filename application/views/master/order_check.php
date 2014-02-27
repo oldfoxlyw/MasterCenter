@@ -129,6 +129,7 @@ $(function() {
 			alert("请至少填写一个条件");
 			return false;
 		}
+		$(this).attr("disabled", "disabled");
 		if(dataTableHandler) {
 			dataTableHandler.fnDestroy();
 		}
@@ -174,6 +175,7 @@ function onData(data) {
 	}
 	
 	var json = eval("(" + data + ")");
+	$("#btnSubmit").removeAttr("disabled");
 	dataTableHandler = $('#listTable').dataTable({
 		"bAutoWidth": false,
 		"bJQueryUI": true,
@@ -202,7 +204,7 @@ function onData(data) {
 					}
 				}
 			},
-			{"mData": "appstore_device_id"}
+			{"mData": "appstore_device_id"},
 			{"mData": "funds_time_local"},
 			{
 				"mData": null,
