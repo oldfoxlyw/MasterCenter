@@ -67,7 +67,7 @@
                                 <?php
 								for($i = 0; $i<24; $i++)
 								{
-									if(intval(date('H', $value->starttime)) == $i)
+									if($value->starttime != '0' && intval(date('H', $value->starttime)) == $i)
 									{
 										echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
 									}
@@ -83,7 +83,7 @@
                                 <?php
 								for($i = 0; $i<60; $i++)
 								{
-									if(intval(date('i', $value->starttime)) == $i)
+									if($value->starttime != '0' && intval(date('i', $value->starttime)) == $i)
 									{
 										echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
 									}
@@ -99,7 +99,7 @@
                                 <?php
 								for($i = 0; $i<60; $i++)
 								{
-									if(intval(date('s', $value->starttime)) == $i)
+									if($value->starttime != '0' && intval(date('s', $value->starttime)) == $i)
 									{
 										echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
 									}
@@ -119,7 +119,7 @@
                                 <?php
 								for($i = 0; $i<24; $i++)
 								{
-									if(intval(date('H', $value->endtime)) == $i)
+									if($value->endtime != PHP_INT_MAX && intval(date('H', $value->endtime)) == $i)
 									{
 										echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
 									}
@@ -135,7 +135,7 @@
                                 <?php
 								for($i = 0; $i<60; $i++)
 								{
-									if(intval(date('i', $value->endtime)) == $i)
+									if($value->endtime != PHP_INT_MAX && intval(date('i', $value->endtime)) == $i)
 									{
 										echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
 									}
@@ -151,7 +151,7 @@
                                 <?php
 								for($i = 0; $i<60; $i++)
 								{
-									if(intval(date('s', $value->endtime)) == $i)
+									if($value->endtime != PHP_INT_MAX && intval(date('s', $value->endtime)) == $i)
 									{
 										echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
 									}
