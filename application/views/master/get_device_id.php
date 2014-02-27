@@ -81,7 +81,6 @@ function onData(data) {
 		return;
 	}
 	
-	var json = eval("(" + data + ")");
-	console.log(json);
+	$("#deviceId").text(data);
 }
 </script>
