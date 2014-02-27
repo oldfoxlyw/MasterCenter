@@ -99,6 +99,33 @@
           </div>
         </div>
     </div>
+    
+    <div class="row-fluid">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>可疑订单列表</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered data-table" id="listTable1">
+              <thead>
+                <tr>
+                  <th>GUID</th>
+                  <th>用户名</th>
+                  <th>角色ID</th>
+                  <th>角色昵称</th>
+                  <th>服务器ID</th>
+                  <th>充值总额</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="gradeA">
+                  <td colspan="6"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
 </div>
 </div>
 <link rel="stylesheet" href="<?php echo base_url('resources/css/select2.css'); ?>" />
@@ -111,6 +138,7 @@
 
 <script type="text/javascript">
 var dataTableHandler;
+var dataTableHandler1;
 var productList = ["binghuo_gems_pack6", "binghuo_gems_pack30", "binghuo_gems_pack45", "binghuo_gems_pack98", "binghuo_gems_pack138", "binghuo_gems_pack198", "binghuo_gems_pack318", "binghuo_gems_pack618", "hd_binghuo_gems_pack6", "hd_binghuo_gems_pack30", "hd_binghuo_gems_pack45", "hd_binghuo_gems_pack98", "hd_binghuo_gems_pack138", "hd_binghuo_gems_pack198", "hd_binghuo_gems_pack318", "hd_binghuo_gems_pack618"];
 
 Array.prototype.contains = function (element) {
@@ -159,6 +187,18 @@ $(function() {
 		
 		return false;
 	});
+	
+	$(document).on("click", "a.checkUnique", function() {
+		if(dataTableHandler1) {
+			dataTableHandler1.fnDestroy();
+		}
+		var unique = $(this).text();
+		var parameter = {
+			"unique": unique
+		};
+		$.post("<?php echo site_url('master/order_check/check_unique') ?>", parameter, onUniqueCheck);
+		return false;
+	});
 });
 
 function onFreezeCallback(data) {
@@ -204,7 +244,16 @@ function onData(data) {
 					}
 				}
 			},
-			{"mData": "appstore_device_id"},
+			{
+				"mData": null,
+				"fnRender": function(obj) {
+					if(obj.aData.appstore_device_id != '') {
+						return "<a class=\"checkUnique\" href=\"#\">" + obj.aData.appstore_device_id + "</a>";
+					} else {
+						return "";
+					}
+				}
+			},
 			{"mData": "funds_time_local"},
 			{
 				"mData": null,
@@ -249,6 +298,50 @@ function onReceiptCheck(data) {
 			return;
 		}
 		alert("凭证无效");
+	}
+}
+
+function onUniqueCheck(data) {
+	if(data) {
+		var json = eval("(" + data + ")");
+		dataTableHandler1 = $('#listTable1').dataTable({
+			"bAutoWidth": false,
+			"bJQueryUI": true,
+			"bStateSave": true,
+			"sPaginationType": "full_numbers",
+			"sDom": '<"H"lr>t<"F"fp>',
+			"aaData": json,
+			"aoColumns": [
+				{"mData": "account_guid"},
+				{"mData": "account_name"},
+				{"mData": "account_id"},
+				{"mData": "account_nickname"},
+				{"mData": "server_id"},
+				{
+					"mData": null,
+					"fnRender": function(obj) {
+						return obj.aData.funds_amount / 100;
+					}
+				}
+			],
+			"oLanguage": {
+				"sProcessing":   "处理中...",
+				"sLengthMenu":   "显示 _MENU_ 项结果",
+				"sZeroRecords":  "没有匹配结果",
+				"sInfo":         "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+				"sInfoEmpty":    "显示第 0 至 0 项结果，共 0 项",
+				"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+				"sInfoPostFix":  "",
+				"sSearch":       "搜索:",
+				"sUrl":          "",
+				"oPaginate": {
+					"sFirst":    "首页",
+					"sPrevious": "上页",
+					"sNext":     "下页",
+					"sLast":     "末页"
+				}
+			}
+		});
 	}
 }
 </script>

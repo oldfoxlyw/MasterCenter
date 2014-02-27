@@ -92,6 +92,28 @@ class Order_check extends CI_Controller
 		header('Content-type: text/json');
 		echo $result;
 	}
+	
+	public function check_unique()
+	{
+		$this->load->model('mfunds');
+		$this->load->model('utils/return_format');
+		
+		$unique = $this->input->post('unique');
+		
+		if(!empty($unique))
+		{
+			$db = $this->mfunds->db();
+			$sql = "SELECT `account_guid`, `account_name`, `account_nickname`, `account_id`, `server_id`, SUM(`funds_amount`) as `funds_amount` FROM `funds_checkinout` WHERE `appstore_device_id`='{$unique}' GROUP BY `account_guid`";
+			$result = $db->query($sql)->result();
+			
+			if(empty($result))
+			{
+				$result = array();
+			}
+	
+			echo $this->return_format->format($result);
+		}
+	}
 }
 
 ?>

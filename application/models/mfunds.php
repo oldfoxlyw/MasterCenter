@@ -102,6 +102,11 @@ class Mfunds extends CI_Model implements ICrud
 			return false;
 		}
 	}
+	
+	public function db()
+	{
+		return $this->accountdb;
+	}
 }
 
 ?>
