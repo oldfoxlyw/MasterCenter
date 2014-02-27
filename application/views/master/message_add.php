@@ -69,7 +69,7 @@
 								{
 									if(intval(date('H', $value->starttime)) == $i)
 									{
-										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
+										echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
 									}
 									else
 									{
@@ -85,7 +85,7 @@
 								{
 									if(intval(date('i', $value->starttime)) == $i)
 									{
-										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
+										echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
 									}
 									else
 									{
@@ -101,7 +101,7 @@
 								{
 									if(intval(date('s', $value->starttime)) == $i)
 									{
-										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
+										echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
 									}
 									else
 									{
@@ -121,7 +121,7 @@
 								{
 									if(intval(date('H', $value->endtime)) == $i)
 									{
-										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
+										echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
 									}
 									else
 									{
@@ -137,7 +137,7 @@
 								{
 									if(intval(date('i', $value->endtime)) == $i)
 									{
-										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
+										echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
 									}
 									else
 									{
@@ -153,7 +153,7 @@
 								{
 									if(intval(date('s', $value->endtime)) == $i)
 									{
-										echo "<option value=\"{$i}\" checked=\"checked\">{$i}</option>";
+										echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
 									}
 									else
 									{
