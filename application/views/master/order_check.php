@@ -75,6 +75,7 @@
                   <th>充值金额</th>
                   <th>绿钻变化量</th>
                   <th>凭证有效性</th>
+                  <th>唯一标识</th>
                   <th>时间</th>
                   <th>-</th>
                 </tr>
@@ -201,6 +202,7 @@ function onData(data) {
 					}
 				}
 			},
+			{"mData": "appstore_device_id"}
 			{"mData": "funds_time_local"},
 			{
 				"mData": null,
