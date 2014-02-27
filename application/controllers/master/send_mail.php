@@ -37,7 +37,7 @@ class Send_mail extends CI_Controller
 		$this->load->model('utils/connector');
 		
 		$ip = $this->input->post('serverIp', FALSE);
-		$allServer = $this->input->post('allServer');
+// 		$allServer = $this->input->post('allServer');
 		$nickname = $this->input->post('nickname');
 		$itemId = $this->input->post('itemId');
 		$title = $this->input->post('title');
@@ -63,10 +63,10 @@ class Send_mail extends CI_Controller
 			{
 				$parameter['nkm'] = $nickname;
 			}
-			if($allServer == '1')
-			{
-				$parameter['all'] = "true";
-			}
+// 			if($allServer == '1')
+// 			{
+// 				$parameter['all'] = "true";
+// 			}
 			$result = $this->connector->post($ip . '/ser_send_mails', $parameter, FALSE);
 			
 			$this->load->model('mlog');
