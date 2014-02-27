@@ -46,7 +46,7 @@
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>设备码</h5>
           </div>
-          <div id="deviceId" class="widget-content nopadding">
+          <div id="deviceId" class="widget-content">
           
           </div>
         </div>
