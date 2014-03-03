@@ -27,12 +27,6 @@
                         </select>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label">全服发放</label>
-                    <div class="controls">
-                    	<input id="allServer" name="allServer" type="checkbox" value="" /> 是
-                  	</div>
-                </div>
                 <div class="control-group" id="slideContent">
                     <label class="control-label">角色昵称</label>
                     <div class="controls">
@@ -98,16 +92,7 @@ var dataTableHandler;
 $(function() {
 	$("#serverIp").select2();
 	$("#count").mask("?99");
-	$("#allServer").click(function() {
-		if($(this).attr("checked")) {
-			$("#nickname").val("");
-			$("#allServer").val("1");
-			$("#slideContent").slideUp();
-		} else {
-			$("#allServer").val("");
-			$("#slideContent").slideDown();
-		}
-	});
+	
 	$("#btnGetPack").click(function() {
 		$("#modalGetPack").removeClass("hide");
 		if(dataTableHandler != null) {
@@ -120,21 +105,10 @@ $(function() {
 		}
 	});
     $("#btnSubmit").click(function() {
-		if($("#allServer").attr("checked")) {
-			var result = confirm("【警告】确定进行全服发放？");
-			if(result) {
-				$.post("<?php echo site_url('master/grant_pack/send'); ?>", {
-					"serverIp": $("#serverIp").val(),
-					"allServer": $("#allServer").val(),
-					"nickname": $("#nickname").val(),
-					"packId": $("#packId").val(),
-					"count": $("#count").val()
-				}, onData);
-			}
-		} else {
+		var result = confirm("【警告】确定要发放礼包吗？");
+		if(result) {
 			$.post("<?php echo site_url('master/grant_pack/send'); ?>", {
 				"serverIp": $("#serverIp").val(),
-				"allServer": $("#allServer").val(),
 				"nickname": $("#nickname").val(),
 				"packId": $("#packId").val(),
 				"count": $("#count").val()

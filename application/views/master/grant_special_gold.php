@@ -27,12 +27,6 @@
                         </select>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label">全服发放</label>
-                    <div class="controls">
-                    	<input id="allServer" name="allServer" type="checkbox" value="" /> 是
-                  	</div>
-                </div>
                 <div class="control-group" id="slideContent">
                     <label class="control-label">角色昵称</label>
                     <div class="controls">
@@ -67,24 +61,15 @@ $(function() {
 	$("#serverIp").select2();
 	$("#goldCount").mask("?9999999999");
 	
-	$("#allServer").click(function() {
-		if($(this).attr("checked")) {
-			$("#nickname").val("");
-			$("#allServer").val("1");
-			$("#slideContent").slideUp();
-		} else {
-			$("#allServer").val("");
-			$("#slideContent").slideDown();
-		}
-	});
-	
     $("#btnSubmit").click(function() {
-		$.post("<?php echo site_url('master/grant_special_gold/send'); ?>", {
-			"serverIp": $("#serverIp").val(),
-			"allServer": $("#allServer").val(),
-			"nickname": $("#nickname").val(),
-			"goldCount": $("#goldCount").val()
-		}, onData);
+		var result = confirm("【警告】确定要发放绿钻吗？");
+		if(result) {
+			$.post("<?php echo site_url('master/grant_special_gold/send'); ?>", {
+				"serverIp": $("#serverIp").val(),
+				"nickname": $("#nickname").val(),
+				"goldCount": $("#goldCount").val()
+			}, onData);
+		}
 	});
 });
 

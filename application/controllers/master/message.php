@@ -149,7 +149,6 @@ class Message extends CI_Controller
 		}
 	}
 
-
 	public function submit()
 	{
 		$this->load->model('mmessage');

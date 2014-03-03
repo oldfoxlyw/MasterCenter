@@ -11,9 +11,7 @@ $permissionArray = explode(',', $admin->permission_list);
     <li class="submenu"> <a href="#"><i class="icon icon-envelope"></i><span>GM工具</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
         <?php if(in_array('master/grant_gold', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/grant_gold'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/grant_gold'); ?>">发放金币</a></li><?php endif; ?>
-        <!--
         <?php if(in_array('master/grant_special_gold', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/grant_special_gold'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/grant_special_gold'); ?>">发放绿钻</a></li><?php endif; ?>
-        -->
         <?php if(in_array('master/grant_pack', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/grant_pack'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/grant_pack'); ?>">发放礼包</a></li><?php endif; ?>
         <?php if(in_array('master/send_mail', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/send_mail'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/send_mail'); ?>">发送邮件</a></li><?php endif; ?>
         <?php if(in_array('master/account_manage', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/account_manage'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/account_manage'); ?>">帐号管理</a></li><?php endif; ?>
