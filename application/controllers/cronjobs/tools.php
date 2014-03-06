@@ -66,6 +66,7 @@ class Tools extends CI_Controller
 		else
 		{
 			$nertId = $id1;
+			$otherId = $id2;
 			$nextServer = $server1;
 		}
 
@@ -85,15 +86,13 @@ class Tools extends CI_Controller
 		if(intval($count) >= (intval($lastResult->count) + 1000))
 		{
 			echo 'revert';
+			$sql = 'UPDATE `server_list` SET `server_recommend` = 0';
+			$productdb->query($sql);
+			
 			$parameter = array(
 					'server_recommend'	=>	1
 			);
-			$this->mserver->update($id1, $parameter);
-
-			$parameter = array(
-					'server_recommend'	=>	0
-			);
-			$this->mserver->update($id2, $parameter);
+			$this->mserver->update($nertId, $parameter);
 			
 			$sql = 'UPDATE `server_balance` SET `last_active` = 0';
 			$productdb->query($sql);
