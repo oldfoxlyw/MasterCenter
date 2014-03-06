@@ -76,8 +76,15 @@ class Tools extends CI_Controller
 		$count = $result->count;
 		$query->free_result();
 		
+		echo 'last active:' . $serverId;
+		echo 'nextId:' . $nertId;
+		echo 'nextServer:' . $nextServer;
+		echo 'currentCount:' . $count;
+		echo 'lastCount:' . intval($result->count);
+		
 		if(intval($count) >= (intval($result->count) + 1000))
 		{
+			echo 'revert';
 			$parameter = array(
 					'server_recommend'	=>	1
 			);
