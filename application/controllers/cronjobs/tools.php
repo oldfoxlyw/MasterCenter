@@ -76,7 +76,7 @@ class Tools extends CI_Controller
 		$count = $result->count;
 		$query->free_result();
 		
-		if($count >= $result->count)
+		if(intval($count) >= (intval($result->count) + 1000))
 		{
 			$parameter = array(
 					'server_recommend'	=>	1
