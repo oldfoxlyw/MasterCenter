@@ -19,7 +19,7 @@ class Tools extends CI_Controller
 		$server1 = '103';
 		$server2 = '104';
 		
-		$db = $this->load->database('logdb', TRUE);
+		$db = $this->load->database('accountdb', TRUE);
 		$sql = "SELECT COUNT(*) AS `count` FROM `web_account` WHERE `server_id`='{$server1}'";
 		$query = $db->query($sql);
 		$result = $query->row();
