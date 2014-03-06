@@ -87,6 +87,11 @@ class Tools extends CI_Controller
 					'server_recommend'	=>	0
 			);
 			$this->mserver->update($id2, $parameter);
+			
+			$sql = 'UPDATE `server_balance` SET `last_active` = 0';
+			$productdb->query($sql);
+			$sql = "UPDATE `server_balance` SET `last_active` = 1, `count`={$count} WHERE `server_id`='{$serverId}'";
+			$productdb->query($sql);
 		}
 	}
 }
