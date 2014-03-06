@@ -39,9 +39,9 @@ class Tools extends CI_Controller
 		$count3 = $result->count;
 		$query->free_result();
 		
-		$active1 = 1;
+		$active1 = 0;
 		$active2 = 0;
-		$active3 = 0;
+		$active3 = 1;
 
 		$productdb = $this->load->database('productdb', TRUE);
 		$sql = "INSERT INTO `server_balance` VALUES('{$server1}', {$count1}, {$active1})";
