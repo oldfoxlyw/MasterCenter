@@ -55,8 +55,8 @@ class Tools extends CI_Controller
 		
 		$productdb = $this->load->database('productdb', TRUE);
 		$sql = 'SELECT * FROM `server_balance` WHERE `last_active` = 0';
-		$result = $productdb->query($sql)->row();
-		$serverId = $result->server_id;
+		$lastResult = $productdb->query($sql)->row();
+		$serverId = $lastResult->server_id;
 		
 		if($serverId == $server1)
 		{
@@ -80,9 +80,9 @@ class Tools extends CI_Controller
 		echo 'nextId:' . $nertId;
 		echo 'nextServer:' . $nextServer;
 		echo 'currentCount:' . $count;
-		echo 'lastCount:' . intval($result->count);
+		echo 'lastCount:' . intval($lastResult->count);
 		
-		if(intval($count) >= (intval($result->count) + 1000))
+		if(intval($count) >= (intval($lastResult->count) + 1000))
 		{
 			echo 'revert';
 			$parameter = array(
