@@ -20,13 +20,13 @@ class Tools extends CI_Controller
 		$server2 = '104';
 		
 		$db = $this->load->database('logdb', TRUE);
-		$sql = "SELECT COUNT(*) AS `count` FROM `log_account` WHERE (`log_action`='ACCOUNT_REGISTER_SUCCESS' OR `log_action`='ACCOUNT_DEMO_SUCCESS') AND `server_id`='{$server1}' AND `log_time`>={$lastTime}";
+		$sql = "SELECT COUNT(*) AS `count` FROM `web_account` WHERE `server_id`='{$server1}'";
 		$query = $db->query($sql);
 		$result = $query->row();
 		$count1 = $result->count;
 		$query->free_result();
 
-		$sql = "SELECT COUNT(*) AS `count` FROM `log_account` WHERE (`log_action`='ACCOUNT_REGISTER_SUCCESS' OR `log_action`='ACCOUNT_DEMO_SUCCESS') AND `server_id`='{$server2}' AND `log_time`>={$lastTime}";
+		$sql = "SELECT COUNT(*) AS `count` FROM `web_account` WHERE `server_id`='{$server2}'";
 		$query = $db->query($sql);
 		$result = $query->row();
 		$count2 = $result->count;
