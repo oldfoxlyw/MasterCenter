@@ -19,6 +19,7 @@
                         <label class="control-label">选择服务器</label>
                         <div class="controls">
                             <select id="serverId" name="serverId">
+                            	<option value="all">全服</option>
                             <?php foreach($server_result as $server): ?>
                                 <option value="<?php echo $server->account_server_id; ?>" <?php if($server->account_server_id == $value->server_id): ?>selected="selected"<?php endif; ?>><?php echo $server->server_name; ?></option>
                             <?php endforeach; ?>

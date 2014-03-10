@@ -64,6 +64,10 @@ class Mmessage extends CI_Model implements ICrud
 			{
 				$this->logdb->order_by($extension['order_by'][0], $extension['order_by'][1]);
 			}
+			if(!empty($extension['or_where']))
+			{
+				$this->logdb->or_where($extension['or_where'][0], $extension['or_where'][1]);
+			}
 		}
 		if($limit==0 && $offset==0) {
 			$query = $this->logdb->get($this->accountTable);

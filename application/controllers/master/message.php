@@ -112,7 +112,12 @@ class Message extends CI_Controller
 			$parameter['server_id'] = $server_id;
 		}
 		
-		$result = $this->mmessage->read($parameter);
+		$result = $this->mmessage->read($parameter, array(
+				'or_where'		=>	array(
+						'server_id',
+						'all'
+				)
+		));
 		
 		if(empty($result))
 		{
