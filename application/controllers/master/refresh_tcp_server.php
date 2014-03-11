@@ -49,9 +49,7 @@ class Refresh_tcp_server extends CI_Controller
 		
 		if(!empty($ip))
 		{
-			echo '123';
 			$result = $this->connector->post($ip . '/refresh_tcp_server_ip', null, FALSE);
-			echo '456';
 			echo $result;
 		}
 		else
