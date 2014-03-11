@@ -52,6 +52,10 @@ class Refresh_tcp_server extends CI_Controller
 			$result = $this->connector->post($ip . '/refresh_tcp_server_ip', null, FALSE);
 			echo $result;
 		}
+		else
+		{
+			echo 'No param'
+		}
 	}
 }
 
