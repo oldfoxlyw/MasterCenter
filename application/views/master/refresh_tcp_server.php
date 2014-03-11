@@ -47,7 +47,9 @@
 $(function() {
 	$("#serverIp").select2();
     $("#btnSubmit").click(function() {
-		$.post("<?php echo site_url('master/refresh_tcp_server/lists'); ?>", {}, onData);
+		$.post("<?php echo site_url('master/refresh_tcp_server/lists'); ?>", {
+			"serverIp": $("#serverIp").val()
+		}, onData);
 	});
 });
 
