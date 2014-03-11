@@ -54,7 +54,7 @@ class Refresh_tcp_server extends CI_Controller
 		}
 		else
 		{
-			echo 'No param'
+			echo 'No param';
 		}
 	}
 }
