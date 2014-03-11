@@ -72,12 +72,18 @@ class Connector extends CI_Model {
 				$postPath = $controller;
 			}
 			
-			$parameter['code'] = $this->hash($parameter);
+			if(!empty($parameter))
+			{
+				$parameter['code'] = $this->hash($parameter);
+			}
 			
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $postPath);
 			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $parameter);
+			if(!empty($parameter))
+			{
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $parameter);
+			}
 			$ip = $this->input->ip_address();
 			$header = array(
 				'CLIENT-IP:' . $ip,
