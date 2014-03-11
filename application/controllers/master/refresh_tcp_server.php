@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Get_device_id extends CI_Controller
+class Refresh_tcp_server extends CI_Controller
 {
-	private $pageName = 'master/get_device_id';
+	private $pageName = 'master/refresh_tcp_server';
 	private $user = null;
 
 	public function __construct()
@@ -46,15 +46,10 @@ class Get_device_id extends CI_Controller
 		$this->load->model('utils/return_format');
 		
 		$ip = $this->input->post('serverIp');
-		$nickname = $this->input->post('nickname');
 		
-		if(!empty($ip) && !empty($nickname))
+		if(!empty($ip))
 		{
-			$parameter = array(
-					'nkm'		=>	$nickname
-			);
-			
-			$result = $this->connector->post($ip . '/ser_get_device_id', $parameter, FALSE);
+			$result = $this->connector->post($ip . '/refresh_tcp_server_ip', null, FALSE);
 			echo $result;
 		}
 	}
