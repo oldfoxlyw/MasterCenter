@@ -102,6 +102,12 @@
                                 <span class="help-block"><strong>到期自动解封，无需再手动操作</strong></span>
                             </div>
                         </div>
+                        <div class="control-group">
+                            <label class="control-label">说明</label>
+                            <div class="controls">
+                                <input type="text" id="content" name="content" placeholder="说明" />
+                            </div>
+                        </div>
                       </form>
                 </div>
                 <div class="modal-footer"><a href="#" class="btn btn-primary" data-dismiss="modal" id="modalBtnFreezeSubmit">确定并关闭</a><a href="#" id="modalBtnFreezeClose" class="btn">关闭</a></div>

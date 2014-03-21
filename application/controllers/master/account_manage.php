@@ -106,6 +106,7 @@ class Account_manage extends CI_Controller
 		
 		$guid = $this->input->post('guid');
 		$endtime = $this->input->post('endtime');
+		$content = $this->input->post('content');
 		
 		if(!empty($guid))
 		{
@@ -172,7 +173,8 @@ class Account_manage extends CI_Controller
 					
 					$this->load->model('utils/connector');
 					$parameter = array(
-							'nkm'		=>	$accountResult->account_nickname
+							'nkm'		=>	$accountResult->account_nickname,
+							'content'	=>	$content
 					);
 					$this->connector->post($serverUrl . '/ser_kick_player_now', $parameter, FALSE);
 				}
