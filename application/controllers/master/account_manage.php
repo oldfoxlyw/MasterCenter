@@ -106,7 +106,7 @@ class Account_manage extends CI_Controller
 		
 		$guid = $this->input->post('guid');
 		$endtime = $this->input->post('endtime');
-		$content = $this->input->post('content');
+		$content = $this->input->post('freezeContent');
 		
 		if(!empty($guid))
 		{
