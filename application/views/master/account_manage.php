@@ -179,6 +179,7 @@ $(function() {
 	$("#modalBtnFreezeSubmit").click(function() {
 		var parameter = {
 			"guid": $("#guidConfirm").val(),
+			"freezeContent": $("#freezeContent").val(),
 			"endtime": $("input[name='closureEndTime']:checked").val()
 		};
 		$.post("<?php echo site_url('master/account_manage/freeze') ?>", parameter, onFreezeCallback);
