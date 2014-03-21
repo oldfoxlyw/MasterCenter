@@ -156,8 +156,6 @@ class Account_manage extends CI_Controller
 						$serverResult->server_ip = $server[0]->lan;
 					}
 					$serverUrl = 'http://' . $serverResult->server_ip . ':' . $serverResult->server_port;
-
-					exit($serverUrl);
 					
 					$parameter = array(
 							'account_status'	=>	-1,
@@ -178,7 +176,7 @@ class Account_manage extends CI_Controller
 							'nkm'		=>	$accountResult->account_nickname,
 							'content'	=>	$content
 					);
-					// $this->connector->post($serverUrl . '/ser_kick_player_now', $parameter, FALSE);
+					$this->connector->post($serverUrl . '/ser_kick_player_now', $parameter, FALSE);
 				}
 				else
 				{
