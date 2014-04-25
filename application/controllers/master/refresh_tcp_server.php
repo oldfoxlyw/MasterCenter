@@ -27,8 +27,10 @@ class Refresh_tcp_server extends CI_Controller
 			}
 			else
 			{
-				$serverResult[$i]->server_port = LAN_PORT;
-				$serverResult[$i]->server_ip = $server[0]->lan;
+				$serverResult[$i]->server_port = $server[0]->port;
+				$serverResult[$i]->server_ip = $server[0]->ip;
+				// $serverResult[$i]->server_port = LAN_PORT;
+				// $serverResult[$i]->server_ip = $server[0]->lan;
 			}
 		}
 		
