@@ -43,6 +43,7 @@ class Generate extends CI_Controller
 
 			$success = 0;
 			$fail = 0;
+			$result = array();
 			$count = intval($count);
 
 			for($i = 0; $i<$count; $i++)
@@ -61,6 +62,7 @@ class Generate extends CI_Controller
 				if($this->mcode->create($parameter) !== FALSE)
 				{
 					$success++;
+					array_push($result, $coupon);
 				}
 				else
 				{
@@ -70,7 +72,8 @@ class Generate extends CI_Controller
 
 			$json = array(
 				'success'		=>	$success,
-				'fail'			=>	$fail
+				'fail'			=>	$fail,
+				'result'		=>	$result
 			);
 
 			$this->load->model('utils/return_format');

@@ -29,6 +29,12 @@
                       <input type="text" class="span8" id="count" name="count" placeholder="所需数量" />
                     </div>
                 </div>
+                <div class="control-group">
+                    <label class="control-label">备注</label>
+                    <div class="controls">
+                      <input type="text" class="span8" id="comment" name="comment" placeholder="备注" />
+                    </div>
+                </div>
                 <div class="form-actions">
                   <button id="btnSubmit" type="button" class="btn btn-success">生成</button>
                 </div>
@@ -41,6 +47,9 @@
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>兑换码</h5>
+          </div>
+          <div id="info" class="widget-content">
+          
           </div>
           <div id="coupon" class="widget-content">
           
@@ -80,6 +89,10 @@ function onData(data) {
 	}
 	
   $("#btnSubmit").attr("disabled", false);
-	$("#coupon").text('成功：' + data.success + "，失败：" + data.fail);
+	$("#info").text('成功：' + data.success + "，失败：" + data.fail);
+
+  for(var i = 0; i<data.result.length; i++) {
+    $("#coupon").append(data.result[i] + "<br>");
+  }
 }
 </script>
