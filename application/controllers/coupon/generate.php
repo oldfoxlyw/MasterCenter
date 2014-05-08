@@ -7,7 +7,6 @@ class Generate extends CI_Controller
 
 	public function __construct()
 	{
-		error_reporting(E_ALL);
 		parent::__construct ();
 		$this->load->model('utils/check_user', 'check');
 		$this->user = $this->check->validate();
