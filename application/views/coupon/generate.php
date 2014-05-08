@@ -80,6 +80,6 @@ function onData(data) {
 	}
 	
   $("#btnSubmit").attr("disabled", false);
-	$("#coupon").text(data);
+	$("#coupon").text('成功：' + data.success + "，失败：" + data.fail);
 }
 </script>
