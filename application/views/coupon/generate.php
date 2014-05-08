@@ -78,7 +78,8 @@ $(function() {
     $(this).attr("disabled", "disabled");
 		$.post("<?php echo site_url('coupon/generate/process'); ?>", {
 			"prefix": $("#prefix").val(),
-			"count": $("#count").val()
+			"count": $("#count").val(),
+      "comment": $("#comment").val()
 		}, onData);
 	});
 });
