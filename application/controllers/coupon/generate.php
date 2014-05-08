@@ -58,7 +58,7 @@ class Generate extends CI_Controller
 					'code'		=>	$coupon,
 					'comment'	=>	$comment
 				);
-				if($this->mcode->create($parameter))
+				if($this->mcode->create($parameter) !== FALSE)
 				{
 					$success++;
 				}
