@@ -18,10 +18,26 @@
 			<div id="messageContainer"></div>
               <form action="" method="post" class="form-horizontal">
                 <div class="control-group">
+                    <label class="control-label">选择服务器</label>
+                    <div class="controls">
+                        <select id="server_id" name="server_id">
+                        <?php foreach($server_result as $server): ?>
+                            <option value="<?php echo $server->account_server_id; ?>"><?php echo $server->server_name; ?></option>
+                        <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
                     <label class="control-label">兑换码抬头字符</label>
                     <div class="controls">
                     	<input type="text" class="span8" id="prefix" name="prefix" placeholder="兑换码抬头字符" />
                   	</div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">长度</label>
+                    <div class="controls">
+                      <input type="text" class="span8" id="width" name="width" placeholder="长度" />
+                    </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label">所需数量</label>
@@ -77,8 +93,10 @@ $(function() {
     }
     $(this).attr("disabled", "disabled");
 		$.post("<?php echo site_url('coupon/generate/process'); ?>", {
+      "server_id": $("#server_id").val(),
 			"prefix": $("#prefix").val(),
 			"count": $("#count").val(),
+      "width": $("#width").val(),
       "comment": $("#comment").val()
 		}, onData);
 	});

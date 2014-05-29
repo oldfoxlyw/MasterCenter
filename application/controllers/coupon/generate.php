@@ -29,10 +29,14 @@ class Generate extends CI_Controller
 	public function process()
 	{
 		$prefix = $this->input->post("prefix", TRUE);
+		$width = $this->input->post("width", TRUE);
 		$count = $this->input->post("count", TRUE);
 		$comment = $this->input->post('comment', TRUE);
+		$server_id = $this->input->post('server_id', TRUE);
 
+		$width = empty($width) ? 6 : intval($width);
 		$comment = empty($comment) ? '' : $comment;
+		$server_id = empty($server_id) ? '' : $server_id;
 
 		$chars = array('1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','P','Q','R','S','T','U','V','W','X','Y','Z');
 
@@ -49,7 +53,7 @@ class Generate extends CI_Controller
 			for($i = 0; $i<$count; $i++)
 			{
 				$coupon = '';
-				for($j = 0; $j<6; $j++)
+				for($j = 0; $j<$width; $j++)
 				{
 					$coupon .= random_element($chars);
 				}
@@ -57,7 +61,8 @@ class Generate extends CI_Controller
 
 				$parameter = array(
 					'code'		=>	$coupon,
-					'comment'	=>	$comment
+					'comment'	=>	$comment,
+					'server_id'	=>	$server_id
 				);
 				if($this->mcode->create($parameter) !== FALSE)
 				{
