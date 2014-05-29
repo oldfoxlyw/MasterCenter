@@ -74,13 +74,16 @@
     </div>
 </div>
 </div>
+<link rel="stylesheet" href="<?php echo base_url('resources/css/select2.css'); ?>" />
 <script src="<?php echo base_url('resources/js/jquery.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/bootstrap.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/matrix.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/masked.js'); ?>"></script>
+<script src="<?php echo base_url('resources/js/select2.min.js'); ?>"></script> 
 
 <script type="text/javascript">
 $(function() {
+    $("#server_id").select2();
     $("#count").mask("?99999");
     $("#btnSubmit").click(function() {
 		if($("#prefix").val() == "") {
