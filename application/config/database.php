@@ -48,7 +48,7 @@
 $active_group = 'webdb';
 $active_record = TRUE;
 
-$db['webdb']['hostname'] = '10.11.12.3';
+$db['webdb']['hostname'] = '127.0.0.1';
 $db['webdb']['username'] = 'root';
 $db['webdb']['password'] = '84@41%%wi96^4';
 $db['webdb']['database'] = 'agent1_web_db';
@@ -64,7 +64,7 @@ $db['webdb']['swap_pre'] = '';
 $db['webdb']['autoinit'] = TRUE;
 $db['webdb']['stricton'] = FALSE;
 
-$db['accountdb']['hostname'] = '10.11.12.3';
+$db['accountdb']['hostname'] = '127.0.0.1';
 $db['accountdb']['username'] = 'root';
 $db['accountdb']['password'] = '84@41%%wi96^4';
 $db['accountdb']['database'] = 'agent1_account_db';
@@ -80,7 +80,7 @@ $db['accountdb']['swap_pre'] = '';
 $db['accountdb']['autoinit'] = TRUE;
 $db['accountdb']['stricton'] = FALSE;
 
-$db['productdb']['hostname'] = '10.11.12.3';
+$db['productdb']['hostname'] = '127.0.0.1';
 $db['productdb']['username'] = 'root';
 $db['productdb']['password'] = '84@41%%wi96^4';
 $db['productdb']['database'] = 'agent1_product_db';
@@ -96,7 +96,7 @@ $db['productdb']['swap_pre'] = '';
 $db['productdb']['autoinit'] = TRUE;
 $db['productdb']['stricton'] = FALSE;
 
-$db['fundsdb']['hostname'] = '10.11.12.3';
+$db['fundsdb']['hostname'] = '127.0.0.1';
 $db['fundsdb']['username'] = 'root';
 $db['fundsdb']['password'] = '84@41%%wi96^4';
 $db['fundsdb']['database'] = 'agent1_funds_flow_db';
@@ -112,7 +112,7 @@ $db['fundsdb']['swap_pre'] = '';
 $db['fundsdb']['autoinit'] = TRUE;
 $db['fundsdb']['stricton'] = FALSE;
 
-$db['logdb']['hostname'] = '10.11.12.3';
+$db['logdb']['hostname'] = '127.0.0.1';
 $db['logdb']['username'] = 'root';
 $db['logdb']['password'] = '84@41%%wi96^4';
 $db['logdb']['database'] = 'agent1_log_db_201203';
@@ -128,7 +128,7 @@ $db['logdb']['swap_pre'] = '';
 $db['logdb']['autoinit'] = TRUE;
 $db['logdb']['stricton'] = FALSE;
 
-$db['adminlog']['hostname'] = '10.11.12.3';
+$db['adminlog']['hostname'] = '127.0.0.1';
 $db['adminlog']['username'] = 'root';
 $db['adminlog']['password'] = '84@41%%wi96^4';
 $db['adminlog']['database'] = 'agent1_adminlog_db';
@@ -144,7 +144,7 @@ $db['adminlog']['swap_pre'] = '';
 $db['adminlog']['autoinit'] = TRUE;
 $db['adminlog']['stricton'] = FALSE;
 
-$db['admindb']['hostname'] = '10.11.12.3';
+$db['admindb']['hostname'] = '127.0.0.1';
 $db['admindb']['username'] = 'root';
 $db['admindb']['password'] = '84@41%%wi96^4';
 $db['admindb']['database'] = 'gm_system_db';
@@ -160,7 +160,7 @@ $db['admindb']['swap_pre'] = '';
 $db['admindb']['autoinit'] = TRUE;
 $db['admindb']['stricton'] = FALSE;
 
-$db['logcachedb']['hostname'] = '10.11.12.3';
+$db['logcachedb']['hostname'] = '127.0.0.1';
 $db['logcachedb']['username'] = 'root';
 $db['logcachedb']['password'] = '84@41%%wi96^4';
 $db['logcachedb']['database'] = 'agent1_log_db';
