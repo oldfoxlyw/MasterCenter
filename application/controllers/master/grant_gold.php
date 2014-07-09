@@ -44,7 +44,7 @@ class Grant_gold extends CI_Controller
 		{
 			$this->load->model('maccount');
 			$account = $this->maccount->read(array(
-				'account_nickname'		=>	$nickname
+				'account_nickname'		=>	$nickname . ' '
 			));
 			if(!empty($account))
 			{
@@ -53,7 +53,6 @@ class Grant_gold extends CI_Controller
 					'player_id'	=>	$account->GUID,
 					'gold'		=>	$goldCount
 				);
-				echo $ip . '/ser_add_gold';
 				$result = $this->connector->post($ip . '/ser_add_gold', $parameter, FALSE);
 				
 				$this->load->model('mlog');
