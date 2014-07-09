@@ -56,7 +56,6 @@ class Grant_special_gold extends CI_Controller
 					'player_id'			=>	$account->GUID,
 					'special_gold'		=>	$goldCount
 				);
-				var_dump($parameter);
 	// 			if($allServer == '1')
 	// 			{
 	// 				$parameter['all'] = "true";
