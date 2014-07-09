@@ -61,7 +61,7 @@ class Grant_special_gold extends CI_Controller
 	// 			{
 	// 				$parameter['all'] = "true";
 	// 			}
-				// $result = $this->connector->post($ip . '/ser_add_special_gold', $parameter, FALSE);
+				$result = $this->connector->post($ip . '/ser_add_special_gold', $parameter, FALSE);
 
 				$this->load->model('mlog');
 				$this->mlog->writeLog($this->user, 'grant_special_gold/send');
