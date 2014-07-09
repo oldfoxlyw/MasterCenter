@@ -64,7 +64,6 @@ class Send_mail extends CI_Controller
 					'account_nickname',
 					$nickNameArray
 			)));
-			var_dump($result);
 			if(!empty($result))
 			{
 				$guidList = array();
@@ -80,7 +79,7 @@ class Send_mail extends CI_Controller
 				{
 					$parameter['player_id'] = $guidList[0];
 				}
-				exit($parameter['player_id']);
+				exit($parameter['player_ids']);
 				// $result = $this->connector->post($ip . '/ser_send_mails', $parameter, FALSE);
 				
 				$this->load->model('mlog');
