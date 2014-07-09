@@ -64,6 +64,10 @@ class Maccount extends CI_Model implements ICrud
 			{
 				$this->accountdb->order_by($extension['order_by'][0], $extension['order_by'][1]);
 			}
+			if(!empty($extension['where_in']))
+			{
+				$this->accountdb->where_in($extension['where_in'][0], $extension['where_in'][1]);
+			}
 		}
 		if($limit==0 && $offset==0) {
 			$query = $this->accountdb->get($this->accountTable);

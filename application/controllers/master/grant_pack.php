@@ -45,23 +45,31 @@ class Grant_pack extends CI_Controller
 		$nickname = empty($nickname) ? '' : $nickname;
 		$count = empty($count) ? 1 : intval($count);
 		
-		if(!empty($ip) && !empty($packId))
+		if(!empty($nickname) && !empty($ip) && !empty($packId))
 		{
-			$parameter = array(
-				'nkm'			=>	$nickname,
-				'item_const_id'	=>	$packId,
-				'count'			=>	$count
-			);
-// 			if($allServer == '1')
-// 			{
-// 				$parameter['all'] = "true";
-// 			}
-			$result = $this->connector->post($ip . '/ser_send_items', $parameter, FALSE);
-			
-			$this->load->model('mlog');
-			$this->mlog->writeLog($this->user, 'grant_pack/send');
-			
-			echo trim($result);
+			$this->load->model('maccount');
+			$account = $this->maccount->read(array(
+				'account_nickname'		=>	$nickname . ' '
+			));
+			if(!empty($account))
+			{
+				$account = $account[0];
+				$parameter = array(
+					'player_id'		=>	$account->GUID,
+					'item_const_id'	=>	$packId,
+					'count'			=>	$count
+				);
+	// 			if($allServer == '1')
+	// 			{
+	// 				$parameter['all'] = "true";
+	// 			}
+				$result = $this->connector->post($ip . '/ser_send_items', $parameter, FALSE);
+				
+				$this->load->model('mlog');
+				$this->mlog->writeLog($this->user, 'grant_pack/send');
+				
+				echo trim($result);
+			}
 		}
 	}
 	

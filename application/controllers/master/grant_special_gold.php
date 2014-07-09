@@ -43,22 +43,30 @@ class Grant_special_gold extends CI_Controller
 		
 		$nickname = empty($nickname) ? '' : $nickname;
 		
-		if(!empty($ip) && !empty($goldCount))
+		if(!empty($nickname) && !empty($ip) && !empty($goldCount))
 		{
-			$parameter = array(
-				'nkm'				=>	$nickname,
-				'special_gold'		=>	$goldCount
-			);
-// 			if($allServer == '1')
-// 			{
-// 				$parameter['all'] = "true";
-// 			}
-			$result = $this->connector->post($ip . '/ser_add_special_gold', $parameter, FALSE);
+			$this->load->model('maccount');
+			$account = $this->maccount->read(array(
+				'account_nickname'		=>	$nickname . ' '
+			));
+			if(!empty($account))
+			{
+				$account = $account[0];
+				$parameter = array(
+					'player_id'			=>	$account->GUID,
+					'special_gold'		=>	$goldCount
+				);
+	// 			if($allServer == '1')
+	// 			{
+	// 				$parameter['all'] = "true";
+	// 			}
+				$result = $this->connector->post($ip . '/ser_add_special_gold', $parameter, FALSE);
 
-			$this->load->model('mlog');
-			$this->mlog->writeLog($this->user, 'grant_special_gold/send');
+				$this->load->model('mlog');
+				$this->mlog->writeLog($this->user, 'grant_special_gold/send');
 
-			echo trim($result);
+				echo trim($result);
+			}
 		}
 	}
 }

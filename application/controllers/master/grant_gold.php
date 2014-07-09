@@ -37,28 +37,29 @@ class Grant_gold extends CI_Controller
 		$this->load->model('utils/connector');
 		
 		$ip = $this->input->post('serverIp', FALSE);
-// 		$allServer = $this->input->post('allServer');
 		$nickname = $this->input->post('nickname');
 		$goldCount = $this->input->post('goldCount');
 		
-		$nickname = empty($nickname) ? '' : $nickname;
-		
-		if(!empty($ip) && !empty($goldCount))
+		if(!empty($nickname) && !empty($ip) && !empty($goldCount))
 		{
-			$parameter = array(
-				'nkm'		=>	$nickname,
-				'gold'		=>	$goldCount
-			);
-// 			if($allServer == '1')
-// 			{
-// 				$parameter['all'] = "true";
-// 			}
-			$result = $this->connector->post($ip . '/ser_add_gold', $parameter, FALSE);
-			
-			$this->load->model('mlog');
-			$this->mlog->writeLog($this->user, 'grant_gold/send');
-			
-			echo trim($result);
+			$this->load->model('maccount');
+			$account = $this->maccount->read(array(
+				'account_nickname'		=>	$nickname . ' '
+			));
+			if(!empty($account))
+			{
+				$account = $account[0];
+				$parameter = array(
+					'player_id'	=>	$account->GUID,
+					'gold'		=>	$goldCount
+				);
+				$result = $this->connector->post($ip . '/ser_add_gold', $parameter, FALSE);
+				
+				$this->load->model('mlog');
+				$this->mlog->writeLog($this->user, 'grant_gold/send');
+				
+				echo trim($result);
+			}
 		}
 	}
 }

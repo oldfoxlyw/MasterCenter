@@ -37,7 +37,6 @@ class Send_mail extends CI_Controller
 		$this->load->model('utils/connector');
 		
 		$ip = $this->input->post('serverIp', FALSE);
-// 		$allServer = $this->input->post('allServer');
 		$nickname = $this->input->post('nickname');
 		$itemId = $this->input->post('itemId');
 		$title = $this->input->post('title');
@@ -54,25 +53,35 @@ class Send_mail extends CI_Controller
 					'content'			=>	$content
 			);
 			
+			$this->load->model('maccount');
 			$nickNameArray = explode(',', $nickname);
-			if(count($nickNameArray) > 1)
+			$result = $this->maccount->read(null, array(
+				'where_in'	=>	array(
+					'account_nickname',
+					$nickNameArray
+			)));
+			if(!empty($result))
 			{
-				$parameter['nkms'] = implode(',', $nickNameArray);
+				$guidList = array();
+				foreach ($result as $account)
+				{
+					array_push($guidList, $account->GUID);
+				}
+				if(count($guidList) > 1)
+				{
+					$parameter['player_ids'] = implode(',', $guidList);
+				}
+				else
+				{
+					$parameter['player_id'] = $guidList[0];
+				}
+				$result = $this->connector->post($ip . '/ser_send_mails', $parameter, FALSE);
+				
+				$this->load->model('mlog');
+				$this->mlog->writeLog($this->user, 'send_mail/send');
+				
+				echo trim($result);
 			}
-			else
-			{
-				$parameter['nkm'] = $nickname;
-			}
-// 			if($allServer == '1')
-// 			{
-// 				$parameter['all'] = "true";
-// 			}
-			$result = $this->connector->post($ip . '/ser_send_mails', $parameter, FALSE);
-			
-			$this->load->model('mlog');
-			$this->mlog->writeLog($this->user, 'send_mail/send');
-			
-			echo trim($result);
 		}
 	}
 }
