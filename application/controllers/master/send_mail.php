@@ -58,6 +58,7 @@ class Send_mail extends CI_Controller
 			for($i = 0; $i < count($nickNameArray); $i++)
 			{
 				$nickNameArray[$i] .= ' ';
+				echo $nickNameArray[$i];
 			}
 			$result = $this->maccount->read(null, array(
 				'where_in'	=>	array(
