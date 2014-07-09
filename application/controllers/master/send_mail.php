@@ -21,7 +21,7 @@ class Send_mail extends CI_Controller
 		{
 			$server = json_decode($serverResult[$i]->server_ip);
 			$serverResult[$i]->server_port = '8089';
-			$serverResult[$i]->server_ip = $server[0]->ip;
+			$serverResult[$i]->server_ip = $server[0]->lan;
 		}
 		
 		$data = array(
@@ -57,7 +57,7 @@ class Send_mail extends CI_Controller
 			$nickNameArray = explode(',', $nickname);
 			for($i = 0; $i < count($nickNameArray); $i++)
 			{
-				// $nickNameArray[$i] .= ' ';
+				$nickNameArray[$i] .= ' ';
 			}
 			$result = $this->maccount->read(null, array(
 				'where_in'	=>	array(
