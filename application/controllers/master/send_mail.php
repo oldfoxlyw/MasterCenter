@@ -79,8 +79,7 @@ class Send_mail extends CI_Controller
 				{
 					$parameter['player_id'] = $guidList[0];
 				}
-				exit($parameter['player_ids']);
-				// $result = $this->connector->post($ip . '/ser_send_mails', $parameter, FALSE);
+				$result = $this->connector->post($ip . '/ser_send_mails', $parameter, FALSE);
 				
 				$this->load->model('mlog');
 				$this->mlog->writeLog($this->user, 'send_mail/send');
