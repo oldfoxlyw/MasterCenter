@@ -20,16 +20,8 @@ class Grant_special_gold extends CI_Controller
 		for($i=0; $i<count($serverResult); $i++)
 		{
 			$server = json_decode($serverResult[$i]->server_ip);
-			if(intval($serverResult[$i]->account_server_id) >= 103)
-			{
-				$serverResult[$i]->server_port = '8089';
-				$serverResult[$i]->server_ip = $server[0]->ip;
-			}
-			else
-			{
-				$serverResult[$i]->server_port = LAN_PORT;
-				$serverResult[$i]->server_ip = $server[0]->lan;
-			}
+			$serverResult[$i]->server_port = '8091';
+			$serverResult[$i]->server_ip = $server[0]->ip;
 		}
 		
 		$data = array(
