@@ -54,7 +54,7 @@ class Send_mail extends CI_Controller
 			);
 			
 			$this->load->model('maccount');
-			$nickNameArray = explode(',', $nickname);
+			$nickNameArray = explode(',', $nickname . ' ');
 			$result = $this->maccount->read(null, array(
 				'where_in'	=>	array(
 					'account_nickname',
