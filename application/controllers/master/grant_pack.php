@@ -49,7 +49,7 @@ class Grant_pack extends CI_Controller
 		{
 			$this->load->model('maccount');
 			$account = $this->maccount->read(array(
-				'account_nickname'		=>	$nickname . ' '
+				'account_nickname'		=>	$nickname
 			));
 			if(!empty($account))
 			{
