@@ -144,17 +144,8 @@ class Account_manage extends CI_Controller
 				if(!empty($serverResult))
 				{
 					$server = json_decode($serverResult->server_ip);
-
-					if(intval($serverResult->account_server_id) >= 103 || intval($serverResult->account_server_id) < 100)
-					{
-						$serverResult->server_port = '8089';
-						$serverResult->server_ip = $server[0]->ip;
-					}
-					else
-					{
-						$serverResult->server_port = LAN_PORT;
-						$serverResult->server_ip = $server[0]->lan;
-					}
+					$serverResult->server_port = '8089';
+					$serverResult->server_ip = $server[0]->lan;
 					$serverUrl = 'http://' . $serverResult->server_ip . ':' . $serverResult->server_port;
 					
 					$parameter = array(
