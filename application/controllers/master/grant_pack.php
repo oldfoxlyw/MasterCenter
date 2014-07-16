@@ -48,9 +48,6 @@ class Grant_pack extends CI_Controller
 		if(!empty($nickname) && !empty($ip) && !empty($packId))
 		{
 			$this->load->model('maccount');
-			$account = $this->maccount->read(array(
-				'account_nickname'		=>	$nickname . ' '
-			));
 			if(!empty($account))
 			{
 				$account = $account[0];

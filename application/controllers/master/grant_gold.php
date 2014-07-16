@@ -43,9 +43,6 @@ class Grant_gold extends CI_Controller
 		if(!empty($nickname) && !empty($ip) && !empty($goldCount))
 		{
 			$this->load->model('maccount');
-			$account = $this->maccount->read(array(
-				'account_nickname'		=>	$nickname . ' '
-			));
 			if(!empty($account))
 			{
 				$account = $account[0];
