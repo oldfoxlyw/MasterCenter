@@ -53,9 +53,6 @@ class Grant_gold extends CI_Controller
 					'player_id'	=>	$account->GUID,
 					'gold'		=>	$goldCount
 				);
-				var_dump($parameter);
-				echo $ip . '/ser_add_gold';
-				exit();
 				$result = $this->connector->post($ip . '/ser_add_gold', $parameter, FALSE);
 				
 				$this->load->model('mlog');
