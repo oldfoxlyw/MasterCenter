@@ -47,7 +47,7 @@ class Grant_special_gold extends CI_Controller
 		{
 			$this->load->model('maccount');
 			$account = $this->maccount->read(array(
-				'account_nickname'		=>	$nickname . ' '
+				'account_nickname'		=>	$nickname
 			));
 			if(!empty($account))
 			{
