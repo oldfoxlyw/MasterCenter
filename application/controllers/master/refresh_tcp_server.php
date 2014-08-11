@@ -22,7 +22,7 @@ class Refresh_tcp_server extends CI_Controller
 			$server = json_decode($serverResult[$i]->server_ip);
 			if(intval($serverResult[$i]->account_server_id) >= 103)
 			{
-				$serverResult[$i]->server_port = '8089';
+				$serverResult[$i]->server_port = '6089';
 				$serverResult[$i]->server_ip = $server[0]->ip;
 			}
 			else
