@@ -21,7 +21,7 @@ class Grant_gold extends CI_Controller
 		{
 			$server = json_decode($serverResult[$i]->server_ip);
 			$serverResult[$i]->server_port = '6089';
-			$serverResult[$i]->server_ip = $server[0]->lan;
+			$serverResult[$i]->server_ip = $server[0]->ip;
 		}
 		
 		$data = array(
