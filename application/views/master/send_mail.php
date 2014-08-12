@@ -199,7 +199,11 @@ function onData(data) {
 	if(json.success == '1'){
 		popupMessage("messageContainer", "success", "已成功发送");
 	} else {
-		popupMessage("messageContainer", "error", "发送失败");
+		if(json.no_role.length > 0) {
+			popupMessage("messageContainer", "error", "发送失败，角色不存在。");
+		} else {
+			popupMessage("messageContainer", "error", "发送失败");
+		}
 	}
 }
 </script>
