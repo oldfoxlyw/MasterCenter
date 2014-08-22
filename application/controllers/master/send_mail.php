@@ -20,7 +20,7 @@ class Send_mail extends CI_Controller
 		for($i=0; $i<count($serverResult); $i++)
 		{
 			$server = json_decode($serverResult[$i]->server_ip);
-			$serverResult[$i]->server_port = '8089';
+			$serverResult[$i]->server_port = $server[0]->port;
 			$serverResult[$i]->server_ip = $server[0]->lan;
 		}
 		
