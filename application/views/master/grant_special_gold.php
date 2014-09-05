@@ -65,6 +65,7 @@ $(function() {
 		var result = confirm("【警告】确定要发放绿钻吗？");
 		if(result) {
 			$.post("<?php echo site_url('master/grant_special_gold/send'); ?>", {
+        "serverId": $("#serverIp").find("option:selected").attr("serverId"),
 				"serverIp": $("#serverIp").val(),
 				"nickname": $("#nickname").val(),
 				"goldCount": $("#goldCount").val()

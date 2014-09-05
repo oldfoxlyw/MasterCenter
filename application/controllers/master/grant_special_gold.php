@@ -35,7 +35,7 @@ class Grant_special_gold extends CI_Controller
 	public function send()
 	{
 		$this->load->model('utils/connector');
-		
+		$id = $this->input->post('serverId', TRUE);
 		$ip = $this->input->post('serverIp', FALSE);
 // 		$allServer = $this->input->post('allServer');
 		$nickname = $this->input->post('nickname');
@@ -43,11 +43,12 @@ class Grant_special_gold extends CI_Controller
 		
 		$nickname = empty($nickname) ? '' : $nickname;
 		
-		if(!empty($nickname) && !empty($ip) && !empty($goldCount))
+		if(!empty($nickname) && !empty($id) && !empty($ip) && !empty($goldCount))
 		{
 			$this->load->model('maccount');
 			$account = $this->maccount->read(array(
-				'account_nickname'		=>	$nickname
+				'account_nickname'		=>	$nickname,
+				'server_id'				=>	$id
 			));
 			if(!empty($account))
 			{
