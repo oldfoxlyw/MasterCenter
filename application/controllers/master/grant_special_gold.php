@@ -42,7 +42,7 @@ class Grant_special_gold extends CI_Controller
 		$goldCount = $this->input->post('goldCount');
 		
 		$nickname = empty($nickname) ? '' : $nickname;
-		
+		exit($id);
 		if(!empty($nickname) && !empty($id) && !empty($ip) && !empty($goldCount))
 		{
 			$this->load->model('maccount');
