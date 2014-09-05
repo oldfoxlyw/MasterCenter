@@ -49,7 +49,6 @@ class Grant_special_gold extends CI_Controller
 				'account_nickname'		=>	$nickname,
 				'server_id'				=>	$id
 			));
-			exit(json_encode($account));
 			if(!empty($account))
 			{
 				$account = $account[0];
