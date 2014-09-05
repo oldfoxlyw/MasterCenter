@@ -22,7 +22,7 @@
                     <div class="controls">
                         <select id="serverIp" name="serverIp">
                         <?php foreach($server_result as $server): ?>
-                            <option value="http://<?php echo $server->server_ip; ?>:<?php echo $server->server_port; ?>"><?php echo $server->server_name; ?></option>
+                            <option value="http://<?php echo $server->server_ip; ?>:<?php echo $server->server_port; ?>" serverId="<?php echo $server->account_server_id; ?>"><?php echo $server->server_name; ?></option>
                         <?php endforeach; ?>
                         </select>
                     </div>

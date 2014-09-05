@@ -22,7 +22,7 @@
                     <div class="controls">
                         <select id="serverIp" name="serverIp">
                         <?php foreach($server_result as $server): ?>
-                            <option value="http://<?php echo $server->server_ip; ?>:<?php echo $server->server_port; ?>"><?php echo $server->server_name; ?></option>
+                            <option value="http://<?php echo $server->server_ip; ?>:<?php echo $server->server_port; ?>" serverId="<?php echo $server->account_server_id; ?>"><?php echo $server->server_name; ?></option>
                         <?php endforeach; ?>
                         </select>
                     </div>
@@ -65,6 +65,7 @@ $(function() {
 		var result = confirm("【警告】确定要发放金币吗？");
 		if(result) {
 			$.post("<?php echo site_url('master/grant_gold/send'); ?>", {
+        "serverId": $("#serverIp").find("option:selected").attr("serverId"),
 				"serverIp": $("#serverIp").val(),
 				"allServer": $("#allServer").val(),
 				"nickname": $("#nickname").val(),

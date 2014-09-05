@@ -36,6 +36,7 @@ class Send_mail extends CI_Controller
 	{
 		$this->load->model('utils/connector');
 		
+		$id = $this->input->post('serverId', TRUE);
 		$ip = $this->input->post('serverIp', FALSE);
 		$nickname = $this->input->post('nickname');
 		$itemId = $this->input->post('itemId');
@@ -45,7 +46,7 @@ class Send_mail extends CI_Controller
 		$nickname = empty($nickname) ? '' : $nickname;
 		$itemId = empty($itemId) ? '' : $itemId;
 		
-		if(!empty($ip) && !empty($title) && !empty($content))
+		if(!empty($ip) && !empty($id) && !empty($title) && !empty($content))
 		{
 			$parameter = array(
 					'item_const_id'		=>	$itemId,
@@ -55,7 +56,9 @@ class Send_mail extends CI_Controller
 			
 			$this->load->model('maccount');
 			$nickNameArray = explode(',', $nickname);
-			$result = $this->maccount->read(null, array(
+			$result = $this->maccount->read(array(
+				'server_id'				=>	$id
+			), array(
 				'where_in'	=>	array(
 					'account_nickname',
 					$nickNameArray
