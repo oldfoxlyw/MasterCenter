@@ -22,7 +22,7 @@
                     <div class="controls">
                         <select id="serverIp" name="serverIp">
                         <?php foreach($server_result as $server): ?>
-                            <option value="http://<?php echo $server->server_ip; ?>:<?php echo $server->server_port; ?>"><?php echo $server->server_name; ?></option>
+                            <option value="http://<?php echo $server->server_ip; ?>:<?php echo $server->server_port; ?>" serverId="<?php echo $server->account_server_id; ?>"><?php echo $server->server_name; ?></option>
                         <?php endforeach; ?>
                         </select>
                     </div>
@@ -162,10 +162,11 @@ function onPackData(data) {
 }
 
 function onData(data) {
-	if(data == '1') {
-		popupMessage("messageContainer", "success", "已成功发送消息");
+	var json = eval('(' + data + ')');
+	if(json.success == '1'){
+		popupMessage("messageContainer", "success", "已成功发送");
 	} else {
-		popupMessage("messageContainer", "error", "发送消息失败");
+		popupMessage("messageContainer", "error", "发送失败");
 	}
 }
 </script>

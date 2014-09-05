@@ -36,6 +36,7 @@ class Grant_pack extends CI_Controller
 	{
 		$this->load->model('utils/connector');
 		
+		$id = $this->input->post('serverId', TRUE);
 		$ip = $this->input->post('serverIp', FALSE);
 // 		$allServer = $this->input->post('allServer');
 		$nickname = $this->input->post('nickname');
@@ -45,11 +46,12 @@ class Grant_pack extends CI_Controller
 		$nickname = empty($nickname) ? '' : $nickname;
 		$count = empty($count) ? 1 : intval($count);
 		
-		if(!empty($nickname) && !empty($ip) && !empty($packId))
+		if(!empty($nickname) && !empty($id) && !empty($ip) && !empty($packId))
 		{
 			$this->load->model('maccount');
 			$account = $this->maccount->read(array(
-				'account_nickname'		=>	$nickname
+				'account_nickname'		=>	$nickname,
+				'server_id'				=>	$id
 			));
 			if(!empty($account))
 			{
