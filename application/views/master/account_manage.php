@@ -65,6 +65,7 @@
                   <th>GUID</th>
                   <th>用户名</th>
                   <th>角色昵称</th>
+                  <th>角色等级</th>
                   <th>帐号状态</th>
                   <th>服务器编号</th>
                   <th>渠道编号</th>
@@ -251,6 +252,7 @@ function onData(data) {
 			{"mData": "GUID"},
 			{"mData": "account_name"},
 			{"mData": "account_nickname"},
+			{"mData": "account_level"},
 			{"mData": "account_status"},
 			{"mData": "server_id"},
 			{"mData": "partner_key"},
