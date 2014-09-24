@@ -65,6 +65,8 @@ class Send_mail extends CI_Controller
 			)));
 			if(!empty($result))
 			{
+				var_dump($result);
+				exit();
 				$guidList = array();
 				foreach ($result as $account)
 				{
