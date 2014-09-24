@@ -45,7 +45,8 @@ class Send_mail extends CI_Controller
 		
 		$nickname = empty($nickname) ? '' : $nickname;
 		$itemId = empty($itemId) ? '' : $itemId;
-		
+		var_dump($_POST);
+		exit();
 		if(!empty($ip) && !empty($id) && !empty($title) && !empty($content))
 		{
 			$parameter = array(
@@ -65,8 +66,6 @@ class Send_mail extends CI_Controller
 			)));
 			if(!empty($result))
 			{
-				var_dump($result);
-				exit();
 				$guidList = array();
 				foreach ($result as $account)
 				{
