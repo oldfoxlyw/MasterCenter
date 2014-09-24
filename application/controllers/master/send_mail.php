@@ -45,8 +45,6 @@ class Send_mail extends CI_Controller
 		
 		$nickname = empty($nickname) ? '' : $nickname;
 		$itemId = empty($itemId) ? '' : $itemId;
-		var_dump($_POST);
-		exit();
 		if(!empty($ip) && !empty($id) && !empty($title) && !empty($content))
 		{
 			$parameter = array(

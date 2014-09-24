@@ -132,6 +132,7 @@ $(function() {
 			var result = confirm("【警告】确定进行全服发放？");
 			if(result) {
 				$.post("<?php echo site_url('master/send_mail/send'); ?>", {
+        			"serverId": $("#serverIp").find("option:selected").attr("serverId"),
 					"serverIp": $("#serverIp").val(),
 					"allServer": $("#allServer").val(),
 					"nickname": $("#nickname").val(),
@@ -142,6 +143,7 @@ $(function() {
 			}
 		} else {
 			$.post("<?php echo site_url('master/send_mail/send'); ?>", {
+        		"serverId": $("#serverIp").find("option:selected").attr("serverId"),
 				"serverIp": $("#serverIp").val(),
 				"allServer": $("#allServer").val(),
 				"nickname": $("#nickname").val(),
