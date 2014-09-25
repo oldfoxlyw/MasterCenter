@@ -84,6 +84,22 @@ class Send_mail extends CI_Controller
 				
 				echo trim($result);
 			}
+			else
+			{
+				$data = array(
+					'success'		=>	0,
+					'error'			=>	'玩家不存在'
+				);
+				echo json_encode($data);
+			}
+		}
+		else
+		{
+			$data = array(
+				'success'		=>	0,
+				'error'			=>	'参数不完整'
+			);
+			echo json_encode($data);
 		}
 	}
 }
