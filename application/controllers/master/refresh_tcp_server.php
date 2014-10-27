@@ -21,7 +21,7 @@ class Refresh_tcp_server extends CI_Controller
 		{
 			$server = json_decode($serverResult[$i]->server_ip);
 			$serverResult[$i]->server_port = $server[0]->lanport;
-			$serverResult[$i]->server_ip = $server[0]->ip;
+			$serverResult[$i]->server_ip = $server[0]->lan;
 		}
 		
 		$data = array(
