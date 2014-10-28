@@ -102,15 +102,16 @@ class Mlog extends CI_Model implements ICrud
 		}
 	}
 	
-	public function writeLog($user, $type)
+	public function writeLog($user, $type, $params)
 	{
 		if(!empty($user) && !empty($type))
 		{
+			$data = array_merge($params, $this->input->post());
 			$parameter = array(
 					'log_type'					=>	$type,
 					'log_user'					=>	$user->user_name,
 					'log_relative_page_url'		=>	$this->input->server('REQUEST_URI'),
-					'log_relative_parameter'	=>	json_encode($this->input->post()),
+					'log_relative_parameter'	=>	json_encode($data),
 					'log_time'					=>	date('Y-m-d H:i:s')
 			);
 			$this->create($parameter);
