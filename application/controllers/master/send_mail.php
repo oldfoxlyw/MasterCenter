@@ -34,6 +34,7 @@ class Send_mail extends CI_Controller
 	
 	public function send()
 	{
+		header("Content-type: text/json");
 		$this->load->model('utils/connector');
 		
 		$ip = $this->input->post('serverIp', FALSE);

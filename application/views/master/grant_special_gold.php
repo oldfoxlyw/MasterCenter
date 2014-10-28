@@ -74,7 +74,7 @@ $(function() {
 });
 
 function onData(data) {
-	if(data == '1') {
+	if(data.success == '1') {
 		popupMessage("messageContainer", "success", "已成功发送消息");
 	} else {
 		popupMessage("messageContainer", "error", "发送消息失败");
