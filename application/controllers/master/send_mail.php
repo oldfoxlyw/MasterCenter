@@ -71,7 +71,9 @@ class Send_mail extends CI_Controller
 			$result = $this->connector->post($ip . '/ser_send_mails', $parameter, FALSE);
 			
 			$this->load->model('mlog');
-			$this->mlog->writeLog($this->user, 'send_mail/send');
+			$this->mlog->writeLog($this->user, 'send_mail/send', array(
+				'remote_data'	=>	json_decode($result)
+			));
 			
 			echo trim($result);
 		}
