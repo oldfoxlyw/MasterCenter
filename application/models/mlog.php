@@ -106,7 +106,14 @@ class Mlog extends CI_Model implements ICrud
 	{
 		if(!empty($user) && !empty($type))
 		{
-			$data = array_merge($params, $this->input->post());
+			if(empty($params))
+			{
+				$data = $this->input->post();
+			}
+			else
+			{
+				$data = array_merge($params, $this->input->post());
+			}
 			$parameter = array(
 					'log_type'					=>	$type,
 					'log_user'					=>	$user->user_name,

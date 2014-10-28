@@ -57,7 +57,9 @@ class Grant_gold extends CI_Controller
 			$result = $this->connector->post($ip . '/ser_add_gold', $parameter, FALSE);
 			
 			$this->load->model('mlog');
-			$this->mlog->writeLog($this->user, 'grant_gold/send');
+			$this->mlog->writeLog($this->user, 'grant_gold/send', array(
+				'remote_data'	=>	json_decode($result)
+			));
 			
 			echo trim($result);
 		}
