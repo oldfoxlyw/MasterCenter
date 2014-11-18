@@ -38,6 +38,7 @@ $permissionArray = explode(',', $admin->permission_list);
     <li class="submenu"> <a href=""><i class="icon icon-envelope"></i><span>兑换码</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
         <?php if(in_array('coupon/generate', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'coupon/generate'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('coupon/generate'); ?>">生成兑换码</a></li><?php endif; ?>
+        <?php if(in_array('coupon/query', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'coupon/query'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('coupon/query'); ?>">查询兑换码</a></li><?php endif; ?>
       </ul>
     </li>
     <!--
