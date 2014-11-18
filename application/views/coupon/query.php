@@ -101,9 +101,9 @@ function onData(data) {
         "fnRender": function(obj) {
           var status = "";
           if(obj.aData.disabled == '1') {
-            status = "<div class=\"label label-important\" href=\"#\">已使用</div>";
+            status = "<span class=\"label label-important\" href=\"#\">已使用</span>";
           } else {
-            status = "<div class=\"label label-success\" href=\"#\">未使用</div>";
+            status = "<span class=\"label label-success\" href=\"#\">未使用</span>";
           }
           return status;
         }
