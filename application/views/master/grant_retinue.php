@@ -154,7 +154,7 @@ function onPackData(data) {
 }
 
 function onData(data) {
-	if(json.success == '1'){
+	if(data.success == '1'){
 		popupMessage("messageContainer", "success", "已成功发送");
 	} else {
 		popupMessage("messageContainer", "error", "发送失败(" + data + ")");
