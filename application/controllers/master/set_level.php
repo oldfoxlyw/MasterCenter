@@ -38,44 +38,23 @@ class Set_level extends CI_Controller
 		
 		$ip = $this->input->post('serverIp', FALSE);
 		$nickname = $this->input->post('nickname');
-		$itemId = $this->input->post('itemId');
 		$count = $this->input->post('count');
 
 		$nickname = empty($nickname) ? '' : $nickname;
 		$count = empty($count) ? 1 : intval($count);
 		
-		if(!empty($nickname) && !empty($ip) && !empty($itemId))
+		if(!empty($nickname) && !empty($ip) && !empty($count))
 		{
 			$parameter = array(
 				'nkm'		=>	$nickname,
-				'item_id'	=>	$itemId,
-				'count'		=>	$count
+				'level'		=>	$count
 			);
-			$result = $this->connector->post($ip . '/ser_create_items', $parameter, FALSE);
+			$result = $this->connector->post($ip . '/ser_set_role_level', $parameter, FALSE);
 			
 			$this->load->model('mlog');
-			$this->mlog->writeLog($this->user, 'grant_item/send');
+			$this->mlog->writeLog($this->user, 'set_level/send');
 			
 			echo trim($result);
-		}
-	}
-	
-	public function get()
-	{
-		header('Content-type: text/json');
-		$this->load->model('utils/connector');
-		
-		$ip = $this->input->post('serverIp', FALSE);
-		
-		if(!empty($ip))
-		{
-			echo $this->connector->post($ip . '/ser_get_items', null, FALSE);
-		}
-		else
-		{
-			$parameter = array(
-				'error'	=>	'IP参数不能为空'
-			);
 		}
 	}
 }

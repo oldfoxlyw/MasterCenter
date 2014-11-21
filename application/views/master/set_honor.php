@@ -2,7 +2,7 @@
 <!--breadcrumbs-->
 <div id="content-header">
     <div id="breadcrumb"> <span id="btnSwitchSidebar" class="badge margin-left-5 pointer" title="Close Sidebar"><i class="icon-chevron-left"></i><span> 关闭侧边栏</span></span><a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a></div>
-    <h1>设置荣耀</h1>
+    <h1>增加角色荣耀</h1>
 </div>
 <!--End-breadcrumbs-->
 
@@ -36,7 +36,7 @@
                 <div class="control-group">
                     <label class="control-label">荣耀值</label>
                     <div class="controls">
-                    	<input type="text" class="span8" id="count" name="count" placeholder="数量" value="1" />
+                    	<input type="text" class="span8" id="count" name="count" placeholder="荣耀值" value="1" />
                   	</div>
                 </div>
                 <div class="form-actions">
