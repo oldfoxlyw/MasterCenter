@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Set_level extends CI_Controller
+class Set_honor extends CI_Controller
 {
 	private $pageName = 'master/set_honor';
 	private $user = null;
