@@ -117,7 +117,7 @@ function onPackData(data) {
 		var aaData = [];
 		var rowData;
 		for(var i in data) {
-			rowData = [data[i].retinue_id, data[i].name, data[i].level];
+			rowData = [data[i].retinue_id, data[i].nickname, data[i].level];
 			aaData.push(rowData);
 		}
 		
