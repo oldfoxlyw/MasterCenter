@@ -48,7 +48,7 @@
                             <tr>
                               <th>随从ID</th>
                               <th>名称</th>
-                              <th>说明</th>
+                              <th>等级</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -117,7 +117,7 @@ function onPackData(data) {
 		var aaData = [];
 		var rowData;
 		for(var i in data) {
-			rowData = [data[i].item_id, data[i].name, data[i].description];
+			rowData = [data[i].retinue_id, data[i].name, data[i].level];
 			aaData.push(rowData);
 		}
 		
