@@ -72,6 +72,12 @@ class Grant_item extends CI_Controller
 		{
 			echo $this->connector->post($ip . '/ser_get_items', null, FALSE);
 		}
+		else
+		{
+			$parameter = array(
+				'error'	=>	'IP参数不能为空'
+			);
+		}
 	}
 }
 
