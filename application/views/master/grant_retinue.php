@@ -154,10 +154,14 @@ function onPackData(data) {
 }
 
 function onData(data) {
-	var json = eval('(' + data + ')');
-	if(json.success == '1'){
-		popupMessage("messageContainer", "success", "已成功发送");
-	} else {
+	try {
+		var json = eval('(' + data + ')');
+		if(json.success == '1'){
+			popupMessage("messageContainer", "success", "已成功发送");
+		} else {
+			popupMessage("messageContainer", "error", "发送失败(" + data + ")");
+		}
+	} catch(e) {
 		popupMessage("messageContainer", "error", "发送失败(" + data + ")");
 	}
 }
