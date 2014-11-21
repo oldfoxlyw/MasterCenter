@@ -2,7 +2,7 @@
 <!--breadcrumbs-->
 <div id="content-header">
     <div id="breadcrumb"> <span id="btnSwitchSidebar" class="badge margin-left-5 pointer" title="Close Sidebar"><i class="icon-chevron-left"></i><span> 关闭侧边栏</span></span><a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a></div>
-    <h1>发送邮件</h1>
+    <h1>发放道具</h1>
 </div>
 <!--End-breadcrumbs-->
 
@@ -27,12 +27,6 @@
                         </select>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label">全服发送</label>
-                    <div class="controls">
-                    	<input id="allServer" name="allServer" type="checkbox" value="" /> 是
-                  	</div>
-                </div>
                 <div class="control-group" id="slideContent">
                     <label class="control-label">角色昵称</label>
                     <div class="controls">
@@ -40,31 +34,19 @@
                   	</div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label">邮件标题</label>
-                    <div class="controls">
-                    	<input type="text" class="span8" id="mailTitle" name="mailTitle" placeholder="邮件标题" />
-                  	</div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">邮件内容</label>
-                    <div class="controls">
-                    	<textarea name="mailContent" rows="10" class="span11" id="mailContent" ></textarea>
-                  	</div>
-                </div>
-                <div class="control-group">
                     <label class="control-label">道具ID</label>
                     <div class="controls">
-                    	<input type="text" class="span8" id="itemId" name="itemId" placeholder="道具ID" /><span class="help-block"><strong><a id="btnGetPack" href="#">礼包列表</a></strong></span>
+                    	<input type="text" class="span8" id="packId" name="packId" placeholder="礼包ID" /><span class="help-block"><strong><a id="btnGetPack" href="#">道具列表</a></strong></span>
                         <div class="modal hide" id="modalGetPack">
                         <div class="modal-header">
                           <button type="button" id="modalGetPackClose" class="close" data-dismiss="modal">×</button>
-                          <h3>装备列表</h3>
+                          <h3>道具列表</h3>
                         </div>
                         <div class="modal-body nopadding">
                         <table class="table table-bordered data-table" id="listTable">
                           <thead>
                             <tr>
-                              <th>礼包ID</th>
+                              <th>道具ID</th>
                               <th>名称</th>
                               <th>说明</th>
                             </tr>
@@ -78,6 +60,12 @@
                         </div>
                         <div class="modal-footer"><a href="#" id="modalBtnGetPackClose" class="btn btn-primary">关闭</a></div>
                       </div>
+                  	</div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">数量</label>
+                    <div class="controls">
+                    	<input type="text" class="span8" id="count" name="count" placeholder="数量" value="1" />
                   	</div>
                 </div>
                 <div class="form-actions">
@@ -103,55 +91,32 @@ var dataTableHandler;
 
 $(function() {
 	$("#serverIp").select2();
-	$("#allServer").click(function() {
-		if($(this).attr("checked")) {
-			$("#nickname").val("");
-			$("#allServer").val("1");
-			$("#slideContent").slideUp();
-		} else {
-			$("#allServer").val("");
-			$("#slideContent").slideDown();
-		}
-	});
+	$("#count").mask("?99");
+	
 	$("#btnGetPack").click(function() {
 		$("#modalGetPack").removeClass("hide");
 		if(dataTableHandler != null) {
 			return false;
 		} else {
-			$.post("<?php echo site_url('master/grant_pack/get'); ?>", {
+			$.post("<?php echo site_url('master/grant_item/get'); ?>", {
 				"serverIp": $("#serverIp").val()
 			}, onPackData);
 			return false;
 		}
 	});
-	$("#modalGetPackClose, #modalBtnGetPackClose").click(function() {
-		$("#modalGetPack").addClass("hide");
-	});
     $("#btnSubmit").click(function() {
-		if($("#allServer").attr("checked")) {
-			var result = confirm("【警告】确定进行全服发放？");
-			if(result) {
-				$.post("<?php echo site_url('master/send_mail/send'); ?>", {
-        			"serverId": $("#serverIp").find("option:selected").attr("serverId"),
-					"serverIp": $("#serverIp").val(),
-					"allServer": $("#allServer").val(),
-					"nickname": $("#nickname").val(),
-					"itemId": $("#itemId").val(),
-					"title": $("#mailTitle").val(),
-					"content": $("#mailContent").val()
-				}, onData);
-			}
-		} else {
-			$.post("<?php echo site_url('master/send_mail/send'); ?>", {
-        		"serverId": $("#serverIp").find("option:selected").attr("serverId"),
+		var result = confirm("【警告】确定要发放道具吗？");
+		if(result) {
+			$.post("<?php echo site_url('master/grant_item/send'); ?>", {
 				"serverIp": $("#serverIp").val(),
-				"allServer": $("#allServer").val(),
 				"nickname": $("#nickname").val(),
-				"itemId": $("#itemId").val(),
-				"title": $("#mailTitle").val(),
-				"content": $("#mailContent").val()
+				"itemId": $("#packId").val(),
+				"count": $("#count").val()
 			}, onData);
 		}
+	});
+	$("#modalGetPackClose, #modalBtnGetPackClose").click(function() {
+		$("#modalGetPack").addClass("hide");
 	});
 });
 
@@ -201,11 +166,7 @@ function onData(data) {
 	if(json.success == '1'){
 		popupMessage("messageContainer", "success", "已成功发送");
 	} else {
-		if(json.error) {
-			popupMessage("messageContainer", "error", "发送失败，" + json.error);
-		} else {
-			popupMessage("messageContainer", "error", "发送失败(" + data + ")");
-		}
+		popupMessage("messageContainer", "error", "发送失败(" + data + ")");
 	}
 }
 </script>

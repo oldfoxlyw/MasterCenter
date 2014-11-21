@@ -83,7 +83,7 @@ function onData(data) {
     if(json.no_role.length > 0) {
       popupMessage("messageContainer", "error", "发送失败，角色不存在。");
     } else {
-      popupMessage("messageContainer", "error", "发送失败");
+      popupMessage("messageContainer", "error", "发送失败(" + data + ")");
     }
   }
 }

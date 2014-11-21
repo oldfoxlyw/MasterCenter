@@ -63,7 +63,7 @@ function onData(data) {
 	if(data == 'true') {
 		popupMessage("messageContainer", "success", "已成功发送消息");
 	} else {
-		popupMessage("messageContainer", "error", "发送消息失败");
+		popupMessage("messageContainer", "error", "发送消息失败(" + data + ")");
 	}
 }
 </script>
