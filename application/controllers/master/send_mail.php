@@ -39,11 +39,13 @@ class Send_mail extends CI_Controller
 		$id = $this->input->post('serverId', TRUE);
 		$ip = $this->input->post('serverIp', FALSE);
 		$nickname = $this->input->post('nickname');
+		$guid = $this->input->post('guid');
 		$itemId = $this->input->post('itemId');
 		$title = $this->input->post('title');
 		$content = $this->input->post('content');
 		
 		$nickname = empty($nickname) ? '' : $nickname;
+		$guid = empty($guid) ? '' : $guid;
 		$itemId = empty($itemId) ? '' : $itemId;
 		if(!empty($ip) && !empty($id) && !empty($title) && !empty($content))
 		{
@@ -54,14 +56,28 @@ class Send_mail extends CI_Controller
 			);
 			
 			$this->load->model('maccount');
-			$nickNameArray = explode(',', $nickname);
-			$result = $this->maccount->read(array(
-				'server_id'				=>	$id
-			), array(
-				'where_in'	=>	array(
-					'account_nickname',
-					$nickNameArray
-			)));
+			if(!empty($guid))
+			{
+				$nickNameArray = explode(',', $guid);
+				$result = $this->maccount->read(array(
+					'server_id'				=>	$id
+				), array(
+					'where_in'	=>	array(
+						'GUID',
+						$nickNameArray
+				)));
+			}
+			else
+			{
+				$nickNameArray = explode(',', $nickname);
+				$result = $this->maccount->read(array(
+					'server_id'				=>	$id
+				), array(
+					'where_in'	=>	array(
+						'account_nickname',
+						$nickNameArray
+				)));
+			}
 			if(!empty($result))
 			{
 				$guidList = array();

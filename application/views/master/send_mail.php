@@ -34,6 +34,13 @@
                   	</div>
                 </div>
                 <div class="control-group" id="slideContent">
+                    <label class="control-label">GUID</label>
+                    <div class="controls">
+                    	<input type="text" class="span8" id="guid" name="guid" placeholder="GUID" />
+                    	<p>可以指定GUID或者角色昵称，当两者都指定时以GUID为准</p>
+                  	</div>
+                </div>
+                <div class="control-group" id="slideContent">
                     <label class="control-label">角色昵称</label>
                     <div class="controls">
                     	<input type="text" class="span8" id="nickname" name="nickname" placeholder="角色昵称" />
