@@ -27,12 +27,6 @@
                         </select>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label">全服发送</label>
-                    <div class="controls">
-                    	<input id="allServer" name="allServer" type="checkbox" value="" /> 是
-                  	</div>
-                </div>
                 <div class="control-group" id="slideContent">
                     <label class="control-label">GUID</label>
                     <div class="controls">
