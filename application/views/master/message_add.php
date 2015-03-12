@@ -33,6 +33,18 @@
                         </div>
                     </div>
                     <div class="control-group">
+                      <label class="control-label" for="adminPass">循环发送</label>
+                      <div class="controls">
+                        <input type="checkbox" id="everyTrigger" name="everyTrigger" <?php if($value->every > 0): ?>checked="checked"<?php endif; ?> value="1" />
+                      </div>
+                    </div>
+                    <div id="everyPanel" class="control-group" <?php if(empty($value->every)): ?>style="display:none;"<?php endif; ?>>
+                      <label class="control-label" for="adminPass">循环规则</label>
+                      <div class="controls">
+                        <input type="text" class="span2" id="every" name="every" placeholder="秒" value="<?php echo $value->every; ?>" /> 秒后再次发送
+                      </div>
+                    </div>
+                    <div id="normalPanel" class="control-group" <?php if($value->every > 0): ?>style="display:none;"<?php endif; ?>>
                       <label class="control-label" for="adminPass">定时规则</label>
                       <div class="controls">
 						<input type="text" class="span2" id="minutes" name="minutes" placeholder="分" value="<?php echo $value->minutes; ?>" /> 分
@@ -190,5 +202,11 @@
 $(function() {
 	$("#serverId").select2();
     $('.datepicker').datepicker();
+    $("#everyTrigger").click(function() {
+        var checked = $("#everyTrigger").is(":checked");
+        if(checked) {
+
+        }
+    });
 });
 </script>
