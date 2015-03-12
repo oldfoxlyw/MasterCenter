@@ -205,7 +205,11 @@ $(function() {
     $("#everyTrigger").click(function() {
         var checked = $("#everyTrigger").is(":checked");
         if(checked) {
-
+            $("#everyPanel").show();
+            $("#normalPanel").hide();
+        } else {
+            $("#everyPanel").hide();
+            $("#normalPanel").show();
         }
     });
 });

@@ -162,6 +162,7 @@ class Message extends CI_Controller
 		$id = $this->input->post('id');
 		$server_id = $this->input->post('serverId');
 		$content = $this->input->post('messageContent');
+		$every = $this->input->post('every');
 		$minutes = $this->input->post('minutes');
 		$hour = $this->input->post('hour');
 		$date = $this->input->post('date');
@@ -174,6 +175,10 @@ class Message extends CI_Controller
 		$endMinutes = $this->input->post('endMinutes');
 		$endSeconds = $this->input->post('endSeconds');
 		
+		if(empty($every))
+		{
+			$every = 0;
+		}
 		if(empty($minutes) && $minutes != '0')
 		{
 			$minutes = '*';
@@ -209,6 +214,7 @@ class Message extends CI_Controller
 				$parameter = array(
 						'server_id'		=>	$server_id,
 						'content'		=>	$content,
+						'every'			=>	$every,
 						'minutes'		=>	$minutes,
 						'hour'			=>	$hour,
 						'date'			=>	$date,
