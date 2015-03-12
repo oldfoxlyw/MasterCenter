@@ -241,6 +241,7 @@ class Message extends CI_Controller
 				$parameter = array(
 						'server_id'		=>	$server_id,
 						'content'		=>	$content,
+						'every'			=>	$every,
 						'minutes'		=>	$minutes,
 						'hour'			=>	$hour,
 						'date'			=>	$date,
